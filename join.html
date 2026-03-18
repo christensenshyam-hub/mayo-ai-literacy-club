@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us — Mayo AI Literacy Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Petrona:ital,wght@0,400;0,600;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Mayo AI Literacy Club Logo">
+                Mayo AI Literacy Club
+            </a>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="about.html">About</a></li>
+                <li><a href="board.html">Our Board</a></li>
+                <li><a href="groups.html">3 Groups</a></li>
+                <li><a href="topics.html">Topics</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="instagram.html">Instagram</a></li>
+                <li><a href="join.html" class="btn-nav">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- JOIN -->
+    <section id="join" class="section join">
+        <div class="container">
+            <div class="join-box fade-in">
+                <h2>Ready to Join?</h2>
+                <p>Whether you want to understand AI headlines, run thought experiments, or just hang out with curious people — we'd love to have you.</p>
+                <a href="https://www.instagram.com/mayoailiteracy" target="_blank" class="btn btn-primary btn-large">Follow on Instagram</a>
+                <p class="join-note">Or just show up Thursday morning at the MHS Library Classroom.</p>
+            </div>
+
+            <div class="contact-box">
+                <div class="contact-header">
+                    <span class="section-label">Contact Us</span>
+                    <h3>Show Your Interest</h3>
+                    <p>Fill out this form and we'll reach out with more info about joining the club.</p>
+                </div>
+                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+                    <input type="hidden" name="form-name" value="contact">
+                    <input type="hidden" name="_to" value="christensen.shyam@gmail.com">
+                    <p class="hidden-field"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="grade">Grade</label>
+                            <select id="grade" name="grade" required>
+                                <option value="" disabled selected>Select your grade</option>
+                                <option value="9">9th Grade</option>
+                                <option value="10">10th Grade</option>
+                                <option value="11">11th Grade</option>
+                                <option value="12">12th Grade</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">AI Experience</label>
+                            <select id="experience" name="experience">
+                                <option value="" disabled selected>Your level</option>
+                                <option value="none">No experience</option>
+                                <option value="some">Some — used ChatGPT etc.</option>
+                                <option value="intermediate">Intermediate — know the basics</option>
+                                <option value="advanced">Advanced — building with AI</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Why do you want to join? <span class="form-optional">(optional)</span></label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us what interests you about AI literacy..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
+                </form>
+
+                <div class="contact-success" id="contact-success">
+                    <div class="success-icon">✓</div>
+                    <h3>Message Sent!</h3>
+                    <p>Thanks for reaching out — we'll be in touch soon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>Mayo AI Literacy Club &copy; 2026 &nbsp;·&nbsp; <a href="https://www.instagram.com/mayoailiteracy" target="_blank" style="color:var(--color-gold);text-decoration:none;">@mayoailiteracy</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

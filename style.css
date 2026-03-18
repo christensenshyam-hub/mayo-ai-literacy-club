@@ -22,22 +22,16 @@
     --radius-lg:       12px;
 }
 
-html { scroll-behavior: auto; }
+html { scroll-behavior: smooth; }
 
-/* ===== Multi-page navigation ===== */
-/* Hide all sections by default; JS adds .page-visible to show them */
-section {
-    display: none;
-}
-
-section.page-visible {
-    display: block;
-    animation: pageFadeIn 0.32s ease forwards;
-}
-
+/* ===== Page load animation ===== */
 @keyframes pageFadeIn {
-    from { opacity: 0; transform: translateY(14px); }
+    from { opacity: 0; transform: translateY(12px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+.section {
+    animation: pageFadeIn 0.35s ease forwards;
 }
 
 /* Active nav link highlight */
