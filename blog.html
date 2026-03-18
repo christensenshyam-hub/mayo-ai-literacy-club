@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayo AI Literacy Club</title>
+    <title>Blog — Mayo AI Literacy Club</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Petrona:ital,wght@0,400;0,600;1,400;1,600;1,700&display=swap" rel="stylesheet">
@@ -35,21 +35,15 @@
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="hero-bg-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
-        <div class="container hero-content">
-            <img src="logo.png" alt="Mayo AI Literacy Club" class="hero-logo">
-            <span class="hero-badge">MHS Library Classroom · Thursdays @ 8:20 AM</span>
-            <h1>Creating the next leaders<br>for an <em>AI-driven world.</em></h1>
-            <p class="hero-subtitle">Learn how AI works, think critically about its impact, and build the skills that actually matter.</p>
-            <div class="hero-buttons">
-                <a href="join.html" class="btn btn-primary">Get Involved</a>
-                <a href="groups.html" class="btn btn-secondary">Which Group Are You?</a>
+    <!-- BLOG LISTING -->
+    <section id="blog" class="section blog-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">From the Club</span>
+                <h2>Blog</h2>
+            </div>
+            <div class="blog-list" id="blog-list">
+                <!-- Posts injected by JS -->
             </div>
         </div>
     </section>
@@ -61,6 +55,31 @@
         </div>
     </footer>
 
+    <script src="blog-data.js"></script>
     <script src="script.js"></script>
+    <script>
+        const list = document.getElementById('blog-list');
+
+        if (!BLOG_POSTS || BLOG_POSTS.length === 0) {
+            list.innerHTML = '<p class="blog-empty">No posts yet — check back soon.</p>';
+        } else {
+            BLOG_POSTS.forEach((post, i) => {
+                const card = document.createElement('a');
+                card.href = `blog-post.html?id=${post.id}`;
+                card.className = 'blog-card fade-in';
+                card.style.animationDelay = `${i * 0.07}s`;
+                card.innerHTML = `
+                    <div class="blog-card-meta">
+                        <span class="blog-category">${post.category}</span>
+                        <span class="blog-date">${post.date}</span>
+                    </div>
+                    <h3 class="blog-card-title">${post.title}</h3>
+                    <p class="blog-card-summary">${post.summary}</p>
+                    <span class="blog-read-more">Read post →</span>
+                `;
+                list.appendChild(card);
+            });
+        }
+    </script>
 </body>
 </html>

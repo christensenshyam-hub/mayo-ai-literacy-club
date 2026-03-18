@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post — Mayo AI Literacy Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Petrona:ital,wght@0,400;0,600;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Mayo AI Literacy Club Logo">
+                Mayo AI Literacy Club
+            </a>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="about.html">About</a></li>
+                <li><a href="board.html">Our Board</a></li>
+                <li><a href="groups.html">3 Groups</a></li>
+                <li><a href="topics.html">Topics</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="instagram.html">Instagram</a></li>
+                <li><a href="join.html" class="btn-nav">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- BLOG POST -->
+    <section class="section blog-post-section">
+        <div class="container blog-post-container">
+            <a href="blog.html" class="blog-back">← Back to Blog</a>
+            <article id="post-content" class="blog-post-article">
+                <!-- Injected by JS -->
+            </article>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>Mayo AI Literacy Club &copy; 2026 &nbsp;·&nbsp; <a href="https://www.instagram.com/mayoailiteracy" target="_blank" style="color:var(--color-gold);text-decoration:none;">@mayoailiteracy</a></p>
+        </div>
+    </footer>
+
+    <script src="blog-data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Read ?id= from URL
+        const params = new URLSearchParams(window.location.search);
+        const postId = params.get('id');
+        const post = BLOG_POSTS.find(p => p.id === postId);
+        const article = document.getElementById('post-content');
+
+        if (!post) {
+            article.innerHTML = `
+                <h2>Post not found</h2>
+                <p><a href="blog.html">← Back to blog</a></p>
+            `;
+        } else {
+            // Update page title
+            document.title = `${post.title} — Mayo AI Literacy Club`;
+
+            // Render content: convert ## headings, **bold**, *italic*, blank lines to <p>
+            function renderContent(raw) {
+                return raw.trim()
+                    .split(/\n\n+/)
+                    .map(block => {
+                        block = block.trim();
+                        if (!block) return '';
+                        if (block.startsWith('## ')) {
+                            return `<h3>${block.slice(3)}</h3>`;
+                        }
+                        block = block
+                            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.+?)\*/g, '<em>$1</em>');
+                        return `<p>${block}</p>`;
+                    })
+                    .join('\n');
+            }
+
+            article.innerHTML = `
+                <div class="blog-post-header">
+                    <div class="blog-post-meta">
+                        <span class="blog-category">${post.category}</span>
+                        <span class="blog-date">${post.date}</span>
+                        <span class="blog-author">by ${post.author}</span>
+                    </div>
+                    <h1 class="blog-post-title">${post.title}</h1>
+                    <p class="blog-post-summary">${post.summary}</p>
+                </div>
+                <div class="blog-post-body">
+                    ${renderContent(post.content)}
+                </div>
+                <div class="blog-post-footer">
+                    <a href="blog.html" class="btn btn-secondary">← All Posts</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
