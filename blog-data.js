@@ -26,6 +26,142 @@
 const BLOG_POSTS = [
 
   {
+    id: 'anthropic-pentagon-fallout',
+    title: 'Who Gets to Tell the Robot No?',
+    date: 'March 19, 2026',
+    author: 'Nathan Dozois',
+    category: 'AI Policy',
+    summary: 'Anthropic built the most trusted AI in classified government networks — and then refused to let the Pentagon use it however it wanted. The fallout is reshaping the future of AI, warfare, and American democracy.',
+    content: `
+      Imagine you sell a contractor a very powerful set of power tools. The contractor is great — does good work, handles dangerous equipment responsibly. Then one day, a new site manager shows up and says: we need to rewire those tools so the safety guards come off. You say no. They say: give us the tools as-is, or we'll ban your whole business from every job site in the country.
+
+      That is, roughly, what just happened between Anthropic and the United States government. And the implications go way beyond one tech company's contract dispute.
+
+      ## The Setup: Claude Goes to War
+
+      Anthropic is the San Francisco-based company that makes Claude — the AI assistant you may have used to write an email, summarize a document, or answer a tricky question. But Claude wasn't just answering questions for regular people. Anthropic signed a contract with the US Department of Defense in July 2025 worth up to $200 million to help "prototype frontier AI capabilities that advance U.S. national security."
+
+      Anthropic was the first frontier AI company to put its models on classified networks and the first to provide customized models for national security customers. In practice, that meant Claude was doing intelligence analysis, cybersecurity work, military simulations, and planning assistance deep inside the US government's most sensitive systems.
+
+      There was a catch, though — and Anthropic made it clear from day one. The company had two hard limits baked into its contract: Claude could not be used for mass domestic surveillance of Americans, and it could not be embedded in fully autonomous weapons systems. No human in the loop? No deal.
+
+      **What is an autonomous weapon?** An autonomous weapon is one that can identify, select, and engage a target with no human approval required. Think of a drone that decides on its own when and what to shoot — no soldier pressing a button. Anthropic's position: today's AI is not reliable enough for that responsibility.
+
+      ## The Incident That Changed Everything
+
+      Things started to unravel in January 2026. Tensions intensified after The Wall Street Journal and Axios reported on the use of Anthropic products in the operation to capture Venezuelan President Nicolás Maduro. Exactly how Claude was used in the operation hasn't been confirmed publicly — but the reports were enough to rattle both sides.
+
+      Anthropic asked whether their software was used for the raid to capture Maduro, which caused real concerns across the Department of War indicating that they might not approve if it was, according to an official who spoke to Axios.
+
+      This was the moment the relationship began its rapid unraveling. The Pentagon's new leadership, under Defense Secretary Pete Hegseth, had a different vision for what "responsible AI" should mean in a military context. A memorandum issued by Hegseth stated that military AI should encompass "any lawful use" of AI models by the US military — no exceptions, no company-imposed red lines.
+
+      ## The 5:01 PM Deadline
+
+      On February 24, US Defense Secretary Pete Hegseth gave Anthropic CEO Dario Amodei a deadline: relent by 5:01 p.m. on Friday, February 27, and allow unrestricted use of the company's AI models "for all legal purposes."
+
+      Anthropic refused.
+
+      Amodei said in a statement on February 26 that he "cannot in good conscience accede to the Pentagon's request" for unrestricted access to the company's AI systems, citing two specific reasons: current AI models aren't reliable enough for fully autonomous weapons, and using Claude for mass domestic surveillance of Americans crosses a line he wouldn't cross for any customer — including the US government.
+
+      *"Some uses are simply outside the bounds of what today's technology can safely and reliably do." — Dario Amodei, Anthropic CEO, February 26, 2026*
+
+      The response from Secretary Hegseth was swift: "Effective immediately, no contractor, supplier, or partner that does business with the United States military may conduct any commercial activity with Anthropic." He gave Anthropic six months to transition the government off its systems and declared the company a "supply chain risk" — a designation previously only applied to foreign companies and designed to prevent adversaries from sabotaging U.S. military systems.
+
+      ## Could Claude "Blow Up an Elementary School"?
+
+      Here's where the debate gets both important and deeply uncomfortable — and where a lot of people's fears about AI come into sharp focus.
+
+      The scenario sounds outlandish: could an AI like Claude, deployed in an autonomous military system, cause civilian casualties — a school, a hospital, a crowded marketplace — without any human ever making that call?
+
+      This isn't paranoia. It's exactly the scenario AI safety researchers have been warning about for years, and it's the precise reason Anthropic drew its red lines. Anthropic argued that current frontier AI models are not reliable enough to be used in fully autonomous weapons, and that "allowing current models to be used in this way would endanger America's warfighters and civilians."
+
+      **The core safety problem:** AI models — even very good ones — can be confidently wrong. They hallucinate facts, misread context, and fail in unpredictable ways. A human soldier can reconsider. A fully autonomous AI weapon, once deployed with a target objective, cannot have a change of heart. The question Anthropic forced into the open: should we be deploying systems this imperfect in situations where mistakes kill people?
+
+      The Pentagon's position is essentially: *that's our call to make, not yours.* Anthropic's position is: *not with our technology, it isn't.* Both positions have a logic to them. That's what makes this so hard.
+
+      ## The Lawsuit, the Supporters, and the Precedent
+
+      On March 9, Anthropic sued the federal government in a California court, arguing the administration's actions had caused it irreparable harm and requesting an injunction of the supply chain risk designation.
+
+      Then something remarkable happened. Support flooded in from places you wouldn't expect.
+
+      Microsoft's legal filing said that the supply chain risk designation "may bring severe economic effects that are not in the public interest" and argued the government's actions force contractors to comply with "vague and ill-defined directions that have never before been publicly wielded against a US company."
+
+      More than 30 employees from OpenAI and Google DeepMind, including Google chief scientist Jeff Dean, filed an amicus brief warning that a Pentagon blacklist of Anthropic threatens to damage the entire American AI industry. These are employees at direct competitor companies, going to court to defend a rival — because they recognized the precedent being set.
+
+      US Defense Secretary Hegseth's conduct against Anthropic "threatens the rule-of-law principles that have long strengthened our military," according to a brief supported by Michael Hayden, the former director of the CIA, who also alleged the actions were retaliation against a private company that displeased the administration.
+
+      ## 80-Year-Olds Deciding the Future of AI
+
+      Now for the uncomfortable punchline lurking behind all of this: the people who are supposed to referee this fight are, largely, not equipped to do it.
+
+      When tech CEOs testify before Congress, the hearings often become unintentional comedy — senators asking Facebook's Mark Zuckerberg how the company makes money, or asking if an iPhone works on Android. The gap between what legislators understand and what they're being asked to regulate is enormous.
+
+      The average age of a US Senator is over 65. Many of the members on the committees overseeing AI and defense policy are in their 70s and 80s. These are the people who will pass — or fail to pass — laws that govern whether an AI can autonomously launch a missile, surveil an American citizen's phone, or decide who gets flagged as a threat.
+
+      Recent congressional testimony revealed the Department of Defense is accelerating internal AI development specifically to reduce dependence on safety-focused commercial vendors — a move that removes even the private-sector checks that companies like Anthropic were trying to maintain. If the government builds its own AI with no external usage restrictions and no public accountability, the guardrails disappear entirely.
+
+      **What's at stake legislatively:** Congress has repeatedly struggled to pass meaningful AI legislation. While the EU passed its comprehensive AI Act, the US has largely relied on voluntary company commitments. The Anthropic-Pentagon dispute may finally force a real debate — but only if lawmakers can get up to speed fast enough to ask the right questions.
+
+      ## So Who's Actually Responsible?
+
+      Here's the question AI literacy requires you to sit with: when an AI makes a catastrophic error in a military context, who answers for it?
+
+      Is it the company that built the model? If courts side with the government, AI companies pursuing defense work may have no legal right to impose usage restrictions — which would also mean no legal ability to enforce accountability for misuse.
+
+      Is it the government officials who deployed it? The commanders who approved the mission? The Pentagon has no uniform policy on AI accountability in wartime. International law on autonomous weapons is essentially nonexistent.
+
+      Is it the AI itself? No. Legally and practically: no. An AI cannot be court-martialed.
+
+      What Anthropic's stand revealed is that there is currently no clear answer — and that the absence of an answer is itself a crisis. A private company was the only entity in this entire chain saying *wait, let's define some limits first*. And the government's response was to ban them.
+
+      *"Something is so necessary that you need to invoke the Defense Production Act, and so harmful that you put a designation on it reserved for foreign adversaries. I don't know how those two things can both be true." — Mark Dalton, Retired Navy Rear Admiral, R Street Institute*
+
+      ## The Race to the Bottom — Or the Top?
+
+      After Anthropic was banned, OpenAI announced it had done a deal with the Defense Department to provide its technology for classified networks, hours after the president's ban of Anthropic. OpenAI's deal included similar red lines against domestic surveillance and autonomous weapons — but Anthropic's CEO Dario Amodei publicly called it "safety theater," accusing OpenAI of offering guardrails that don't actually hold.
+
+      Meanwhile, Google recently updated its ethical guidelines, dropping its pledge not to use AI for weapons development and surveillance. OpenAI likewise modified its mission statement, removing "safety" as a core value, and Elon Musk's xAI agreed to the Pentagon's "any lawful use" standard.
+
+      The competitive pressure is real. There's enormous money in defense contracts. If one company holds the line on safety and loses a $200 million contract, while another company drops the safety language and wins it, the market incentive becomes clear: safety is a liability.
+
+      Unless the law steps in. Unless Congress — yes, those 80-year-olds — figures out how to write rules that apply to every contractor equally, so that no company faces the choice between ethics and survival.
+
+      ## What You Should Actually Take Away From This
+
+      You don't have to be a tech expert to understand what's at stake here. The Anthropic-Pentagon fallout is really about three very old, very human questions in a new technological costume:
+
+      **Who has the power?** Governments want unrestricted control over tools they pay for. Tech companies want to set the rules for tools they build. Neither is obviously wrong.
+
+      **Who bears the risk?** When AI fails in a military context — and it will fail, because every technology eventually does — the people who suffer won't be the CEOs or the senators. It will be soldiers, civilians, and communities with no seat at the table.
+
+      **Who decides what's too dangerous?** For most of human history, that answer has been: societies, through laws, international agreements, and democratic deliberation. Right now, it is effectively: whichever company gets the contract.
+
+      Anthropic drew a line in the sand and lost the contract for it. Whether that was heroic, naive, or something in between depends on what you think is coming next — and how fast it's coming.
+
+      The one thing that seems clear: this won't be the last time someone has to answer these questions. The next time, there might not be a company willing to say no.
+
+      ## Timeline
+
+      **July 2025** — Anthropic signs $200M DOD contract with usage restrictions built in.
+
+      **January 2026** — Claude reportedly used in the US military's capture of Venezuelan President Maduro.
+
+      **February 20, 2026** — Pentagon begins formally pushing to remove Anthropic's usage restrictions.
+
+      **February 24, 2026** — Hegseth gives Anthropic a 48-hour ultimatum: drop the red lines or face consequences.
+
+      **February 26, 2026** — Amodei publicly refuses. Anthropic will not grant unrestricted access.
+
+      **February 27, 2026** — Trump orders all government agencies to stop using Anthropic. Pentagon designates Anthropic a "supply chain risk." OpenAI announces a new Pentagon deal within hours.
+
+      **March 9, 2026** — Anthropic sues the US government. Microsoft, Google/OpenAI employees, and retired military officials file supporting briefs.
+
+      **March 2026 (ongoing)** — Legal battle continues. Precedent for all AI-government contracts hangs in the balance.
+    `
+  },
+
+  {
     id: 'student-concerns-ai',
     title: 'Concerns from a Student in the Era of AI',
     date: 'March 19, 2026',
