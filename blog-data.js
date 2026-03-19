@@ -26,6 +26,64 @@
 const BLOG_POSTS = [
 
   {
+    id: 'vibe-coding-opinion',
+    title: 'Vibe Coding Is Real — and That Should Scare You a Little',
+    date: 'March 18, 2026',
+    author: 'Shyam Christensen',
+    category: 'Opinion',
+    summary: 'AI vibe coding lets anyone build software by describing what they want in plain English. That\'s incredible. It\'s also a little dangerous — and not for the reasons most people think.',
+    content: `
+      Earlier this year, Andrej Karpathy — one of the founding members of OpenAI — posted something that caught everyone's attention. He described a new way of working with AI that he called "vibe coding": you describe what you want, the AI writes the code, and you just… go with it. You don't read every line. You don't fully understand what's happening under the hood. You iterate on vibes.
+
+      His post was partly tongue-in-cheek. But it named something real. And it's worth thinking carefully about what it actually means.
+
+      ## What Vibe Coding Actually Is
+
+      Vibe coding isn't a specific tool — it's a posture. It's the difference between using AI as a calculator (you know what you're asking, you verify the answer) and using AI as a contractor (you describe the outcome, you trust it to figure out the details).
+
+      In practice, it looks like this: you open a chat window, describe an app you want to build, and the AI produces hundreds of lines of code. You run it. Something works. Something else breaks. You describe the bug in plain English. The AI patches it. Repeat.
+
+      The result can be genuinely impressive — functional software built in hours by someone with no formal programming background. That's not nothing. That's actually kind of remarkable.
+
+      ## Why It's Exciting
+
+      The barrier to building software just collapsed. Not lowered — collapsed.
+
+      A student with a good idea and no CS background can now prototype it. A small nonprofit can build internal tools without a developer. A researcher can automate repetitive analysis without learning Python from scratch. These are real benefits that affect real people.
+
+      And honestly, even experienced developers vibe code sometimes. The economics make sense: if AI can generate a solid first draft of boilerplate code in ten seconds, why spend thirty minutes writing it yourself?
+
+      ## Why It Should Make You Think
+
+      Here's where I want to push back — not on vibe coding itself, but on the **posture** it encourages.
+
+      When you don't understand the code you're shipping, you lose the ability to evaluate it. You can't tell if it's secure. You can't tell if it's efficient. You can't tell if it's doing something subtly wrong in an edge case that will matter later. You're flying blind with a very confident co-pilot.
+
+      This isn't hypothetical. AI-generated code has introduced real security vulnerabilities into real products because the developer trusted the output without understanding it. The code *looked* right. It *ran* fine. It was still wrong.
+
+      There's also a deeper issue: **vibe coding optimizes for the demo, not the system.** It's great at producing something that works in the expected case. It's much worse at building something robust, maintainable, and well-architected. If you're building something that needs to last — or that other people depend on — that gap matters enormously.
+
+      ## The Skill That Actually Matters
+
+      I'm not saying don't use AI to code. I use it constantly. I used it to help build this website.
+
+      But there's a difference between using AI as a tool you understand and using it as a magic box you don't question. The first makes you faster. The second makes you fragile.
+
+      The skill that matters isn't knowing every syntax rule. It's knowing enough to evaluate what the AI gives you — to ask the right questions, catch the mistakes, and understand when something is wrong even if you can't immediately fix it yourself.
+
+      That's AI literacy applied to software. And it's exactly the kind of thinking we try to build in this club — not just for coding, but for everything AI touches.
+
+      ## The Bottom Line
+
+      Vibe coding is real, it's here, and it's not going away. It's going to keep getting more powerful. More people are going to build more things with less understanding of what they're building.
+
+      That creates opportunity. It also creates risk. The people who thrive in that environment won't be the ones who vibe the hardest — they'll be the ones who know when to stop vibing and actually look at what's going on.
+
+      Be that person.
+    `
+  },
+
+  {
     id: 'ai-dilemmas-march-19',
     title: 'Advanced Seminar Recap: AI Dilemmas',
     date: 'March 19, 2026',
