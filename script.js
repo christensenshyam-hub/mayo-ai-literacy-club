@@ -36,3 +36,26 @@ window.observeFadeIns = (container) => {
     const root = container || document;
     root.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 };
+
+// Page transitions — fade out on exit, fade in on load
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('page-loaded');
+});
+
+document.querySelectorAll('a').forEach(link => {
+    const href = link.getAttribute('href');
+    if (
+        href &&
+        !href.startsWith('#') &&
+        !href.startsWith('http') &&
+        !href.startsWith('mailto') &&
+        link.target !== '_blank'
+    ) {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const dest = link.href;
+            document.body.classList.remove('page-loaded');
+            setTimeout(() => { window.location.href = dest; }, 220);
+        });
+    }
+});
