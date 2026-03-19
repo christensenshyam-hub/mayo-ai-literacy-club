@@ -88,6 +88,18 @@
         </div>
     </div>
 
+    <!-- QUOTE CAROUSEL — add more quotes to the array in the script below -->
+    <section class="quote-carousel-section">
+        <div class="container">
+            <div class="quote-carousel">
+                <div class="quote-track" id="quoteTrack">
+                    <!-- quotes injected by JS -->
+                </div>
+                <div class="quote-dots" id="quoteDots"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- FEATURED POST — pulls automatically from blog-data.js -->
     <section class="featured-post-section">
         <div class="container">
@@ -105,6 +117,61 @@
             <p>Mayo AI Literacy Club &copy; 2026 &nbsp;·&nbsp; <a href="https://www.instagram.com/mayoailiteracy" target="_blank" class="footer-link">@mayoailiteracy</a></p>
         </div>
     </footer>
+
+    <!-- QUOTE CAROUSEL SCRIPT -->
+    <!-- To add more quotes, copy one object and paste it into the array below -->
+    <script>
+        const QUOTES = [
+            {
+                text: "At the end of the day, AI should be applied to everything we are comfortable with.",
+                author: "Michael T.",
+                grade: "10th Grade"
+            },
+            // Add more quotes here — copy the block above and change the text/author/grade
+        ];
+
+        const track = document.getElementById('quoteTrack');
+        const dotsWrap = document.getElementById('quoteDots');
+        let current = 0;
+        let timer;
+
+        function buildQuotes() {
+            QUOTES.forEach((q, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'quote-slide' + (i === 0 ? ' active' : '');
+                slide.innerHTML = `
+                    <blockquote class="quote-text">&ldquo;${q.text}&rdquo;</blockquote>
+                    <cite class="quote-author">&mdash; ${q.author}${q.grade ? ', <span class="quote-grade">' + q.grade + '</span>' : ''}</cite>
+                `;
+                track.appendChild(slide);
+
+                if (QUOTES.length > 1) {
+                    const dot = document.createElement('button');
+                    dot.className = 'quote-dot' + (i === 0 ? ' active' : '');
+                    dot.setAttribute('aria-label', 'Quote ' + (i + 1));
+                    dot.addEventListener('click', () => goTo(i));
+                    dotsWrap.appendChild(dot);
+                }
+            });
+        }
+
+        function goTo(n) {
+            const slides = track.querySelectorAll('.quote-slide');
+            const dots = dotsWrap.querySelectorAll('.quote-dot');
+            slides[current].classList.remove('active');
+            if (dots[current]) dots[current].classList.remove('active');
+            current = (n + QUOTES.length) % QUOTES.length;
+            slides[current].classList.add('active');
+            if (dots[current]) dots[current].classList.add('active');
+            clearInterval(timer);
+            timer = setInterval(() => goTo(current + 1), 5000);
+        }
+
+        buildQuotes();
+        if (QUOTES.length > 1) {
+            timer = setInterval(() => goTo(current + 1), 5000);
+        }
+    </script>
 
     <script src="blog-data.js"></script>
     <script src="script.js"></script>
