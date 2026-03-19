@@ -1606,83 +1606,67 @@ body.page-loaded {
     .stat-item + .stat-item::before { display: none; }
 }
 
-/* ===== Quote Carousel ===== */
-.quote-carousel-section {
-    padding: 64px 0 48px;
-    background: var(--color-bg-2);
+/* ===== Quote Ticker ===== */
+.quote-ticker-wrap {
+    display: flex;
+    align-items: center;
+    background: var(--color-surface);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+    height: 48px;
 }
-.quote-carousel {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-}
-.quote-track {
-    position: relative;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.quote-slide {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    pointer-events: none;
-}
-.quote-slide.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    position: relative;
-}
-.quote-text {
-    font-family: var(--font-serif);
-    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
-    font-style: italic;
-    color: var(--color-text);
-    line-height: 1.65;
-    quotes: none;
-}
-.quote-author {
+.quote-ticker-label {
+    flex-shrink: 0;
+    padding: 0 18px;
     font-family: var(--font-sans);
-    font-size: 0.88rem;
-    font-style: normal;
-    color: var(--color-text-muted);
-    letter-spacing: 0.04em;
-}
-.quote-grade {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--color-gold);
-}
-.quote-dots {
+    background: var(--color-surface-2);
+    border-right: 1px solid var(--color-border);
+    height: 100%;
     display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 28px;
+    align-items: center;
+    white-space: nowrap;
+    z-index: 1;
 }
-.quote-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-border);
-    border: none;
-    cursor: pointer;
-    transition: background var(--transition), transform var(--transition);
-    padding: 0;
+.quote-ticker-outer {
+    flex: 1;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
-.quote-dot.active {
-    background: var(--color-gold);
-    transform: scale(1.25);
+@keyframes tickerScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
 }
-@media (max-width: 640px) {
-    .quote-carousel-section { padding: 48px 0 36px; }
-    .quote-track { min-height: 160px; }
+.quote-ticker-track {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: tickerScroll 40s linear infinite;
+    gap: 0;
+}
+.quote-ticker-track:hover { animation-play-state: paused; }
+.qt-item {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--color-text);
+    padding: 0 32px;
+}
+.qt-author {
+    font-style: normal;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-gold);
+    margin-left: 6px;
+}
+.qt-sep {
+    color: var(--color-border);
+    font-size: 0.6rem;
+    flex-shrink: 0;
 }
