@@ -26,6 +26,22 @@
 const BLOG_POSTS = [
 
   {
+    id: 'student-concerns-ai',
+    title: 'Concerns from a Student in the Era of AI',
+    date: 'March 19, 2026',
+    author: 'Michael Teng',
+    category: 'Hear from the Members',
+    summary: 'AI is one of the strongest tools ever developed — but it must remain a tool. A student\'s perspective on where the line must be drawn.',
+    content: `
+      AI is one of the strongest tools ever developed, and it must remain a tool, not an entity that holds power above human value. Although artificial intelligence can be used to enhance and enrich human lives, there must be boundaries set on how it is used. Just because something is possible does not mean it should be done. However, artificial intelligence should never be used in areas of fundamental human rights, such as privacy, freedom, and individuality.
+
+      One of my biggest concerns with artificial intelligence is how it will be used to monitor and predict human behavior. For example, artificial intelligence will be able to monitor patterns and could try and predict a crime, before it even happens. Although this may seem like a great idea, there are many ethical issues with this. This could intrude on privacy, rights, and individualism. Human rights are the baseline of our world. We may not think about them all the time, but these rights hold together our reality and the way society functions. AI innovation should not affect this.
+
+      However, the problem is not AI itself, it is about how we use it. Ultimately, if we use it in the right way, it can help us in many ways, such as in healthcare and safety. On the other hand, if we don't set limits and make rules for its use, it can easily lead to the end of societal order as we know it. We need to make progress without compromising what makes us human. We need to use AI to assist us, not control us.
+    `
+  },
+
+  {
     id: 'vibe-coding-opinion',
     title: 'Vibe Coding Is Real — and That Should Scare You a Little',
     date: 'March 18, 2026',

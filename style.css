@@ -728,6 +728,24 @@ h3 {
 .event-next {
     border-left: 4px solid var(--color-gold);
 }
+.event-past {
+    border-left: 4px solid var(--color-border);
+    opacity: 0.75;
+}
+.event-tag-past {
+    background: var(--color-surface-2);
+    color: var(--color-text-muted);
+}
+.event-recap-link {
+    color: var(--color-gold);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+}
+.event-recap-link:hover {
+    text-decoration: underline;
+}
 
 .event-date-block {
     display: flex;
