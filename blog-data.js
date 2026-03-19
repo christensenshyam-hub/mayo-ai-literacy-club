@@ -31,6 +31,7 @@ const BLOG_POSTS = [
     date: 'March 19, 2026',
     author: 'Nathan Dozois',
     category: 'AI Policy',
+    customUrl: 'blog-anthropic-pentagon.html',
     summary: 'Anthropic built the most trusted AI in classified government networks — and then refused to let the Pentagon use it however it wanted. The fallout is reshaping the future of AI, warfare, and American democracy.',
     content: `
       Imagine you sell a contractor a very powerful set of power tools. The contractor is great — does good work, handles dangerous equipment responsibly. Then one day, a new site manager shows up and says: we need to rewire those tools so the safety guards come off. You say no. They say: give us the tools as-is, or we'll ban your whole business from every job site in the country.

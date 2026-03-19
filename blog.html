@@ -76,7 +76,7 @@
         } else {
             BLOG_POSTS.forEach((post, i) => {
                 const card = document.createElement('a');
-                card.href = `blog-post.html?id=${post.id}`;
+                card.href = post.customUrl || `blog-post.html?id=${post.id}`;
                 card.className = 'blog-card fade-in';
                 card.style.animationDelay = `${i * 0.07}s`;
                 card.innerHTML = `

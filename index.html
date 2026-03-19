@@ -155,7 +155,7 @@
         if (wrap && BLOG_POSTS && BLOG_POSTS.length > 0) {
             const post = BLOG_POSTS[0];
             wrap.innerHTML = `
-                <a href="blog-post.html?id=${post.id}" class="featured-post-card">
+                <a href="${post.customUrl || 'blog-post.html?id=' + post.id}" class="featured-post-card">
                     <div class="featured-post-label-col">
                         <span class="featured-eyebrow">Latest Post</span>
                         <h3>${post.title}</h3>

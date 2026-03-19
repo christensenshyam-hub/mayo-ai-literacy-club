@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Who Gets to Tell the Robot No? — Mayo AI Literacy Club">
+<meta property="og:description" content="Anthropic built the most trusted AI in classified government networks — and then refused to let the Pentagon use it however it wanted.">
+<meta property="og:image" content="https://mayoailiteracy.com/logo.png">
+<meta property="og:url" content="https://mayoailiteracy.com/blog-anthropic-pentagon.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Who Gets to Tell the Robot No?">
+<meta name="twitter:description" content="Anthropic built the most trusted AI in classified government networks — and then refused to let the Pentagon use it however it wanted.">
+<title>Who Gets to Tell the Robot No? — Mayo AI Literacy Club</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Site nav fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Petrona:ital,wght@0,400;0,600;1,400;1,600;1,700&display=swap" rel="stylesheet">
+<!-- Article fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ── Article-specific overrides ── */
+  :root {
+    --ink: #0e0c0a;
+    --paper: #f5f0e8;
+    --accent: #c0392b;
+    --muted: #7a7065;
+    --rule: #d4c9b5;
+    --highlight: #fff3b0;
+  }
+
+  .article-wrap {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.75;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 0;
+    text-align: center;
+    border-bottom: 3px solid var(--accent);
+  }
+  .masthead .pub-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #aaa;
+  }
+  .masthead .edition {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  /* HERO */
+  .article-hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 70px 28px 50px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-block;
+    border-top: 2px solid var(--accent);
+    padding-top: 6px;
+    margin-bottom: 22px;
+  }
+  .article-wrap h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    line-height: 1.12;
+    font-weight: 900;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .article-wrap h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .deck {
+    font-size: 1.15rem;
+    color: #3a3530;
+    line-height: 1.6;
+    max-width: 640px;
+    border-left: 3px solid var(--accent);
+    padding-left: 18px;
+    margin-bottom: 32px;
+  }
+  .byline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .byline span { color: var(--ink); font-weight: 500; }
+
+  /* ARTICLE BODY */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 28px 80px;
+  }
+  .article-body p {
+    margin-bottom: 1.4rem;
+    font-size: 1.02rem;
+  }
+
+  /* Section headers */
+  .article-wrap h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 3rem 0 1rem;
+    padding-top: 2.2rem;
+    border-top: 1px solid var(--rule);
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .article-wrap h2::before {
+    content: attr(data-num);
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    margin: 2.5rem -28px;
+    padding: 28px 52px;
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+  }
+  .pull-quote::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    line-height: 1;
+    color: var(--accent);
+    position: absolute;
+    top: -18px;
+    left: 20px;
+    opacity: 0.5;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    font-style: normal;
+    color: #aaa;
+    margin-top: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Callout box */
+  .callout {
+    background: var(--highlight);
+    border-left: 4px solid #e6c000;
+    padding: 20px 24px;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+  .callout strong {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: #7a6600;
+  }
+
+  /* Danger box */
+  .danger {
+    background: #fff0ee;
+    border: 2px solid var(--accent);
+    padding: 22px 26px;
+    margin: 2.4rem 0;
+    font-size: 0.95rem;
+  }
+  .danger strong {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+
+  /* Timeline */
+  .timeline {
+    list-style: none;
+    margin: 2rem 0;
+    padding: 0;
+    border-left: 2px solid var(--rule);
+  }
+  .timeline li {
+    padding: 12px 0 12px 28px;
+    position: relative;
+    font-size: 0.95rem;
+  }
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline .date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  mark {
+    background: var(--highlight);
+    padding: 0 3px;
+  }
+
+  /* Big stat */
+  .big-stat {
+    text-align: center;
+    margin: 2.5rem 0;
+    padding: 28px;
+    border: 1px solid var(--rule);
+  }
+  .big-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .big-stat .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Article footer */
+  .article-footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 28px 60px;
+    border-top: 2px solid var(--ink);
+  }
+  .footer-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    margin: 24px 28px 0;
+    max-width: 720px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .pull-quote { margin: 2rem 0; padding: 24px 28px; }
+    .article-wrap h1 { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Mayo AI Literacy Club Logo">
+                Mayo AI Literacy Club
+            </a>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="about.html">About</a></li>
+                <li><a href="board.html">Our Board</a></li>
+                <li><a href="groups.html">3 Groups</a></li>
+                <li><a href="topics.html">Topics</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="instagram.html">Instagram</a></li>
+                <li><a href="join.html" class="btn-nav">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="article-wrap">
+
+  <div class="masthead">
+    <div class="pub-name">The AI Literacy Review</div>
+    <div class="edition">March 2026</div>
+  </div>
+
+  <a href="blog.html" class="back-link">← Back to Blog</a>
+
+  <header class="article-hero">
+    <span class="kicker">AI &amp; Democracy</span>
+    <h1>Who Gets to Tell the Robot <em>No?</em></h1>
+    <p class="deck">Anthropic built the most trusted AI in classified government networks — and then refused to let the Pentagon use it however it wanted. The fallout is reshaping the future of AI, warfare, and American democracy.</p>
+    <div class="byline">By <span>Nathan Dozois</span> · The AI Literacy Review · March 19, 2026 · 10 min read</div>
+  </header>
+
+  <article class="article-body">
+
+    <p>Imagine you sell a contractor a very powerful set of power tools. The contractor is great — does good work, handles dangerous equipment responsibly. Then one day, a new site manager shows up and says: <em>we need to rewire those tools so the safety guards come off.</em> You say no. They say: <em>give us the tools as-is, or we'll ban your whole business from every job site in the country.</em></p>
+
+    <p>That is, roughly, what just happened between Anthropic and the United States government. And the implications go way beyond one tech company's contract dispute.</p>
+
+    <h2 data-num="Background">The Setup: Claude Goes to War</h2>
+
+    <p>Anthropic is the San Francisco-based company that makes Claude — the AI assistant you may have used to write an email, summarize a document, or answer a tricky question. But Claude wasn't just answering questions for regular people. Anthropic signed a contract with the US Department of Defense in July 2025 worth up to $200 million to help "prototype frontier AI capabilities that advance U.S. national security."</p>
+
+    <p>Anthropic was the first frontier AI company to put its models on classified networks and the first to provide customized models for national security customers. In practice, that meant Claude was doing intelligence analysis, cybersecurity work, military simulations, and planning assistance deep inside the US government's most sensitive systems.</p>
+
+    <p>There was a catch, though — and Anthropic made it clear from day one. The company had two hard limits baked into its contract: Claude could not be used for mass domestic surveillance of Americans, and it could not be embedded in fully autonomous weapons systems. No human in the loop? No deal.</p>
+
+    <div class="callout">
+      <strong>Quick explainer: What is an autonomous weapon?</strong>
+      An autonomous weapon is one that can identify, select, and engage a target with no human approval required. Think of a drone that decides on its own when and what to shoot — no soldier pressing a button. Anthropic's position: today's AI is not reliable enough for that responsibility.
+    </div>
+
+    <h2 data-num="The Spark">The Incident That Changed Everything</h2>
+
+    <p>Things started to unravel in January 2026. Tensions intensified after The Wall Street Journal and Axios reported on the use of Anthropic products in the operation to capture Venezuelan President Nicolás Maduro. Exactly how Claude was used in the operation hasn't been confirmed publicly — but the reports were enough to rattle both sides.</p>
+
+    <p>Anthropic asked whether their software was used for the raid to capture Maduro, which caused real concerns across the Department of War indicating that they might not approve if it was, according to an official who spoke to Axios.</p>
+
+    <p>This was the moment the relationship began its rapid unraveling. The Pentagon's new leadership, under Defense Secretary Pete Hegseth, had a different vision for what "responsible AI" should mean in a military context. A memorandum issued by Hegseth stated that military AI should encompass "any lawful use" of AI models by the US military — no exceptions, no company-imposed red lines.</p>
+
+    <div class="big-stat">
+      <div class="num">48</div>
+      <div class="label">Hours given to Anthropic to comply — or face sanctions</div>
+    </div>
+
+    <h2 data-num="The Ultimatum">The 5:01 PM Deadline</h2>
+
+    <p>On February 24, US Defense Secretary Pete Hegseth gave Anthropic CEO Dario Amodei a deadline: relent by 5:01 p.m. on Friday, February 27, and allow unrestricted use of the company's AI models "for all legal purposes."</p>
+
+    <p>Anthropic refused.</p>
+
+    <p>Amodei said in a statement on February 26 that he "cannot in good conscience accede to the Pentagon's request" for unrestricted access to the company's AI systems, citing two specific reasons: current AI models aren't reliable enough for fully autonomous weapons, and using Claude for mass domestic surveillance of Americans crosses a line he wouldn't cross for any customer — including the US government.</p>
+
+    <div class="pull-quote">
+      <p>Some uses are simply outside the bounds of what today's technology can safely and reliably do.</p>
+      <cite>— Dario Amodei, Anthropic CEO, February 26, 2026</cite>
+    </div>
+
+    <p>The response from Secretary Hegseth was swift: "Effective immediately, no contractor, supplier, or partner that does business with the United States military may conduct any commercial activity with Anthropic." He gave Anthropic six months to transition the government off its systems and declared the company a "supply chain risk" — a designation previously only applied to foreign companies and designed to prevent adversaries from sabotaging U.S. military systems.</p>
+
+    <h2 data-num="The Hypothetical">Could Claude "Blow Up an Elementary School"?</h2>
+
+    <p>Here's where the debate gets both important and deeply uncomfortable — and where a lot of people's fears about AI come into sharp focus.</p>
+
+    <p>The scenario sounds outlandish: could an AI like Claude, deployed in an autonomous military system, cause civilian casualties — a school, a hospital, a crowded marketplace — without any human ever making that call?</p>
+
+    <p>This isn't paranoia. It's exactly the scenario AI safety researchers have been warning about for years, and it's the precise reason Anthropic drew its red lines. Anthropic argued that current frontier AI models are not reliable enough to be used in fully autonomous weapons, and that "allowing current models to be used in this way would endanger America's warfighters and civilians."</p>
+
+    <div class="danger">
+      <strong>The Core Safety Problem</strong>
+      AI models — even very good ones — can be confidently wrong. They hallucinate facts, misread context, and fail in unpredictable ways. A human soldier can reconsider. A fully autonomous AI weapon, once deployed with a target objective, cannot have a change of heart. The question Anthropic forced into the open: should we be deploying systems this imperfect in situations where mistakes kill people?
+    </div>
+
+    <p>The Pentagon's position is essentially: <em>that's our call to make, not yours.</em> Anthropic's position is: <em>not with our technology, it isn't.</em> Both positions have a logic to them. That's what makes this so hard.</p>
+
+    <h2 data-num="The Legal Fight">The Lawsuit, the Supporters, and the Precedent</h2>
+
+    <p>On March 9, Anthropic sued the federal government in a California court, arguing the administration's actions had caused it irreparable harm and requesting an injunction of the supply chain risk designation.</p>
+
+    <p>Then something remarkable happened. Support flooded in from places you wouldn't expect.</p>
+
+    <p>Microsoft's legal filing said that the supply chain risk designation "may bring severe economic effects that are not in the public interest" and argued the government's actions force contractors to comply with "vague and ill-defined directions that have never before been publicly wielded against a US company."</p>
+
+    <p>More than 30 employees from OpenAI and Google DeepMind, including Google chief scientist Jeff Dean, filed an amicus brief warning that a Pentagon blacklist of Anthropic threatens to damage the entire American AI industry. These are employees at direct competitor companies, going to court to defend a rival — because they recognized the precedent being set.</p>
+
+    <p>US Defense Secretary Hegseth's conduct against Anthropic "threatens the rule-of-law principles that have long strengthened our military," according to a brief supported by Michael Hayden, the former director of the CIA, who also alleged the actions were retaliation against a private company that displeased the administration.</p>
+
+    <h2 data-num="Congress">80-Year-Olds Deciding the Future of AI</h2>
+
+    <p>Now for the uncomfortable punchline lurking behind all of this: the people who are supposed to referee this fight are, largely, not equipped to do it.</p>
+
+    <p>When tech CEOs testify before Congress, the hearings often become unintentional comedy — senators asking Facebook's Mark Zuckerberg how the company makes money, or asking if an iPhone works on Android. The gap between what legislators understand and what they're being asked to regulate is enormous.</p>
+
+    <p>The average age of a US Senator is over 65. Many of the members on the committees overseeing AI and defense policy are in their 70s and 80s. These are the people who will pass — or fail to pass — laws that govern whether an AI can autonomously launch a missile, surveil an American citizen's phone, or decide who gets flagged as a threat.</p>
+
+    <p>Recent congressional testimony revealed the Department of Defense is accelerating internal AI development specifically to reduce dependence on safety-focused commercial vendors — a move that removes even the private-sector checks that companies like Anthropic were trying to maintain. If the government builds its own AI with no external usage restrictions and no public accountability, the guardrails disappear entirely.</p>
+
+    <div class="callout">
+      <strong>What's at stake legislatively</strong>
+      Congress has repeatedly struggled to pass meaningful AI legislation. While the EU passed its comprehensive AI Act, the US has largely relied on voluntary company commitments. The Anthropic-Pentagon dispute may finally force a real debate — but only if lawmakers can get up to speed fast enough to ask the right questions.
+    </div>
+
+    <h2 data-num="Responsibility">So Who's Actually Responsible?</h2>
+
+    <p>Here's the question AI literacy requires you to sit with: when an AI makes a catastrophic error in a military context, who answers for it?</p>
+
+    <p>Is it the company that built the model? If courts side with the government, AI companies pursuing defense work may have no legal right to impose usage restrictions — which would also mean no legal ability to enforce accountability for misuse.</p>
+
+    <p>Is it the government officials who deployed it? The commanders who approved the mission? The Pentagon has no uniform policy on AI accountability in wartime. International law on autonomous weapons is essentially nonexistent.</p>
+
+    <p>Is it the AI itself? (No. Legally and practically: no. An AI cannot be court-martialed.)</p>
+
+    <p>What Anthropic's stand revealed is that there is currently no clear answer — and that the absence of an answer is itself a crisis. A private company was the only entity in this entire chain saying <em>wait, let's define some limits first</em>. And the government's response was to ban them.</p>
+
+    <div class="pull-quote">
+      <p>Something is so necessary that you need to invoke the Defense Production Act, and so harmful that you put a designation on it reserved for foreign adversaries. I don't know how those two things can both be true.</p>
+      <cite>— Mark Dalton, Retired Navy Rear Admiral, R Street Institute</cite>
+    </div>
+
+    <h2 data-num="What Happens Next">The Race to the Bottom — Or the Top?</h2>
+
+    <p>After Anthropic was banned, OpenAI announced it had done a deal with the Defense Department to provide its technology for classified networks, hours after the president's ban of Anthropic. OpenAI's deal included similar red lines against domestic surveillance and autonomous weapons — but Anthropic's CEO Dario Amodei publicly called it "safety theater," accusing OpenAI of offering guardrails that don't actually hold.</p>
+
+    <p>Meanwhile, Google recently updated its ethical guidelines, dropping its pledge not to use AI for weapons development and surveillance. OpenAI likewise modified its mission statement, removing "safety" as a core value, and Elon Musk's xAI agreed to the Pentagon's "any lawful use" standard.</p>
+
+    <p>The competitive pressure is real. There's enormous money in defense contracts. If one company holds the line on safety and loses a $200 million contract, while another company drops the safety language and wins it, the market incentive becomes clear: safety is a liability.</p>
+
+    <p>Unless the law steps in. Unless Congress — yes, those 80-year-olds — figures out how to write rules that apply to every contractor equally, so that no company faces the choice between ethics and survival.</p>
+
+    <h2 data-num="Takeaway">What You Should Actually Take Away From This</h2>
+
+    <p>You don't have to be a tech expert to understand what's at stake here. The Anthropic-Pentagon fallout is really about three very old, very human questions in a new technological costume:</p>
+
+    <p><strong>Who has the power?</strong> Governments want unrestricted control over tools they pay for. Tech companies want to set the rules for tools they build. Neither is obviously wrong.</p>
+
+    <p><strong>Who bears the risk?</strong> When AI fails in a military context — and it will fail, because every technology eventually does — the people who suffer won't be the CEOs or the senators. It will be soldiers, civilians, and communities with no seat at the table.</p>
+
+    <p><strong>Who decides what's too dangerous?</strong> For most of human history, that answer has been: societies, through laws, international agreements, and democratic deliberation. Right now, it is effectively: whichever company gets the contract.</p>
+
+    <p>Anthropic drew a line in the sand and lost the contract for it. Whether that was heroic, naive, or something in between depends on what you think is coming next — and how fast it's coming.</p>
+
+    <p>The one thing that seems clear: this won't be the last time someone has to answer these questions. The next time, there might not be a company willing to say no.</p>
+
+    <ul class="timeline">
+      <li><span class="date">July 2025</span>Anthropic signs $200M DOD contract with usage restrictions built in.</li>
+      <li><span class="date">Jan. 2026</span>Claude reportedly used in the US military's capture of Venezuelan President Maduro.</li>
+      <li><span class="date">Feb. 20, 2026</span>Pentagon begins formally pushing to remove Anthropic's usage restrictions.</li>
+      <li><span class="date">Feb. 24, 2026</span>Hegseth gives Anthropic a 48-hour ultimatum: drop the red lines or face consequences.</li>
+      <li><span class="date">Feb. 26, 2026</span>Amodei publicly refuses. Anthropic will not grant unrestricted access.</li>
+      <li><span class="date">Feb. 27, 2026</span>Trump orders all government agencies to stop using Anthropic. Pentagon designates Anthropic a "supply chain risk." OpenAI announces a new Pentagon deal within hours.</li>
+      <li><span class="date">Mar. 9, 2026</span>Anthropic sues the US government. Microsoft, Google/OpenAI employees, and retired military officials file supporting briefs.</li>
+      <li><span class="date">Mar. 2026 (ongoing)</span>Legal battle continues. Precedent for all AI-government contracts hangs in the balance.</li>
+    </ul>
+
+  </article>
+
+  <footer class="article-footer">
+    <div class="footer-label">Filed under</div>
+    <div class="tags">
+      <span class="tag">AI Policy</span>
+      <span class="tag">Military AI</span>
+      <span class="tag">Anthropic</span>
+      <span class="tag">Ethics</span>
+      <span class="tag">Autonomous Weapons</span>
+      <span class="tag">AI Literacy</span>
+      <span class="tag">US Government</span>
+      <span class="tag">Pentagon</span>
+    </div>
+  </footer>
+
+</div><!-- /.article-wrap -->
+
+<!-- SITE FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <p>Mayo AI Literacy Club &copy; 2026 &nbsp;·&nbsp; <a href="https://www.instagram.com/mayoailiteracy" target="_blank" class="footer-link">@mayoailiteracy</a></p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
