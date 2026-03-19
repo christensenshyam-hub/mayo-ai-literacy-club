@@ -22,7 +22,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     }
 });
 
-// Fade-in on scroll (for elements within a page)
+// Fade-in on scroll
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -30,3 +30,9 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Call this after dynamically adding .fade-in elements to the page
+window.observeFadeIns = (container) => {
+    const root = container || document;
+    root.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+};
