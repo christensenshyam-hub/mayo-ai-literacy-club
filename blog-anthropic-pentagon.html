@@ -8,6 +8,125 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,700;1,6..72,300;1,6..72,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+/* ── Self-contained nav & footer CSS ── */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: rgba(9, 21, 8, 0.96);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid #1e4025;
+}
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  gap: 16px;
+}
+.nav-logo {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #f2ede4;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo img {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 20px;
+  margin: 0; padding: 0;
+}
+.nav-links a {
+  color: #7a9a82;
+  text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.nav-links a:not(.btn-nav):hover { color: #f2ede4; }
+.btn-nav {
+  background: #c9921a;
+  color: #0a0a0a !important;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 6px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  line-height: 1;
+}
+.btn-nav:hover { background: #e0b050 !important; }
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-toggle span {
+  width: 24px; height: 1.5px;
+  background: #f2ede4;
+  border-radius: 2px;
+  display: block;
+}
+@media (max-width: 900px) {
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px; left: 0; right: 0;
+    flex-direction: column;
+    background: rgba(9, 21, 8, 0.98);
+    border-bottom: 1px solid #1e4025;
+    padding: 20px 24px;
+    gap: 16px;
+  }
+  .nav-links.active { display: flex; }
+}
+.site-footer-bar {
+  border-top: 1px solid #1e4025;
+  padding: 36px 0;
+  text-align: center;
+  background: #091508;
+}
+.site-footer-bar p {
+  font-family: 'Josefin Sans', sans-serif;
+  color: #7a9a82;
+  font-size: 0.83rem;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+.site-footer-bar a { color: #c9921a; text-decoration: none; }
+.site-footer-bar a:hover { color: #e0b050; }
+body { opacity: 0; transition: opacity 0.22s ease; }
+body.page-loaded { opacity: 1; }
+</style>
+<style>
 
   :root {
     --green: #1B4D32;
