@@ -9,6 +9,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,700;1,6..72,300;1,6..72,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+
+  /* ── Reset site.css global overrides so article styles take full effect ── */
+  .article-wrap h1, .article-wrap h2, .article-wrap h3 {
+    font-style: normal;
+    font-family: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    font-size: inherit;
+  }
+
   :root {
     --green: #1B4D32;
     --green-dark: #122e1e;
@@ -48,7 +58,7 @@
 
   /* MASTHEAD */
   .masthead {
-    margin-top: 72px;
+    margin-top: 68px;
     background: var(--green-dark);
     color: white;
     padding: 0;
@@ -786,11 +796,7 @@
     const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     bar.style.width = pct + '%';
 
-    // Countdown read time
-    if (readTime) {
-      const remaining = Math.max(1, Math.ceil(totalMinutes * (1 - pct / 100)));
-      readTime.textContent = remaining + ' min left';
-    }
+    // Read time stays static
   });
 
   // Highlight-to-share
