@@ -151,6 +151,45 @@
             50%       { transform: translateX(6px); }
         }
 
+        .merc-open-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 36px;
+            padding: 14px 32px;
+            background: var(--merc-gold);
+            color: var(--merc-green-deep);
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 0 0 0 rgba(201,146,42,0);
+            position: relative;
+        }
+
+        .merc-open-btn:hover {
+            background: var(--merc-gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(201,146,42,0.35);
+        }
+
+        .merc-open-btn:active {
+            transform: translateY(0);
+        }
+
+        .merc-open-btn .btn-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--merc-green-deep);
+            opacity: 0.5;
+        }
+
         /* ── Features ── */
         .merc-features {
             max-width: 1040px;
@@ -325,6 +364,11 @@
         <p class="merc-hero-desc">
             Built to teach critical thinking about AI — not to think for you.
         </p>
+
+        <button class="merc-open-btn" onclick="MercuriusOpen()">
+            <span class="btn-dot"></span>
+            Open Mercurius &#8544;
+        </button>
     </section>
 
     <!-- FEATURES -->
