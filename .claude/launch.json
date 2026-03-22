@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "mayo-ai-literacy-club",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "3000", "--directory", "/Users/shyamchristensen/Desktop/mayo-ai-literacy-club"],
-      "port": 3000
+      "name": "static",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3456", "/Users/shyamchristensen/Desktop/mayo-ai-literacy-club"],
+      "port": 3456
     }
   ]
 }
