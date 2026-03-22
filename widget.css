@@ -145,6 +145,104 @@
 }
 
 /* ============================================================
+   Mode Bar  (.merc-mode-bar)
+   ============================================================ */
+.merc-mode-bar {
+  background: rgba(10, 28, 18, 0.98);
+  border-bottom: 1px solid rgba(201, 146, 42, 0.2);
+  padding: 7px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  transition: background 0.4s ease;
+}
+
+.merc-mode-bar-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(212, 224, 216, 0.35);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.merc-mode-tabs {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.merc-mode-tab {
+  flex: 1;
+  padding: 5px 0;
+  border-radius: 7px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: transparent;
+  color: rgba(212, 224, 216, 0.4);
+}
+
+/* Active tab */
+.merc-mode-tab.merc-mode-tab-active {
+  background: rgba(201, 146, 42, 0.15);
+  border-color: rgba(201, 146, 42, 0.5);
+  color: var(--merc-gold-light);
+}
+
+/* Locked tab */
+.merc-mode-tab.merc-mode-tab-locked {
+  color: rgba(212, 224, 216, 0.2);
+  cursor: not-allowed;
+  border-color: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.02);
+}
+
+.merc-mode-tab:not(.merc-mode-tab-locked):not(.merc-mode-tab-active):hover {
+  background: rgba(201, 146, 42, 0.07);
+  border-color: rgba(201, 146, 42, 0.2);
+  color: rgba(232, 184, 75, 0.6);
+}
+
+.merc-tab-lock {
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+/* Flash animation on unlock */
+@keyframes merc-unlock-flash {
+  0%   { background: rgba(10, 28, 18, 0.98); }
+  20%  { background: rgba(201, 146, 42, 0.35); }
+  60%  { background: rgba(201, 146, 42, 0.12); }
+  100% { background: rgba(10, 28, 18, 0.98); }
+}
+
+.merc-mode-bar.merc-unlock-flash {
+  animation: merc-unlock-flash 1.8s ease forwards;
+}
+
+/* Notice messages (mode switch confirmations) */
+.merc-msg-notice {
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 10.5px;
+  color: rgba(201, 146, 42, 0.65);
+  padding: 6px 16px;
+  letter-spacing: 0.03em;
+  border-top: 1px solid rgba(201, 146, 42, 0.1);
+  border-bottom: 1px solid rgba(201, 146, 42, 0.1);
+  margin: 4px 0;
+}
+
+/* ============================================================
    Header  (.merc-header)
    ============================================================ */
 .merc-header {

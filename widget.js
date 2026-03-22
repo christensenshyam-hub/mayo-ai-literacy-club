@@ -21,6 +21,7 @@
   // =========================================================================
   var config = window.MercuriusConfig || {};
   var API_ENDPOINT = config.apiEndpoint || 'http://localhost:3000/api/chat';
+  var MODE_ENDPOINT = API_ENDPOINT.replace('/chat', '/mode');
 
   // =========================================================================
   // 2. Session ID — persist across browser sessions using localStorage
@@ -72,6 +73,8 @@
   var isOpen = false;
   var isLoading = false;
   var userMessageCount = 0;
+  var isUnlocked = localStorage.getItem('merc_unlocked') === 'true';
+  var currentMode = localStorage.getItem('merc_mode') || 'socratic';
   var reflectionIndex = 0;
   var conversationHistory = []; // [{role, content}, ...] — max 20 stored
   var summaryFetched = false;
@@ -131,6 +134,17 @@
       '  <div class="merc-header-actions">',
       '    <button class="merc-header-btn" id="merc-btn-summary" title="Get conversation summary" aria-label="Conversation summary">&#128203;</button>',
       '    <button class="merc-header-btn" id="merc-btn-info"    title="About Mercurius Ⅰ"         aria-label="About">&#8505;&#65039;</button>',
+      '  </div>',
+      '</div>',
+
+      // Mode selector
+      '<div class="merc-mode-bar" id="merc-mode-bar">',
+      '  <span class="merc-mode-bar-label">MODE</span>',
+      '  <div class="merc-mode-tabs">',
+      '    <button class="merc-mode-tab merc-mode-tab-active" id="merc-tab-socratic">Socratic</button>',
+      '    <button class="merc-mode-tab merc-mode-tab-locked" id="merc-tab-direct" disabled>',
+      '      Direct <span class="merc-tab-lock" id="merc-tab-lock-icon">&#128274;</span>',
+      '    </button>',
       '  </div>',
       '</div>',
 
@@ -271,6 +285,23 @@
         handleSummaryToggle();
       });
     }
+
+    // Mode tab clicks
+    var tabSocratic = document.getElementById('merc-tab-socratic');
+    var tabDirect   = document.getElementById('merc-tab-direct');
+    if (tabSocratic) {
+      tabSocratic.addEventListener('click', function () {
+        if (currentMode !== 'socratic') handleModeSwitchTo('socratic');
+      });
+    }
+    if (tabDirect) {
+      tabDirect.addEventListener('click', function () {
+        if (isUnlocked && currentMode !== 'direct') handleModeSwitchTo('direct');
+      });
+    }
+
+    // Initialise mode bar to match stored state
+    updateModeBar();
   }
 
   function triggerSend() {
@@ -907,9 +938,21 @@
           conversationHistory = conversationHistory.slice(conversationHistory.length - 20);
         }
 
-        // Always show bot reply (even for hidden sends like action buttons
-        // that are routed through sendHiddenUserVisibleBot; regular sends
-        // always have isHidden=false anyway)
+        // Handle unlock event
+        if (data.justUnlocked) {
+          isUnlocked = true;
+          currentMode = 'socratic';
+          localStorage.setItem('merc_unlocked', 'true');
+          localStorage.setItem('merc_mode', 'socratic');
+          updateModeBar();
+          showUnlockCelebration();
+        } else if (data.mode && data.mode !== currentMode) {
+          currentMode = data.mode;
+          localStorage.setItem('merc_mode', currentMode);
+          updateModeBar();
+        }
+
+        // Always show bot reply
         appendBotMessage(reply);
 
         if (!isHidden) {
@@ -936,7 +979,80 @@
   };
 
   // =========================================================================
-  // 17. Initialize on DOMContentLoaded (or immediately if already loaded)
+  // 17. Mode bar helpers
+  // =========================================================================
+  function updateModeBar() {
+    var tabSocratic = document.getElementById('merc-tab-socratic');
+    var tabDirect   = document.getElementById('merc-tab-direct');
+    var lockIcon    = document.getElementById('merc-tab-lock-icon');
+    var bar         = document.getElementById('merc-mode-bar');
+    if (!tabSocratic || !tabDirect) return;
+
+    if (isUnlocked) {
+      // Unlock the Direct tab
+      tabDirect.disabled = false;
+      tabDirect.classList.remove('merc-mode-tab-locked');
+      if (lockIcon) lockIcon.textContent = '';
+      bar.classList.add('merc-mode-unlocked');
+    } else {
+      tabDirect.disabled = true;
+      tabDirect.classList.add('merc-mode-tab-locked');
+      if (lockIcon) lockIcon.innerHTML = '&#128274;';
+    }
+
+    // Active tab highlight
+    if (currentMode === 'direct') {
+      tabDirect.classList.add('merc-mode-tab-active');
+      tabSocratic.classList.remove('merc-mode-tab-active');
+    } else {
+      tabSocratic.classList.add('merc-mode-tab-active');
+      tabDirect.classList.remove('merc-mode-tab-active');
+    }
+  }
+
+  function showUnlockCelebration() {
+    var bar = document.getElementById('merc-mode-bar');
+    if (bar) {
+      bar.classList.add('merc-unlock-flash');
+      setTimeout(function () { bar.classList.remove('merc-unlock-flash'); }, 1800);
+    }
+  }
+
+  function handleModeSwitchTo(newMode) {
+    if (!isUnlocked) return;
+    fetch(MODE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionId: sessionId, mode: newMode }),
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.mode) {
+          currentMode = data.mode;
+          localStorage.setItem('merc_mode', currentMode);
+          updateModeBar();
+          appendSystemNotice(
+            currentMode === 'direct'
+              ? 'Switched to Direct Mode — Mercurius will now lead with substantive explanations.'
+              : 'Switched to Socratic Mode — Mercurius will guide your thinking with questions.'
+          );
+        }
+      })
+      .catch(function () { /* silent fail */ });
+  }
+
+  function appendSystemNotice(text) {
+    var container = document.getElementById('merc-messages');
+    if (!container) return;
+    var el = document.createElement('div');
+    el.className = 'merc-msg merc-msg-notice';
+    el.textContent = text;
+    container.appendChild(el);
+    scrollToBottom();
+  }
+
+  // =========================================================================
+  // 18. Initialize on DOMContentLoaded (or immediately if already loaded)
   // =========================================================================
   function init() {
     // Prevent double-initialization
