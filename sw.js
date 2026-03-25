@@ -1,20 +1,19 @@
 // Mercurius Ⅰ Service Worker — enables PWA install + basic caching
-var CACHE_NAME = 'mercurius-v1';
+var CACHE_NAME = 'mercurius-v2';
 var STATIC_ASSETS = [
   '/mercurius.html',
   '/widget.js',
   '/widget.css',
-  '/style.css',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  '/manifest.json'
 ];
 
 // Install — cache static assets
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
-      return cache.addAll(STATIC_ASSETS);
+      return cache.addAll(STATIC_ASSETS).catch(function() {
+        // Don't fail install if some assets can't be cached
+      });
     })
   );
   self.skipWaiting();
@@ -33,19 +32,23 @@ self.addEventListener('activate', function(event) {
   self.clients.claim();
 });
 
-// Fetch — network-first for API calls, cache-first for static assets
+// Fetch — ONLY intercept requests for cached mercurius assets
+// Let everything else pass through to the network untouched
 self.addEventListener('fetch', function(event) {
   var url = new URL(event.request.url);
 
-  // Always go to network for API calls and cross-origin requests
-  if (url.pathname.startsWith('/api/') || url.origin !== self.location.origin) {
-    return;
-  }
+  // Only handle same-origin, non-API, GET requests for known static assets
+  if (url.origin !== self.location.origin) return;
+  if (event.request.method !== 'GET') return;
+  if (url.pathname.startsWith('/api/')) return;
+
+  // Only intercept if this is a cached asset path
+  var isCachedAsset = STATIC_ASSETS.indexOf(url.pathname) !== -1;
+  if (!isCachedAsset) return; // Let the browser handle it normally
 
   event.respondWith(
     fetch(event.request).then(function(response) {
-      // Cache successful responses
-      if (response.ok) {
+      if (response && response.ok) {
         var clone = response.clone();
         caches.open(CACHE_NAME).then(function(cache) {
           cache.put(event.request, clone);
@@ -53,8 +56,13 @@ self.addEventListener('fetch', function(event) {
       }
       return response;
     }).catch(function() {
-      // Fallback to cache if offline
-      return caches.match(event.request);
+      return caches.match(event.request).then(function(cached) {
+        // Return cached version, or let browser show its own error
+        return cached || new Response('Offline — please check your connection.', {
+          status: 503,
+          headers: { 'Content-Type': 'text/plain' }
+        });
+      });
     })
   );
 });
