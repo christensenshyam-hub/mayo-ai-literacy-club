@@ -197,6 +197,38 @@
             opacity: 0.5;
         }
 
+        .merc-install-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 12px 28px;
+            background: transparent;
+            color: var(--merc-gold-light);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 400;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            border: 1px solid rgba(201, 146, 42, 0.4);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            position: relative;
+        }
+        .merc-install-btn:hover {
+            background: rgba(201, 146, 42, 0.1);
+            border-color: rgba(201, 146, 42, 0.7);
+        }
+        .merc-install-hint {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.58rem;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.25);
+            margin-top: 10px;
+            position: relative;
+        }
+
         /* ── Features ── */
         .merc-features {
             max-width: 1040px;
@@ -376,6 +408,13 @@
             <span class="btn-dot"></span>
             Open Mercurius &#8544;
         </button>
+
+        <button class="merc-install-btn" id="merc-install-btn" style="display:none;" onclick="mercuriusInstall()">
+            Install as App
+        </button>
+        <p class="merc-install-hint" id="merc-install-hint" style="display:none;">
+            Works offline. Runs in its own window.
+        </p>
     </section>
 
     <!-- FEATURES -->
@@ -462,8 +501,40 @@
     <link rel="stylesheet" href="widget.css">
     <script src="widget.js"></script>
     <script>
+      // PWA service worker + install prompt
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js').catch(function() {});
+      }
+
+      var deferredInstallPrompt = null;
+
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+        var btn = document.getElementById('merc-install-btn');
+        var hint = document.getElementById('merc-install-hint');
+        if (btn) btn.style.display = 'inline-flex';
+        if (hint) hint.style.display = 'block';
+      });
+
+      function mercuriusInstall() {
+        if (!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        deferredInstallPrompt.userChoice.then(function(result) {
+          if (result.outcome === 'accepted') {
+            var btn = document.getElementById('merc-install-btn');
+            if (btn) btn.style.display = 'none';
+            var hint = document.getElementById('merc-install-hint');
+            if (hint) hint.style.display = 'none';
+          }
+          deferredInstallPrompt = null;
+        });
+      }
+
+      // If already installed as PWA, hide the button
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        var btn = document.getElementById('merc-install-btn');
+        if (btn) btn.style.display = 'none';
       }
     </script>
 
