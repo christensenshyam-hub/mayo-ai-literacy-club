@@ -531,10 +531,28 @@
         });
       }
 
-      // If already installed as PWA, hide the button
-      if (window.matchMedia('(display-mode: standalone)').matches) {
+      // If running as installed PWA, hide all page content — show only the chatbot
+      var isStandalone = window.matchMedia('(display-mode: standalone)').matches
+        || window.navigator.standalone === true;
+      if (isStandalone) {
         var btn = document.getElementById('merc-install-btn');
         if (btn) btn.style.display = 'none';
+        // Hide every page section so only the widget overlay is visible
+        document.querySelectorAll('.merc-hero, .merc-features, .merc-transparency, .footer, #merc-toggle, nav, header').forEach(function(el) {
+          el.style.display = 'none';
+        });
+        document.body.style.background = '#0f1f14';
+        document.body.style.margin = '0';
+        document.body.style.overflow = 'hidden';
+        // Force widget open if not already
+        var panel = document.getElementById('merc-panel');
+        if (panel && !panel.classList.contains('merc-open')) {
+          if (typeof MercuriusOpen === 'function') MercuriusOpen();
+          else panel.classList.add('merc-open');
+        }
+        // Hide close button — in the app, there's nothing behind the chatbot
+        var closeBtn = document.getElementById('merc-close-btn');
+        if (closeBtn) closeBtn.style.display = 'none';
       }
     </script>
 
