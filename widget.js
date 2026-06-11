@@ -527,8 +527,7 @@
         '<button class="merc-tag" data-topic="' +
         escapeAttr(t.label) +
         '">' +
-        t.emoji +
-        ' ' +
+        (t.emoji ? t.emoji + ' ' : '') +
         escapeHtml(t.label) +
         '</button>'
       );
@@ -913,7 +912,7 @@
           return;
         }
         var html = '<div class="merc-challenge-card">';
-        html += '<div class="merc-challenge-label">\u26A1 Weekly Challenge</div>';
+        html += '<div class="merc-challenge-label">Weekly Challenge</div>';
         html += '<h3 class="merc-challenge-title">' + escapeHtml(data.title || '') + '</h3>';
         html += '<p class="merc-challenge-desc">' + escapeHtml(data.description || '') + '</p>';
         if (data.keyQuestions && data.keyQuestions.length) {

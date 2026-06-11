@@ -1,560 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mercurius Ⅰ — an AI literacy tutor built by Mayo AI Literacy Club to teach critical thinking about AI.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Mercurius Ⅰ — Mayo AI Literacy Club">
-    <meta property="og:description" content="An AI tutor that teaches you to think critically about AI — not think for you.">
-    <meta property="og:image" content="https://mayoailiteracy.com/logo.png">
-    <meta property="og:url" content="https://mayoailiteracy.com/mercurius.html">
-    <title>Mercurius Ⅰ — Mayo AI Literacy Club</title>
-    <link rel="manifest" href="/manifest.json">
-    <link rel="apple-touch-icon" href="/icons/icon-512.png">
-    <meta name="theme-color" content="#1B4D32">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Mercurius Ⅰ">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,700;1,6..72,300;1,6..72,400;1,6..72,700&family=Petrona:ital,wght@0,400;0,600;1,400;1,600;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="icon" href="logo.png" type="image/png">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* ── Mercurius page-specific overrides ── */
-        :root {
-            --merc-green-deep:  #061509;
-            --merc-green-dark:  #122e1e;
-            --merc-green-mid:   #133d22;
-            --merc-gold:        #C9922A;
-            --merc-gold-light:  #E8B84B;
-            --merc-gold-dark:   #9a6d18;
-            --merc-gold-pale:   #fdf6e3;
-            --merc-off-white:   #faf8f4;
-            --merc-ink:         #1a1714;
-            --merc-muted:       #6b7a6e;
-            --merc-rule:        #d4e0d8;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0E2A18" />
 
-        .merc-hero {
-            background: var(--merc-green-deep);
-            background-image:
-                radial-gradient(ellipse 70% 60% at 50% 35%, var(--merc-green-mid) 0%, #061509 65%, #020b04 100%),
-                radial-gradient(ellipse 50% 40% at 15% 90%, rgba(100, 70, 10, 0.25) 0%, transparent 60%);
-            padding: 100px 48px 96px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+  <title>Mercurius Ⅰ — Mayo AI Literacy Club</title>
+  <meta name="description" content="Mercurius Ⅰ — the AI literacy tutor built by Mayo AI Literacy Club. Guides your thinking with questions instead of handing you answers. Coming to the App Store, and usable in your browser today." />
+  <link rel="canonical" href="https://mayoailiteracy.com/mercurius" />
 
-        .merc-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -60px;
-            left: -80px;
-            width: 420px;
-            height: 300px;
-            background: radial-gradient(ellipse, rgba(120, 80, 10, 0.18) 0%, transparent 70%);
-            pointer-events: none;
-        }
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mercurius Ⅰ — Mayo AI Literacy Club" />
+  <meta property="og:description" content="An AI tutor that teaches you to think critically about AI — not think for you. Built by students." />
+  <meta property="og:image" content="https://mayoailiteracy.com/assets/mercurius-logo-dark.png" />
+  <meta property="og:url" content="https://mayoailiteracy.com/mercurius" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Mercurius Ⅰ — Mayo AI Literacy Club" />
+  <meta name="twitter:description" content="An AI tutor that teaches you to think critically about AI — not think for you." />
+  <meta name="twitter:image" content="https://mayoailiteracy.com/assets/mercurius-logo-dark.png" />
 
-        .merc-hero-badge {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.6rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.65);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 6px 18px;
-            border-radius: 999px;
-            display: inline-block;
-            margin-bottom: 44px;
-            position: relative;
-        }
+  <!-- PWA — the browser version installs as an app (manifest + service
+       worker are carried over from the original site; same paths). -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icons/icon-512.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Mercurius Ⅰ" />
 
-        .merc-hero-monogram {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background: var(--merc-green-dark);
-            border: 2px solid var(--merc-gold);
-            box-shadow:
-                0 0 0 8px rgba(201,146,42,0.1),
-                0 0 0 16px rgba(201,146,42,0.05),
-                0 0 80px rgba(201,146,42,0.18);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 40px;
-            position: relative;
-        }
+  <link rel="icon" href="/logo.png" type="image/png" />
 
-        .merc-hero-monogram span {
-            font-family: 'Josefin Sans', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--merc-gold);
-            letter-spacing: 0.05em;
-        }
-
-        .merc-hero h1 {
-            font-family: 'Petrona', Georgia, serif;
-            font-size: clamp(3rem, 7vw, 4.8rem);
-            font-weight: 700;
-            font-style: italic;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-            line-height: 1.05;
-            margin-bottom: 16px;
-            position: relative;
-        }
-
-        .merc-hero h1 .gold-word {
-            color: var(--merc-gold-light);
-            font-style: italic;
-        }
-
-        .merc-hero-subtitle {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.38);
-            margin-bottom: 32px;
-            position: relative;
-        }
-
-        .merc-hero-desc {
-            font-family: 'Newsreader', serif;
-            font-size: 1.15rem;
-            color: rgba(255,255,255,0.6);
-            max-width: 480px;
-            margin: 0 auto 52px;
-            line-height: 1.75;
-            position: relative;
-        }
-
-        .merc-hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.72rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--merc-gold-light);
-            position: relative;
-        }
-
-        .merc-cta-arrow {
-            animation: merc-nudge 1.6s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes merc-nudge {
-            0%, 100% { transform: translateX(0); }
-            50%       { transform: translateX(6px); }
-        }
-
-        .merc-open-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 36px;
-            padding: 14px 32px;
-            background: var(--merc-gold);
-            color: var(--merc-green-deep);
-            font-family: 'Josefin Sans', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-            box-shadow: 0 0 0 0 rgba(201,146,42,0);
-            position: relative;
-        }
-
-        .merc-open-btn:hover {
-            background: var(--merc-gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(201,146,42,0.35);
-        }
-
-        .merc-open-btn:active {
-            transform: translateY(0);
-        }
-
-        .merc-open-btn .btn-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--merc-green-deep);
-            opacity: 0.5;
-        }
-
-        .merc-install-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 16px;
-            padding: 12px 28px;
-            background: transparent;
-            color: var(--merc-gold-light);
-            font-family: 'Space Mono', monospace;
-            font-size: 0.68rem;
-            font-weight: 400;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            border: 1px solid rgba(201, 146, 42, 0.4);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s, border-color 0.2s;
-            position: relative;
-        }
-        .merc-install-btn:hover {
-            background: rgba(201, 146, 42, 0.1);
-            border-color: rgba(201, 146, 42, 0.7);
-        }
-        .merc-install-hint {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.58rem;
-            letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.25);
-            margin-top: 10px;
-            position: relative;
-        }
-
-        /* ── Features ── */
-        .merc-features {
-            max-width: 1040px;
-            margin: 0 auto;
-            padding: 72px 48px;
-            border-bottom: 1px solid var(--merc-rule);
-        }
-
-        .merc-section-label {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.62rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--merc-gold-dark);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .merc-section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--merc-rule);
-            max-width: 240px;
-        }
-
-        .merc-features h2 {
-            font-family: 'Petrona', Georgia, serif;
-            font-size: 2rem;
-            font-weight: 600;
-            font-style: italic;
-            color: #ffffff;
-            margin-bottom: 40px;
-        }
-
-        .merc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1px;
-            background: var(--merc-rule);
-            border: 1px solid var(--merc-rule);
-        }
-
-        .merc-card {
-            background: #ffffff;
-            padding: 28px 26px;
-        }
-
-        .merc-card:nth-child(even) {
-            background: var(--merc-off-white);
-        }
-
-        .merc-card-num {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.6rem;
-            letter-spacing: 0.2em;
-            color: var(--merc-gold-dark);
-            margin-bottom: 14px;
-            display: block;
-        }
-
-        .merc-card h3 {
-            font-family: 'Josefin Sans', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            color: var(--merc-green-dark);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 8px;
-        }
-
-        .merc-card p {
-            font-family: 'Newsreader', serif;
-            font-size: 0.92rem;
-            color: var(--merc-muted);
-            line-height: 1.6;
-        }
-
-        /* ── Transparency ── */
-        .merc-transparency {
-            max-width: 1040px;
-            margin: 0 auto;
-            padding: 72px 48px;
-            border-bottom: 1px solid var(--merc-rule);
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .merc-transparency h2 {
-            font-family: 'Petrona', Georgia, serif;
-            font-size: 2rem;
-            font-weight: 600;
-            font-style: italic;
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-        .merc-transparency p {
-            font-size: 1rem;
-            color: #4a5a4e;
-            line-height: 1.75;
-            margin-bottom: 16px;
-        }
-
-        .merc-transparency p:last-child { margin-bottom: 0; }
-
-        .merc-rule-box {
-            border-left: 3px solid var(--merc-gold);
-            padding: 16px 20px;
-            background: var(--merc-gold-pale);
-            margin-top: 20px;
-        }
-
-        .merc-rule-box p {
-            font-family: 'Petrona', Georgia, serif;
-            font-style: italic;
-            font-size: 1rem;
-            color: var(--merc-gold-dark);
-            margin: 0;
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 720px) {
-            .merc-hero { padding: 80px 24px 72px; }
-            .merc-features, .merc-transparency { padding: 52px 24px; }
-            .merc-transparency { grid-template-columns: 1fr; gap: 24px; }
-            .merc-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=2" />
 </head>
+
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- NAV -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <img src="logo.png" alt="Mayo AI Literacy Club Logo">
-                Mayo AI Literacy Club
-            </a>
-            <button class="nav-toggle" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="about.html">About</a></li>
-                <li><a href="board.html">Our Board</a></li>
-                <li><a href="groups.html">3 Groups</a></li>
-                <li><a href="topics.html">Topics</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="instagram.html">Instagram</a></li>
-                <li><a href="mercurius.html" class="active">Mercurius Ⅰ</a></li>
-                <li><a href="join.html" class="btn-nav">Join Us</a></li>
-            </ul>
-        </div>
-    </nav>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
+        <img class="brand-logo" src="/logo.png" alt="" width="34" height="34" />
+        <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="/about">About</a>
+        <a href="/topics">Topics</a>
+        <a href="/events">Events</a>
+        <a href="/blog">Blog</a>
+        <a href="/mercurius">Mercurius Ⅰ</a>
+        <a class="cta-pill" href="/join">Join Us</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- HERO -->
-    <section class="merc-hero">
-        <div class="merc-hero-badge">Mayo AI Literacy Club</div>
+  <main id="main">
 
-        <div class="merc-hero-monogram">
-            <span>M&#8544;</span>
-        </div>
-
-        <h1>Mercurius <span class="gold-word">&#8544;</span></h1>
-        <p class="merc-hero-subtitle">AI Literacy Tutor</p>
-        <p class="merc-hero-desc">
-            Built to teach critical thinking about AI — not to think for you.
+    <section class="page-hero" aria-labelledby="page-heading">
+      <div class="container">
+        <img class="merc-page-logo" src="/assets/mercurius-logo-dark.png" alt="Mercurius AI logo" width="128" height="128" />
+        <p class="eyebrow">Built by this club</p>
+        <h1 id="page-heading" class="display">
+          Mercurius <span class="text-gradient">Ⅰ</span>
+        </h1>
+        <p class="lede">
+          An AI literacy tutor that guides your thinking with questions instead
+          of handing you answers. Made by students, for students.
         </p>
+      </div>
+    </section>
 
-        <button class="merc-open-btn" onclick="MercuriusOpen()">
-            <span class="btn-dot"></span>
-            Open Mercurius &#8544;
-        </button>
-
-        <button class="merc-install-btn" id="merc-install-btn" style="display:none;" onclick="mercuriusInstall()">
-            Install as App
-        </button>
-        <p class="merc-install-hint" id="merc-install-hint" style="display:none;">
-            Works offline. Runs in its own window.
-        </p>
+    <!-- iOS APP -->
+    <section class="section" aria-labelledby="app-heading" style="padding-top: var(--space-5);">
+      <div class="container">
+        <div class="app-card" style="text-align: center;">
+          <p class="eyebrow">The next chapter</p>
+          <h2 id="app-heading">Mercurius is becoming an iPhone&nbsp;app.</h2>
+          <p class="lede" style="margin-left: auto; margin-right: auto;">
+            Native iOS, photo understanding, quizzes, a report card, and a full
+            AI literacy curriculum — submitted to the App Store and on its way.
+          </p>
+          <span class="app-chip" id="appstore-chip">Coming soon to the App Store</span>
+          <!-- LAUNCH DAY: when the app is live, replace the chip above with
+               the official badge — uncomment and fill in the App Store URL:
+          <a href="APP_STORE_URL_HERE" target="_blank" rel="noopener noreferrer">
+            <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us"
+                 alt="Download on the App Store" style="height: 54px; margin: 0 auto var(--space-5);" />
+          </a>
+          -->
+          <div class="cta-row" style="justify-content: center; margin-bottom: 0;">
+            <a class="btn btn-primary" href="https://trymercurius.com" target="_blank" rel="noopener noreferrer">Visit trymercurius.com ↗</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- FEATURES -->
-    <section class="merc-features">
-        <div class="merc-section-label">What Makes It Different</div>
-        <h2>Six Features Built for Critical Thinking</h2>
-
-        <div class="merc-grid">
-            <div class="merc-card">
-                <span class="merc-card-num">01</span>
-                <h3>Socratic Method</h3>
-                <p>Asks questions before answering. Forces you to engage with a concept before the AI weighs in.</p>
-            </div>
-            <div class="merc-card">
-                <span class="merc-card-num">02</span>
-                <h3>Confidence Meter</h3>
-                <p>Every response shows how certain the AI is. Because confidence and accuracy are not the same thing.</p>
-            </div>
-            <div class="merc-card">
-                <span class="merc-card-num">03</span>
-                <h3>Unpack Reasoning</h3>
-                <p>One click asks the AI to explain exactly how it arrived at any answer — including what it might be getting wrong.</p>
-            </div>
-            <div class="merc-card">
-                <span class="merc-card-num">04</span>
-                <h3>Bias Flagging</h3>
-                <p>Surface whose perspectives might be missing from any response. Teaches you to interrogate AI outputs, not just accept them.</p>
-            </div>
-            <div class="merc-card">
-                <span class="merc-card-num">05</span>
-                <h3>Reflection Cards</h3>
-                <p>Every five messages, a pause prompt asks you to consolidate your thinking before moving on.</p>
-            </div>
-            <div class="merc-card">
-                <span class="merc-card-num">06</span>
-                <h3>Session Memory</h3>
-                <p>Mercurius remembers past conversations — so each session builds on the last rather than starting from zero.</p>
-            </div>
+    <section class="section section-soft" aria-labelledby="features-heading">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">What Makes It Different</p>
+          <h2 id="features-heading">Built for critical thinking</h2>
         </div>
+        <div class="topics-grid">
+          <div class="topic-card fade-in">
+            <span class="topic-num">01</span>
+            <h3>Four ways to think</h3>
+            <p>Socratic, Discussion, Debate, and Direct modes — it asks before it answers, and you earn your way to direct explanations.</p>
+          </div>
+          <div class="topic-card fade-in">
+            <span class="topic-num">02</span>
+            <h3>It can see your photos</h3>
+            <p>Share an image — a diagram, a headline, your homework — and Mercurius discusses what it's actually looking at.</p>
+          </div>
+          <div class="topic-card fade-in">
+            <span class="topic-num">03</span>
+            <h3>Quizzes &amp; report card</h3>
+            <p>Auto-generated checks on what you've covered, plus a session report card that shows what you actually learned.</p>
+          </div>
+          <div class="topic-card fade-in">
+            <span class="topic-num">04</span>
+            <h3>AI literacy curriculum</h3>
+            <p>Bite-sized lessons — how models work, bias, hallucinations, prompting — built into the app alongside the chat.</p>
+          </div>
+          <div class="topic-card fade-in">
+            <span class="topic-num">05</span>
+            <h3>Guided, not given</h3>
+            <p>The comprehension gate unlocks direct answers only after you've genuinely engaged with an idea. No outsourcing your thinking.</p>
+          </div>
+          <div class="topic-card fade-in">
+            <span class="topic-num">06</span>
+            <h3>Private by design</h3>
+            <p>No account, no sign-up — an anonymous session, no ads, no tracking. Start over any time with one tap.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- TRANSPARENCY -->
-    <section class="merc-transparency">
-        <div>
-            <div class="merc-section-label">Transparency</div>
+    <section class="section" aria-labelledby="transparency-heading">
+      <div class="container" style="max-width: 760px;">
+        <p class="eyebrow">Transparency</p>
+        <h2 id="transparency-heading">An AI teaching AI skepticism</h2>
+        <p class="lede">
+          Mercurius Ⅰ is powered by Claude, a large language model made by
+          Anthropic. The irony of using an AI to teach AI skepticism is
+          intentional — it's a design feature, not a bug.
+        </p>
+        <p class="lede">
+          Every interaction is an opportunity to observe how AI actually
+          behaves: how it hedges, where it sounds more confident than it should
+          be, and what it silently assumes. Mercurius is built to make those
+          patterns visible rather than hide them.
+        </p>
+        <p class="lede">
+          It will not write your essays. It will not do your homework. It will
+          not give you answers before you have done some thinking yourself.
+        </p>
+        <div class="groups-callout fade-in">
+          <p>"Here to help you think, not think for you."</p>
         </div>
-        <div>
-            <h2>An AI Teaching AI Skepticism</h2>
-            <p>
-                Mercurius &#8544; is powered by Claude, a large language model made by Anthropic.
-                The irony of using an AI to teach AI skepticism is intentional — and it is a design feature, not a bug.
-            </p>
-            <p>
-                Every interaction is an opportunity to observe how AI actually behaves: how it hedges, where it sounds
-                more confident than it should be, and what it silently assumes. Mercurius is built to make those patterns
-                visible rather than hide them.
-            </p>
-            <p>
-                It will not write your essays. It will not do your homework. It will not give you answers before
-                you have done some thinking yourself.
-            </p>
-            <div class="merc-rule-box">
-                <p>"Here to help you think, not think for you."</p>
-            </div>
-        </div>
+      </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <p>Mayo AI Literacy Club &copy; 2026 &nbsp;·&nbsp; <a href="https://www.instagram.com/mayoailiteracy" target="_blank" rel="noopener noreferrer" class="footer-link">@mayoailiteracy</a></p>
+    <!-- BROWSER VERSION -->
+    <section class="section section-soft" aria-labelledby="browser-heading">
+      <div class="container" style="max-width: 760px; text-align: center;">
+        <p class="eyebrow" style="text-align: center;">No iPhone? No problem.</p>
+        <h2 id="browser-heading">Use it in your browser, right now</h2>
+        <p class="lede" style="margin: 0 auto var(--space-6);">
+          The web version of Mercurius runs on anything — Chromebooks included —
+          and can install as its own app.
+        </p>
+        <div class="cta-row" style="justify-content: center;">
+          <button class="btn btn-primary btn-large" onclick="MercuriusOpen()">Open Mercurius Ⅰ</button>
+          <button class="btn btn-ghost btn-large" id="merc-install-btn" hidden onclick="mercuriusInstall()">Install as App</button>
         </div>
-    </footer>
+        <p class="fineprint" id="merc-install-hint" hidden>Works offline. Runs in its own window.</p>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <section class="next-strip" aria-label="Next page">
+      <div class="container">
+        <div>
+          <p class="eyebrow">Next</p>
+          <h3>Like what we're building? Come build with us.</h3>
+        </div>
+        <a class="next-strip-link" href="/join">Join Us →</a>
+      </div>
+    </section>
 
-    <!-- Mercurius Widget -->
-    <script>
-        window.MercuriusConfig = {
-            apiEndpoint: 'https://mercurius-chatbot-production.up.railway.app/api/chat',
-            autoOpen: true
-        };
-    </script>
-    <link rel="stylesheet" href="widget.css">
-    <script src="widget.js"></script>
-    <script>
-      // PWA service worker + install prompt
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').catch(function() {});
-      }
+  </main>
 
-      var deferredInstallPrompt = null;
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
+          <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
+        </a>
+        <p class="footer-tagline">Understanding AI, together.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/about">About</a>
+        <a href="/topics">Topics</a>
+        <a href="/events">Events</a>
+        <a href="/blog">Blog</a>
+        <a href="/mercurius">Mercurius Ⅰ</a>
+        <a href="https://www.instagram.com/mayoailiteracy" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </nav>
+      <p class="footer-copy">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+    </div>
+  </footer>
 
-      window.addEventListener('beforeinstallprompt', function(e) {
-        e.preventDefault();
-        deferredInstallPrompt = e;
-        var btn = document.getElementById('merc-install-btn');
-        var hint = document.getElementById('merc-install-hint');
-        if (btn) btn.style.display = 'inline-flex';
-        if (hint) hint.style.display = 'block';
-      });
+  <script src="/script.js?v=1" defer></script>
 
-      function mercuriusInstall() {
-        if (!deferredInstallPrompt) return;
-        deferredInstallPrompt.prompt();
-        deferredInstallPrompt.userChoice.then(function(result) {
-          if (result.outcome === 'accepted') {
-            var btn = document.getElementById('merc-install-btn');
-            if (btn) btn.style.display = 'none';
-            var hint = document.getElementById('merc-install-hint');
-            if (hint) hint.style.display = 'none';
-          }
-          deferredInstallPrompt = null;
-        });
-      }
+  <!-- Mercurius web widget — same working set as the original site -->
+  <script>
+    window.MercuriusConfig = {
+      apiEndpoint: 'https://mercurius-chatbot-production.up.railway.app/api/chat',
+      autoOpen: false
+    };
+  </script>
+  <link rel="stylesheet" href="/widget.css?v=3" />
+  <script src="/widget.js?v=3"></script>
+  <script>
+    // PWA service worker + install prompt (carried over from the
+    // original site — same sw.js, same cached paths).
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    }
 
-      // If running as installed PWA, hide all page content — show only the chatbot
-      var isStandalone = window.matchMedia('(display-mode: standalone)').matches
-        || window.navigator.standalone === true;
-      if (isStandalone) {
-        var btn = document.getElementById('merc-install-btn');
-        if (btn) btn.style.display = 'none';
-        // Hide every page section so only the widget overlay is visible
-        document.querySelectorAll('.merc-hero, .merc-features, .merc-transparency, .footer, #merc-toggle, nav, header').forEach(function(el) {
-          el.style.display = 'none';
-        });
-        document.body.style.background = '#0f1f14';
-        document.body.style.margin = '0';
-        document.body.style.overflow = 'hidden';
-        // Force widget open if not already
-        var panel = document.getElementById('merc-panel');
-        if (panel && !panel.classList.contains('merc-open')) {
-          if (typeof MercuriusOpen === 'function') MercuriusOpen();
-          else panel.classList.add('merc-open');
+    var deferredInstallPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      var btn = document.getElementById('merc-install-btn');
+      var hint = document.getElementById('merc-install-hint');
+      if (btn) btn.hidden = false;
+      if (hint) hint.hidden = false;
+    });
+
+    function mercuriusInstall() {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      deferredInstallPrompt.userChoice.then(function (result) {
+        if (result.outcome === 'accepted') {
+          var btn = document.getElementById('merc-install-btn');
+          var hint = document.getElementById('merc-install-hint');
+          if (btn) btn.hidden = true;
+          if (hint) hint.hidden = true;
         }
-        // Hide close button — in the app, there's nothing behind the chatbot
-        var closeBtn = document.getElementById('merc-close-btn');
-        if (closeBtn) closeBtn.style.display = 'none';
-      }
-    </script>
+        deferredInstallPrompt = null;
+      });
+    }
 
+    // Installed-PWA mode: hide the site chrome so only the tutor shows.
+    var isStandalone = window.matchMedia('(display-mode: standalone)').matches
+      || window.navigator.standalone === true;
+    if (isStandalone) {
+      document.querySelectorAll('.site-header, main, .site-footer').forEach(function (el) {
+        el.style.display = 'none';
+      });
+      document.body.style.background = '#0f1f14';
+      document.body.style.margin = '0';
+      document.body.style.overflow = 'hidden';
+      var panel = document.getElementById('merc-panel');
+      if (panel && !panel.classList.contains('merc-open')) {
+        if (typeof MercuriusOpen === 'function') MercuriusOpen();
+        else panel.classList.add('merc-open');
+      }
+      var closeBtn = document.getElementById('merc-close-btn');
+      if (closeBtn) closeBtn.style.display = 'none';
+    }
+  </script>
 </body>
 </html>

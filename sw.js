@@ -1,5 +1,5 @@
 // Mercurius Ⅰ Service Worker — enables PWA install + basic caching
-var CACHE_NAME = 'mercurius-v2';
+var CACHE_NAME = 'mercurius-v3';
 var STATIC_ASSETS = [
   '/mercurius.html',
   '/widget.js',
