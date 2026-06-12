@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0E2A18" />
 
   <title>Mercurius Ⅰ — Mayo AI Literacy Club</title>
-  <meta name="description" content="Mercurius Ⅰ — the AI literacy tutor built by Mayo AI Literacy Club. Guides your thinking with questions instead of handing you answers. Coming to the App Store, and usable in your browser today." />
+  <meta name="description" content="Mercurius Ⅰ — the AI literacy tutor built by Mayo AI Literacy Club. Guides your thinking with questions instead of handing you answers. Coming to the App Store." />
   <link rel="canonical" href="https://mayoailiteracy.com/mercurius" />
 
   <meta property="og:type" content="website" />
@@ -19,14 +19,7 @@
   <meta name="twitter:description" content="An AI tutor that teaches you to think critically about AI — not think for you." />
   <meta name="twitter:image" content="https://mayoailiteracy.com/assets/mercurius-logo-dark.png" />
 
-  <!-- PWA — the browser version installs as an app (manifest + service
-       worker are carried over from the original site; same paths). -->
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="apple-touch-icon" href="/icons/icon-512.png" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Mercurius Ⅰ" />
-
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
   <link rel="icon" href="/logo.png" type="image/png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -167,23 +160,6 @@
       </div>
     </section>
 
-    <!-- BROWSER VERSION -->
-    <section class="section section-soft" aria-labelledby="browser-heading">
-      <div class="container" style="max-width: 760px; text-align: center;">
-        <p class="eyebrow" style="text-align: center;">No iPhone? No problem.</p>
-        <h2 id="browser-heading">Use it in your browser, right now</h2>
-        <p class="lede" style="margin: 0 auto var(--space-6);">
-          The web version of Mercurius runs on anything — Chromebooks included —
-          and can install as its own app.
-        </p>
-        <div class="cta-row" style="justify-content: center;">
-          <button class="btn btn-primary btn-large" onclick="MercuriusOpen()">Open Mercurius Ⅰ</button>
-          <button class="btn btn-ghost btn-large" id="merc-install-btn" hidden onclick="mercuriusInstall()">Install as App</button>
-        </div>
-        <p class="fineprint" id="merc-install-hint" hidden>Works offline. Runs in its own window.</p>
-      </div>
-    </section>
-
     <section class="next-strip" aria-label="Next page">
       <div class="container">
         <div>
@@ -217,66 +193,5 @@
   </footer>
 
   <script src="/script.js?v=1" defer></script>
-
-  <!-- Mercurius web widget — same working set as the original site -->
-  <script>
-    window.MercuriusConfig = {
-      apiEndpoint: 'https://mercurius-chatbot-production.up.railway.app/api/chat',
-      autoOpen: false
-    };
-  </script>
-  <link rel="stylesheet" href="/widget.css?v=3" />
-  <script src="/widget.js?v=3"></script>
-  <script>
-    // PWA service worker + install prompt (carried over from the
-    // original site — same sw.js, same cached paths).
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(function () {});
-    }
-
-    var deferredInstallPrompt = null;
-
-    window.addEventListener('beforeinstallprompt', function (e) {
-      e.preventDefault();
-      deferredInstallPrompt = e;
-      var btn = document.getElementById('merc-install-btn');
-      var hint = document.getElementById('merc-install-hint');
-      if (btn) btn.hidden = false;
-      if (hint) hint.hidden = false;
-    });
-
-    function mercuriusInstall() {
-      if (!deferredInstallPrompt) return;
-      deferredInstallPrompt.prompt();
-      deferredInstallPrompt.userChoice.then(function (result) {
-        if (result.outcome === 'accepted') {
-          var btn = document.getElementById('merc-install-btn');
-          var hint = document.getElementById('merc-install-hint');
-          if (btn) btn.hidden = true;
-          if (hint) hint.hidden = true;
-        }
-        deferredInstallPrompt = null;
-      });
-    }
-
-    // Installed-PWA mode: hide the site chrome so only the tutor shows.
-    var isStandalone = window.matchMedia('(display-mode: standalone)').matches
-      || window.navigator.standalone === true;
-    if (isStandalone) {
-      document.querySelectorAll('.site-header, main, .site-footer').forEach(function (el) {
-        el.style.display = 'none';
-      });
-      document.body.style.background = '#0f1f14';
-      document.body.style.margin = '0';
-      document.body.style.overflow = 'hidden';
-      var panel = document.getElementById('merc-panel');
-      if (panel && !panel.classList.contains('merc-open')) {
-        if (typeof MercuriusOpen === 'function') MercuriusOpen();
-        else panel.classList.add('merc-open');
-      }
-      var closeBtn = document.getElementById('merc-close-btn');
-      if (closeBtn) closeBtn.style.display = 'none';
-    }
-  </script>
 </body>
 </html>
