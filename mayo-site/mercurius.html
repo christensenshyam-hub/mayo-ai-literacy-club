@@ -1,193 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0E2A18" />
-
-  <title>Mercurius Ⅰ — Mayo AI Literacy Club</title>
-  <meta name="description" content="Mercurius Ⅰ — the AI literacy tutor built by Mayo AI Literacy Club. Guides your thinking with questions instead of handing you answers. Available free on the App Store." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#122e1e" />
+  <title>Mercurius AI — Mayo AI Literacy Club</title>
+  <meta name="description" content="Mercurius AI is a free tutor for iPhone, iOS 17 or later. It starts with a question or a hint, then works toward the full explanation with you." />
+  <meta name="apple-itunes-app" content="app-id=6773192313" />
   <link rel="canonical" href="https://mayoailiteracy.com/mercurius" />
-
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mercurius Ⅰ — Mayo AI Literacy Club" />
-  <meta property="og:description" content="An AI tutor that teaches you to think critically about AI — not think for you. Built by students." />
-  <meta property="og:image" content="https://mayoailiteracy.com/assets/mercurius-logo-dark.png" />
+  <meta property="og:site_name" content="Mayo AI Literacy Club" />
+  <meta property="og:title" content="Mercurius AI — Mayo AI Literacy Club" />
+  <meta property="og:description" content="Mercurius AI is a free tutor for iPhone, iOS 17 or later. It starts with a question or a hint, then works toward the full explanation with you." />
   <meta property="og:url" content="https://mayoailiteracy.com/mercurius" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Mercurius Ⅰ — Mayo AI Literacy Club" />
-  <meta name="twitter:description" content="An AI tutor that teaches you to think critically about AI — not think for you." />
-  <meta name="twitter:image" content="https://mayoailiteracy.com/assets/mercurius-logo-dark.png" />
-
-  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-  <link rel="icon" href="/logo.png" type="image/png" />
-
+  <meta property="og:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="The Mayo AI Literacy Club seal beside the club's name" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mercurius AI — Mayo AI Literacy Club" />
+  <meta name="twitter:description" content="Mercurius AI is a free tutor for iPhone, iOS 17 or later. It starts with a question or a hint, then works toward the full explanation with you." />
+  <meta name="twitter:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/icons/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=2" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=5" />
+  <script>document.documentElement.className += ' js';</script>
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
-        <img class="brand-logo" src="/logo.png" alt="" width="34" height="34" />
-        <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Mayo AI Literacy Club, home">
+        <img class="brand__seal" src="/assets/club-logo-128.png" alt="" width="40" height="40" />
+        <span class="brand__name">Mayo AI Literacy Club</span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <a href="/about">About</a>
-        <a href="/topics">Topics</a>
-        <a href="/events">Events</a>
-        <a href="/blog">Blog</a>
-        <a href="/mercurius">Mercurius Ⅰ</a>
-        <a class="cta-pill" href="/join">Join Us</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/topics">Topics</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/mercurius" aria-current="page">Mercurius AI</a></li>
+          <li><a href="/chapters">Chapters</a></li>
+          <li><a href="/join">Join</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
+    <div class="wrap">
 
-    <section class="page-hero" aria-labelledby="page-heading">
-      <div class="container">
-        <img class="merc-page-logo" src="/assets/mercurius-logo-dark.png" alt="Mercurius AI logo" width="128" height="128" />
-        <p class="eyebrow">Built by this club</p>
-        <h1 id="page-heading" class="display">
-          Mercurius <span class="text-gradient">Ⅰ</span>
-        </h1>
-        <p class="lede">
-          An AI literacy tutor that guides your thinking with questions instead
-          of handing you answers. Made by students, for students.
-        </p>
-      </div>
-    </section>
-
-    <!-- iOS APP -->
-    <section class="section" aria-labelledby="app-heading" style="padding-top: var(--space-5);">
-      <div class="container">
-        <div class="app-card" style="text-align: center;">
-          <p class="eyebrow">The next chapter</p>
-          <h2 id="app-heading">Mercurius is becoming an iPhone&nbsp;app.</h2>
-          <p class="lede" style="margin-left: auto; margin-right: auto;">
-            Native iOS, photo understanding, quizzes, a report card, and a full
-            AI literacy curriculum — now available free on the App Store.
-          </p>
-          <a href="https://apps.apple.com/app/id6773192313" target="_blank" rel="noopener noreferrer">
-            <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us"
-                 alt="Download Mercurius on the App Store" style="height: 54px; margin: 0 auto var(--space-5);" />
-          </a>
-          <div class="cta-row" style="justify-content: center; margin-bottom: 0;">
-            <a class="btn btn-primary" href="https://trymercurius.com" target="_blank" rel="noopener noreferrer">Visit trymercurius.com ↗</a>
+      <section class="page-title grid" aria-labelledby="title">
+        <h1 id="title" class="display">Mercurius AI is a free tutor for iPhone.</h1>
+        <p class="lede">It is an AI literacy tutor that opens with a question or a hint instead of the finished answer, then works toward the full explanation with you.</p>
+        <div class="merc-get app page-title__more">
+          <img class="app__icon" src="/assets/mercurius-logo-dark.jpg" alt="" width="64" height="64" decoding="async" />
+          <div>
+            <p class="label label--forest"><span class="seps"><span>Free</span> <span>iPhone</span> <span>iOS 17 or later</span></span></p>
+            <div class="badge-row">
+              <a class="badge" href="https://apps.apple.com/app/id6773192313" rel="noopener"><img src="/assets/app-store-badge.svg" alt="Download Mercurius AI on the App Store" width="132" height="44" decoding="async" /></a>
+              <a href="https://trymercurius.com" rel="noopener">trymercurius.com</a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- FEATURES -->
-    <section class="section section-soft" aria-labelledby="features-heading">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">What Makes It Different</p>
-          <h2 id="features-heading">Built for critical thinking</h2>
+      <section class="section grid" aria-labelledby="does-heading">
+        <div class="section__head">
+          <h2 id="does-heading">What it does</h2>
         </div>
-        <div class="topics-grid">
-          <div class="topic-card fade-in">
-            <span class="topic-num">01</span>
-            <h3>Four ways to think</h3>
-            <p>Socratic, Discussion, Debate, and Direct modes — it asks before it answers, and you earn your way to direct explanations.</p>
-          </div>
-          <div class="topic-card fade-in">
-            <span class="topic-num">02</span>
-            <h3>It can see your photos</h3>
-            <p>Share an image — a diagram, a headline, your homework — and Mercurius discusses what it's actually looking at.</p>
-          </div>
-          <div class="topic-card fade-in">
-            <span class="topic-num">03</span>
-            <h3>Quizzes &amp; report card</h3>
-            <p>Auto-generated checks on what you've covered, plus a session report card that shows what you actually learned.</p>
-          </div>
-          <div class="topic-card fade-in">
-            <span class="topic-num">04</span>
-            <h3>AI literacy curriculum</h3>
-            <p>Bite-sized lessons — how models work, bias, hallucinations, prompting — built into the app alongside the chat.</p>
-          </div>
-          <div class="topic-card fade-in">
-            <span class="topic-num">05</span>
-            <h3>Guided, not given</h3>
-            <p>The comprehension gate unlocks direct answers only after you've genuinely engaged with an idea. No outsourcing your thinking.</p>
-          </div>
-          <div class="topic-card fade-in">
-            <span class="topic-num">06</span>
-            <h3>Private by design</h3>
-            <p>No account, no sign-up — an anonymous session, no ads, no tracking. Start over any time with one tap.</p>
-          </div>
+        <div class="section__body">
+          <ul class="rows rows--split">
+            <li>
+              <h3>Three modes</h3>
+              <p>Socratic, Discussion and Debate.</p>
+            </li>
+            <li>
+              <h3>Lessons</h3>
+              <p>A learning path of 8 units and <span class="nowrap">35 lessons</span>. The topics include how models work, bias, hallucinations and prompting.</p>
+            </li>
+            <li>
+              <h3>Quizzes and unit checks</h3>
+              <p>A short quiz on what you just talked about, and a check at the end of each unit.</p>
+            </li>
+            <li>
+              <h3>Photos</h3>
+              <p>Share an image, such as a diagram, a headline or a page of homework, and it talks through what is in it.</p>
+            </li>
+            <li>
+              <h3>Privacy</h3>
+              <p>No account and no sign-up. The app uses a random ID on your phone and shows no ads. You can start over at any time with one tap.</p>
+            </li>
+          </ul>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- TRANSPARENCY -->
-    <section class="section" aria-labelledby="transparency-heading">
-      <div class="container" style="max-width: 760px;">
-        <p class="eyebrow">Transparency</p>
-        <h2 id="transparency-heading">An AI teaching AI skepticism</h2>
-        <p class="lede">
-          Mercurius Ⅰ is powered by Claude, a large language model made by
-          Anthropic. The irony of using an AI to teach AI skepticism is
-          intentional — it's a design feature, not a bug.
-        </p>
-        <p class="lede">
-          Every interaction is an opportunity to observe how AI actually
-          behaves: how it hedges, where it sounds more confident than it should
-          be, and what it silently assumes. Mercurius is built to make those
-          patterns visible rather than hide them.
-        </p>
-        <p class="lede">
-          It will not write your essays. It will not do your homework. It will
-          not give you answers before you have done some thinking yourself.
-        </p>
-        <div class="groups-callout fade-in">
-          <p>"Here to help you think, not think for you."</p>
+      <section class="section grid" aria-labelledby="wont-heading">
+        <div class="section__head">
+          <h2 id="wont-heading">What it will not do</h2>
         </div>
-      </div>
-    </section>
-
-    <section class="next-strip" aria-label="Next page">
-      <div class="container">
-        <div>
-          <p class="eyebrow">Next</p>
-          <h3>Like what we're building? Come build with us.</h3>
+        <div class="section__body prose">
+          <p class="lede">It will not write your essays or do your homework, and it will not hand you an answer before you have done some thinking yourself.</p>
         </div>
-        <a class="next-strip-link" href="/join">Join Us →</a>
-      </div>
-    </section>
+      </section>
 
+      <section class="section grid" aria-labelledby="claude-heading">
+        <div class="section__head">
+          <h2 id="claude-heading">An AI that teaches AI literacy</h2>
+        </div>
+        <div class="section__body prose">
+          <p class="lede">Mercurius AI runs on Claude, a large language model made by Anthropic.</p>
+          <p>So it is an AI that teaches students to be careful with AI, and that is on purpose. While you use it, you can watch how a model hedges, where it sounds more sure than it should, and what it assumes without saying so.</p>
+        </div>
+      </section>
+
+      <section class="section grid" aria-labelledby="who-heading">
+        <div class="section__head">
+          <h2 id="who-heading">Who makes it</h2>
+        </div>
+        <div class="section__body prose">
+          <p>Shyam Christensen and Adam Keegan lead the app. Shyam is a co-founder and <span class="nowrap">co-president</span> of the club, and Adam is its vice president.</p>
+          <p>Mercurius AI came out on the App Store on <time datetime="2026-06-15">June 15, 2026</time>. It is the tutor described in “Teaching the Pause,” the poster the club’s board presented that month. The app used to be called Mercurius I.</p>
+          <p class="links"><a href="/about#board">The club’s board</a></p>
+        </div>
+      </section>
+
+    </div>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-      <div>
-        <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
-          <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
-        </a>
-        <p class="footer-tagline">Understanding AI, together.</p>
+  <footer class="colophon">
+    <div class="wrap">
+      <div class="grid colophon__grid">
+        <div class="colophon__seal-wrap">
+          <img class="colophon__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
+        </div>
+        <div class="colophon__about">
+          <p class="colophon__name">Mayo AI Literacy Club</p>
+          <p>A student-run club at Mayo High School, Rochester, Minnesota.</p>
+        </div>
+        <div class="colophon__meets">
+          <h2 class="label">Meets</h2>
+          <p><span data-schedule="weekdays">Thursdays</span>, <span class="nowrap" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />Open to every Mayo student</p>
+        </div>
+        <nav class="colophon__nav" aria-label="Footer">
+          <h2 class="label">Pages</h2>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/topics">Topics</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/mercurius" aria-current="page">Mercurius AI</a></li>
+            <li><a href="/chapters">Chapters</a></li>
+            <li><a href="/join">Join</a></li>
+          </ul>
+        </nav>
+        <div class="colophon__else">
+          <h2 class="label">Elsewhere</h2>
+          <ul>
+            <li><span class="label">Instagram</span><a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
+            <li><span class="label">Mercurius AI</span><a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="/about">About</a>
-        <a href="/topics">Topics</a>
-        <a href="/events">Events</a>
-        <a href="/blog">Blog</a>
-        <a href="/mercurius">Mercurius Ⅰ</a>
-        <a href="https://www.instagram.com/mayoailiteracy" target="_blank" rel="noopener noreferrer">Instagram</a>
-      </nav>
-      <p class="footer-copy">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+      <div class="colophon__legal">
+        <div class="grid">
+          <div>
+            <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
+            <p class="label">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=1" defer></script>
+  <script src="/script.js?v=4" defer onerror="document.documentElement.classList.remove('js')"></script>
 </body>
 </html>

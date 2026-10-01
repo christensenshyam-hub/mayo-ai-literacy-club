@@ -1,157 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0E2A18" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#122e1e" />
   <title>Post — Mayo AI Literacy Club</title>
-  <meta name="description" content="Writing from Mayo AI Literacy Club members." />
-
-  <meta property="og:type" content="article" />
+  <meta name="description" content="An essay or meeting recap from The AI Literacy Review, written by a member of the Mayo AI Literacy Club at Mayo High School." />
+  <!-- No static canonical or og:url on this page: one file renders every post,
+       so the script adds <link rel="canonical"> with the post's own ?id= URL.
+       A static canonical to /blog-post would mark every post as a copy of an
+       empty page, and Google asks for one canonical only, never a changed one. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mayo AI Literacy Club" />
   <meta property="og:title" content="Post — Mayo AI Literacy Club" />
-  <meta property="og:description" content="Writing from Mayo AI Literacy Club members." />
-  <meta property="og:image" content="https://mayoailiteracy.com/logo.png" />
-  <meta name="twitter:card" content="summary" />
-
-  <link rel="icon" href="/logo.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-
+  <meta property="og:description" content="An essay or meeting recap from The AI Literacy Review, written by a member of the Mayo AI Literacy Club at Mayo High School." />
+  <meta property="og:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="The Mayo AI Literacy Club seal beside the club's name" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Post — Mayo AI Literacy Club" />
+  <meta name="twitter:description" content="An essay or meeting recap from The AI Literacy Review, written by a member of the Mayo AI Literacy Club at Mayo High School." />
+  <meta name="twitter:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/icons/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=2" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=5" />
+  <script>document.documentElement.className += ' js';</script>
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
-        <img class="brand-logo" src="/logo.png" alt="" width="34" height="34" />
-        <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Mayo AI Literacy Club, home">
+        <img class="brand__seal" src="/assets/club-logo-128.png" alt="" width="40" height="40" />
+        <span class="brand__name">Mayo AI Literacy Club</span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <a href="/about">About</a>
-        <a href="/topics">Topics</a>
-        <a href="/events">Events</a>
-        <a href="/blog">Blog</a>
-        <a href="/mercurius">Mercurius Ⅰ</a>
-        <a class="cta-pill" href="/join">Join Us</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/topics">Topics</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/blog" aria-current="page">Blog</a></li>
+          <li><a href="/mercurius">Mercurius AI</a></li>
+          <li><a href="/chapters">Chapters</a></li>
+          <li><a href="/join">Join</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="section" aria-label="Blog post">
-      <div class="container post-container">
-        <a class="back-link" href="/blog">← Back to Blog</a>
-        <article id="post-content">
-          <noscript><p class="blog-empty">This post needs JavaScript to load.</p></noscript>
-        </article>
+    <div class="wrap">
+
+      <!-- The script replaces everything in #post with the post named by ?id=
+           (or a not-found state). The fallback below shows only without
+           JavaScript, or if script.js fails to load. -->
+      <div id="post" class="post-root" aria-busy="true">
+        <div class="post-fallback" id="post-fallback">
+          <section class="page-title grid post-head" aria-labelledby="title">
+            <h1 id="title" class="title">This post didn’t load.</h1>
+            <p class="lede">Posts on this page need JavaScript to show. Every post is listed on the <a href="/blog">blog page</a>. Nathan Dozois’s long read, <a href="/blog-anthropic-pentagon.html">“Who Gets to Tell the Robot No?”</a>, has its own page and works without it.</p>
+          </section>
+        </div>
       </div>
-    </section>
+
+    </div>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-      <div>
-        <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
-          <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
-        </a>
-        <p class="footer-tagline">Understanding AI, together.</p>
+  <footer class="colophon">
+    <div class="wrap">
+      <div class="grid colophon__grid">
+        <div class="colophon__seal-wrap">
+          <img class="colophon__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
+        </div>
+        <div class="colophon__about">
+          <p class="colophon__name">Mayo AI Literacy Club</p>
+          <p>A student-run club at Mayo High School, Rochester, Minnesota.</p>
+        </div>
+        <div class="colophon__meets">
+          <h2 class="label">Meets</h2>
+          <p><span data-schedule="weekdays">Thursdays</span>, <span class="nowrap" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />Open to every Mayo student</p>
+        </div>
+        <nav class="colophon__nav" aria-label="Footer">
+          <h2 class="label">Pages</h2>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/topics">Topics</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/blog" aria-current="page">Blog</a></li>
+            <li><a href="/mercurius">Mercurius AI</a></li>
+            <li><a href="/chapters">Chapters</a></li>
+            <li><a href="/join">Join</a></li>
+          </ul>
+        </nav>
+        <div class="colophon__else">
+          <h2 class="label">Elsewhere</h2>
+          <ul>
+            <li><span class="label">Instagram</span><a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
+            <li><span class="label">Mercurius AI</span><a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="/about">About</a>
-        <a href="/topics">Topics</a>
-        <a href="/events">Events</a>
-        <a href="/blog">Blog</a>
-        <a href="/mercurius">Mercurius Ⅰ</a>
-        <a href="https://www.instagram.com/mayoailiteracy" target="_blank" rel="noopener noreferrer">Instagram</a>
-      </nav>
-      <p class="footer-copy">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+      <div class="colophon__legal">
+        <div class="grid">
+          <div>
+            <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
+            <p class="label">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=1" defer></script>
-  <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const postId = params.get('id');
-      const article = document.getElementById('post-content');
+  <script src="/script.js?v=4" defer onerror="document.documentElement.classList.remove('js')"></script>
+  <script>
+    // Renders one post from /blog-content.json, chosen by ?id=.
+    //
+    // Post content is data, never HTML: every string becomes a text node
+    // (mayo.el). The content format is the one the old renderer read, plus
+    // "### " and pull quotes:
+    //   blank line          new paragraph
+    //   ## Heading          section heading (### for a smaller one)
+    //   **bold**, *italic*  inside a paragraph, heading-free
+    //   > Quoted sentence   pull quote; a last line "> — Name, date" is its source
+    document.addEventListener('DOMContentLoaded', function () {
+      var root = document.getElementById('post');
+      var fallback = document.getElementById('post-fallback');
+      var mayo = window.mayo;
+      if (!root) return;
 
-      // Minimal text formatter for post content: paragraphs split on blank
-      // lines, "## " headings, **bold**, *italic*. Text nodes only — post
-      // content is data, never injected as raw HTML.
-      function renderBody(raw, into) {
-        String(raw).trim().split(/\n\n+/).forEach((block) => {
-          block = block.trim();
-          if (!block) return;
-          let el;
-          if (block.startsWith('## ')) {
-            el = document.createElement('h2');
-            el.textContent = block.slice(3);
-          } else {
-            el = document.createElement('p');
-            // Split on **bold** / *italic* markers, build nodes.
-            block.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).forEach((part) => {
-              if (/^\*\*[^*]+\*\*$/.test(part)) {
-                const b = document.createElement('strong');
-                b.textContent = part.slice(2, -2);
-                el.appendChild(b);
-              } else if (/^\*[^*]+\*$/.test(part)) {
-                const i = document.createElement('em');
-                i.textContent = part.slice(1, -1);
-                el.appendChild(i);
-              } else if (part) {
-                el.appendChild(document.createTextNode(part));
-              }
-            });
-          }
-          into.appendChild(el);
+      function showFallback() {
+        if (fallback) fallback.classList.add('is-shown');
+        root.removeAttribute('aria-busy');
+      }
+      if (!mayo || !window.fetch || !window.URLSearchParams) { showFallback(); return; }
+
+      var el = mayo.el;
+      var SITE = 'Mayo AI Literacy Club';
+      var id = new URLSearchParams(window.location.search).get('id');
+
+      /* ---- Content: text in, DOM nodes out ---- */
+      function inline(text) {
+        var nodes = [];
+        String(text).split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).forEach(function (part) {
+          if (/^\*\*[^*]+\*\*$/.test(part)) nodes.push(el('strong', null, part.slice(2, -2)));
+          else if (/^\*[^*]+\*$/.test(part)) nodes.push(el('em', null, part.slice(1, -1)));
+          else if (part) nodes.push(part);
         });
+        return nodes;
       }
 
-      window.mayoFetch('/blog-content.json').then((posts) => {
-        const post = (posts || []).find((p) => p.id === postId);
-        if (!post) {
-          article.innerHTML = '<h1>Post not found</h1><p><a class="back-link" href="/blog">← Back to Blog</a></p>';
+      function blocks(raw) {
+        var out = [];
+        String(raw || '').replace(/\r\n?/g, '\n').trim().split(/\n[ \t]*\n+/).forEach(function (block) {
+          block = block.trim();
+          if (!block) return;
+          var lines = block.split('\n');
+          if (block.indexOf('### ') === 0) {
+            out.push(el('h3', null, block.slice(4).trim()));
+          } else if (block.indexOf('## ') === 0) {
+            out.push(el('h2', null, block.slice(3).trim()));
+          } else if (lines.every(function (l) { return /^\s*>/.test(l); })) {
+            lines = lines.map(function (l) { return l.replace(/^\s*>\s?/, '').trim(); }).filter(Boolean);
+            var source = null;
+            if (lines.length > 1 && /^(—|–|--)\s*/.test(lines[lines.length - 1])) {
+              source = lines.pop().replace(/^(—|–|--)\s*/, '');
+            }
+            if (!lines.length) return;
+            out.push(el('figure', { class: 'post-pull' }, [
+              el('blockquote', null, el('p', null, inline(lines.join(' ')))),
+              source ? el('figcaption', { class: 'label' }, source) : null
+            ]));
+          } else {
+            out.push(el('p', null, inline(block)));
+          }
+        });
+        return out;
+      }
+
+      /* ---- Pieces ---- */
+      function timeOf(dateStr) {
+        var d = mayo.parseDate(dateStr);
+        return d ? el('time', { datetime: mayo.isoDate(d) }, mayo.formatDate(d, 'medium')) : (dateStr || '');
+      }
+
+      // Newest first; posts with the same date keep their JSON order (script.js).
+      var byDate = mayo.byDate;
+
+      // Same row as the list on /blog: date in the rail, the post beside it.
+      function listRow(post) {
+        var meta = [post.author, post.category].filter(Boolean);
+        return el('li', { class: 'grid' }, [
+          el('p', { class: 'label label--forest blog-list__date' }, timeOf(post.date)),
+          el('div', { class: 'blog-list__body' }, [
+            el('h3', null, el('a', { href: mayo.postUrl(post) }, post.title)),
+            meta.length ? el('p', { class: 'label' }, mayo.seps(meta)) : null,
+            post.summary ? el('p', null, mayo.firstSentence(post.summary)) : null
+          ])
+        ]);
+      }
+
+      function head(kicker, title, lede) {
+        return el('header', { class: 'page-title grid post-head' }, [
+          kicker ? el('p', { class: 'label label--forest post-kicker' }, kicker) : null,
+          el('h1', { id: 'title', class: 'title' }, title),
+          lede
+        ]);
+      }
+
+      function setMeta(name, content) {
+        var m = document.querySelector('meta[name="' + name + '"]');
+        if (!m) { m = el('meta', { name: name }); document.head.appendChild(m); }
+        m.setAttribute('content', content);
+      }
+
+      function show(nodes) {
+        while (root.firstChild) root.removeChild(root.firstChild);
+        [].concat(nodes).forEach(function (n) { if (n) root.appendChild(n); });
+        root.removeAttribute('aria-busy');
+      }
+
+      /* ---- States ---- */
+      function renderPost(post, posts) {
+        document.title = post.title + ' — ' + SITE;
+        if (post.summary) setMeta('description', mayo.firstSentence(post.summary));
+        document.head.appendChild(el('link', {
+          rel: 'canonical',
+          href: 'https://mayoailiteracy.com/blog-post?id=' + encodeURIComponent(post.id)
+        }));
+
+        var words = String(post.content || '').split(/\s+/).filter(Boolean).length;
+        var parts = [
+          post.author ? el('span', null, ['By ', el('span', { class: 'post-byline__author' }, post.author)]) : null,
+          el('span', null, 'The AI Literacy Review'),
+          el('span', null, timeOf(post.date)),
+          el('span', null, Math.max(1, Math.ceil(words / 220)) + ' min read')
+        ].filter(Boolean);
+        var byline = el('p', { class: 'label post-byline' }, parts);   // one short line each
+
+        var article = el('article', { class: 'post', 'aria-labelledby': 'title' }, [
+          head(post.category, post.title, post.summary ? el('p', { class: 'lede post-deck' }, post.summary) : null),
+          el('div', { class: 'grid post-main' }, [
+            byline,
+            el('div', { class: 'prose post-body' }, blocks(post.content))
+          ])
+        ]);
+
+        var others = byDate(posts).filter(function (p) { return p !== post; }).slice(0, 3);
+        var more = others.length ? el('section', { class: 'section grid post-more', 'aria-labelledby': 'more-heading' }, [
+          el('div', { class: 'section__head' }, el('h2', { id: 'more-heading' }, 'More writing')),
+          el('div', { class: 'section__body--wide' }, [
+            el('ul', { class: 'post-list' }, others.map(function (p) {
+              return el('li', null, [
+                el('h3', null, el('a', { href: mayo.postUrl(p) }, p.title)),
+                el('p', { class: 'label' }, mayo.seps([p.author, timeOf(p.date)]))
+              ]);
+            })),
+            el('p', { class: 'links' }, el('a', { href: '/blog' }, 'All writing'))
+          ])
+        ]) : null;
+
+        show([article, more]);
+      }
+
+      function renderNotFound(posts) {
+        document.title = (id ? 'Post not found' : 'Choose a post') + ' — ' + SITE;
+        setMeta('robots', 'noindex');
+        var lede = id
+          ? 'The link may be old or mistyped. Here is everything we have published, newest first.'
+          : 'This page shows one post at a time. Here is everything we have published, newest first.';
+        show([
+          head(null, id ? 'We couldn’t find that post.' : 'Choose a post to read.', el('p', { class: 'lede' }, lede)),
+          el('section', { class: 'section grid blog-posts', 'aria-labelledby': 'posts-heading' }, [
+            el('h2', { id: 'posts-heading', class: 'visually-hidden' }, 'All posts, newest first'),
+            el('ol', { class: 'post-list blog-list' }, byDate(posts).map(listRow))
+          ])
+        ]);
+      }
+
+      function renderError() {
+        document.title = 'Post — ' + SITE;
+        show(head(null, 'This post didn’t load.', el('p', { class: 'lede' }, [
+          'Something went wrong while loading it. Try reloading the page, or go back to ',
+          el('a', { href: '/blog' }, 'all writing'), '.'
+        ])));
+      }
+
+      mayo.fetch('/blog-content.json').then(function (posts) {
+        posts = (Array.isArray(posts) ? posts : []).filter(function (p) { return p && p.id && p.title; });
+        var post = null;
+        for (var i = 0; i < posts.length; i++) if (id && posts[i].id === id) { post = posts[i]; break; }
+        if (!post) { renderNotFound(posts); return; }
+        // A post with its own page (the Pentagon long read) lives there.
+        var own = mayo.CUSTOM_URLS && Object.prototype.hasOwnProperty.call(mayo.CUSTOM_URLS, post.id) && mayo.CUSTOM_URLS[post.id];
+        if (own) {
+          show(head(post.category, post.title, el('p', { class: 'lede' }, [
+            'This post has its own page: ', el('a', { href: own }, post.title), '.'
+          ])));
+          window.location.replace(own);
           return;
         }
-        document.title = `${post.title} — Mayo AI Literacy Club`;
-
-        const header = document.createElement('div');
-        header.className = 'post-header';
-        header.innerHTML = `
-          <div class="blog-meta">
-            <span class="blog-category"></span>
-            <span class="blog-date"></span>
-            <span class="blog-author"></span>
-          </div>
-          <h1></h1>
-          <p class="post-summary"></p>`;
-        header.querySelector('.blog-category').textContent = post.category;
-        header.querySelector('.blog-date').textContent = post.date;
-        header.querySelector('.blog-author').textContent = post.author ? `by ${post.author}` : '';
-        header.querySelector('h1').textContent = post.title;
-        header.querySelector('.post-summary').textContent = post.summary || '';
-        article.appendChild(header);
-
-        const body = document.createElement('div');
-        body.className = 'post-body';
-        renderBody(post.content, body);
-        article.appendChild(body);
-
-        const footer = document.createElement('div');
-        footer.className = 'post-footer';
-        footer.innerHTML = '<a class="btn btn-ghost" href="/blog">← All Posts</a>';
-        article.appendChild(footer);
-      }).catch(() => {
-        article.innerHTML = '<h1>Couldn’t load this post</h1><p><a class="back-link" href="/blog">← Back to Blog</a></p>';
+        renderPost(post, posts);
+      }).catch(function () {
+        try { renderError(); } catch (e) { showFallback(); }
       });
     });
   </script>

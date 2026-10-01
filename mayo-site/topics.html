@@ -1,304 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0E2A18" />
-
-  <title>Topics &amp; Resources — Mayo AI Literacy Club</title>
-  <meta name="description" content="What you'll learn at Mayo AI Literacy Club — AI ethics, how models work, AI in health and finance, prompt engineering, critical thinking — plus a curated resource library." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#122e1e" />
+  <title>Topics — Mayo AI Literacy Club</title>
+  <meta name="description" content="The six topics the Mayo AI Literacy Club comes back to, each with one question, and a list of courses, videos, reading and tools about AI." />
   <link rel="canonical" href="https://mayoailiteracy.com/topics" />
-
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Topics &amp; Resources — Mayo AI Literacy Club" />
-  <meta property="og:description" content="What you'll learn — and the resources the club actually recommends." />
-  <meta property="og:image" content="https://mayoailiteracy.com/logo.png" />
+  <meta property="og:site_name" content="Mayo AI Literacy Club" />
+  <meta property="og:title" content="Topics — Mayo AI Literacy Club" />
+  <meta property="og:description" content="The six topics the Mayo AI Literacy Club comes back to, each with one question, and a list of courses, videos, reading and tools about AI." />
   <meta property="og:url" content="https://mayoailiteracy.com/topics" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topics &amp; Resources — Mayo AI Literacy Club" />
-  <meta name="twitter:description" content="What you'll learn — and the resources the club actually recommends." />
-  <meta name="twitter:image" content="https://mayoailiteracy.com/logo.png" />
-
-  <link rel="icon" href="/logo.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-
+  <meta property="og:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="The Mayo AI Literacy Club seal beside the club's name" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Topics — Mayo AI Literacy Club" />
+  <meta name="twitter:description" content="The six topics the Mayo AI Literacy Club comes back to, each with one question, and a list of courses, videos, reading and tools about AI." />
+  <meta name="twitter:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/icons/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=2" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=5" />
+  <script>document.documentElement.className += ' js';</script>
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
-        <img class="brand-logo" src="/logo.png" alt="" width="34" height="34" />
-        <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Mayo AI Literacy Club, home">
+        <img class="brand__seal" src="/assets/club-logo-128.png" alt="" width="40" height="40" />
+        <span class="brand__name">Mayo AI Literacy Club</span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <a href="/about">About</a>
-        <a href="/topics">Topics</a>
-        <a href="/events">Events</a>
-        <a href="/blog">Blog</a>
-        <a href="/mercurius">Mercurius Ⅰ</a>
-        <a class="cta-pill" href="/join">Join Us</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/topics" aria-current="page">Topics</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/mercurius">Mercurius AI</a></li>
+          <li><a href="/chapters">Chapters</a></li>
+          <li><a href="/join">Join</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
+    <div class="wrap">
 
-    <section class="page-hero" aria-labelledby="page-heading">
-      <div class="container">
-        <p class="eyebrow">Topics We Cover</p>
-        <h1 id="page-heading" class="display">
-          What you'll <span class="text-gradient">learn.</span>
-        </h1>
-        <p class="lede">
-          Six threads we keep coming back to — some technical, some ethical,
-          all practical.
-        </p>
-      </div>
-    </section>
+      <section class="page-title grid" aria-labelledby="title">
+        <h1 id="title" class="display">Six topics we come back to on <span data-schedule="weekdays">Thursdays</span>.</h1>
+        <p class="lede">Each one comes with a question of the kind we talk through at a meeting. Under the topics is <a href="#resources">our list of courses, videos, reading and tools</a>.</p>
+      </section>
 
-    <!-- TOPICS -->
-    <section class="section" aria-label="Topics">
-      <div class="container">
-        <div class="topics-grid">
-          <div class="topic-card fade-in">
-            <span class="topic-num">01</span>
-            <h3>AI Ethics</h3>
-            <p>Explore bias, fairness, privacy, and the moral questions that come with building and using powerful AI systems.</p>
-          </div>
-          <div class="topic-card fade-in">
-            <span class="topic-num">02</span>
-            <h3>General AI</h3>
-            <p>Understand how machine learning, large language models, and neural networks actually work — in plain language.</p>
-          </div>
-          <div class="topic-card fade-in">
-            <span class="topic-num">03</span>
-            <h3>AI in Health</h3>
-            <p>Discover how AI is transforming diagnostics, drug discovery, mental health support, and patient care.</p>
-          </div>
-          <div class="topic-card fade-in">
-            <span class="topic-num">04</span>
-            <h3>AI in Finance</h3>
-            <p>Learn how AI is reshaping personal finance, investing, fraud detection, and financial literacy for everyone.</p>
-          </div>
-          <div class="topic-card fade-in">
-            <span class="topic-num">05</span>
-            <h3>Prompt Engineering</h3>
-            <p>Get better results from AI tools by learning how to ask the right questions and guide outputs strategically.</p>
-          </div>
-          <div class="topic-card fade-in">
-            <span class="topic-num">06</span>
-            <h3>Critical Thinking</h3>
-            <p>Build the habits to evaluate AI-generated content, spot misinformation, and stay skeptical in the right ways.</p>
-          </div>
+      <section class="section grid" id="topics" aria-labelledby="topics-heading">
+        <div class="section__head">
+          <h2 id="topics-heading">Topics and questions</h2>
         </div>
-      </div>
-    </section>
-
-    <!-- RESOURCES -->
-    <section class="section section-soft" id="resources" aria-labelledby="resources-heading">
-      <div class="container" style="max-width: 880px;">
-        <div class="section-head">
-          <p class="eyebrow">Curated by the Club</p>
-          <h2 id="resources-heading">Resources worth your time</h2>
-          <p class="section-sub">No filler — only things members have actually used and vouch for.</p>
+        <div class="section__body--wide">
+          <ul class="rows rows--split topics-list">
+            <li id="ethics">
+              <h3>AI ethics</h3>
+              <p class="topics-q">Who is responsible when an autonomous system causes harm?</p>
+              <p>Bias, fairness and privacy, and who answers for what an AI system decides.</p>
+              <p class="topics-more">Read the <a href="/blog-post?id=ai-dilemmas-march-19">AI Dilemmas seminar recap</a> and Nathan Dozois’s <a href="/blog-anthropic-pentagon.html">“Who Gets to Tell the Robot No?”</a></p>
+            </li>
+            <li id="how-ai-works">
+              <h3>How AI works</h3>
+              <p class="topics-q">How does a neural network learn?</p>
+              <p>Machine learning, large language models and neural networks, explained in plain language.</p>
+              <p class="topics-more">The 3Blue1Brown video <a href="#res-neural-network">“But what is a neural network?”</a> walks through one, and <a href="#res-playground">TensorFlow Playground</a> lets you watch one learn in your browser.</p>
+            </li>
+            <li id="health">
+              <h3>AI in health</h3>
+              <p class="topics-q">Who answers for it when an AI used in patient care gets it wrong?</p>
+              <p>Where AI is used in diagnosis, drug discovery, mental health support and patient care.</p>
+              <p class="topics-more"><a href="#res-princeton">Princeton’s case studies</a> include one on an automated healthcare app.</p>
+            </li>
+            <li id="finance">
+              <h3>AI in finance</h3>
+              <p class="topics-q">What do AI fraud checks and investing tools mean for your own money?</p>
+              <p>How AI is used in personal finance, investing and fraud detection.</p>
+            </li>
+            <li id="prompting">
+              <h3>Prompting</h3>
+              <p class="topics-q">How do you write a prompt that gets you what you want?</p>
+              <p>Asking the right question, and steering what the tool gives back.</p>
+              <p class="topics-more"><a href="#res-learn-prompting">Learn Prompting</a> starts from the basics.</p>
+            </li>
+            <li id="critical-thinking">
+              <h3>Critical thinking</h3>
+              <p class="topics-q">How do you check AI-generated content before you repeat it?</p>
+              <p>Checking what an AI tells you, spotting misinformation, and knowing when to doubt an answer.</p>
+              <p class="topics-more">Shyam Christensen’s essay <a href="/blog-post?id=vibe-coding-opinion">“Vibe Coding Is Real”</a> is about shipping AI-written code you don’t understand.</p>
+            </li>
+          </ul>
         </div>
+      </section>
 
-        <div class="resource-category fade-in">
-          <div class="resource-category-head">
-            <h3>Getting Started with AI</h3>
-          </div>
-          <div class="resource-list">
-            <a href="https://www.elementsofai.com" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Free Course</span>
-                <h4>Elements of AI</h4>
-                <p>A free, beginner-friendly course covering the basics of AI — no math or programming required.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="https://machinelearningforkids.co.uk" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Interactive</span>
-                <h4>ML for Kids</h4>
-                <p>Build real machine learning projects with a drag-and-drop interface. Great starting point for all ages.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Video · 19 min</span>
-                <h4>But What Is a Neural Network? — 3Blue1Brown</h4>
-                <p>The clearest visual explanation of how neural networks actually work. Required viewing for new members.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
+      <section class="section grid" id="resources" aria-labelledby="resources-heading">
+        <div class="section__head">
+          <h2 id="resources-heading">Resources</h2>
+          <p class="small fineprint section__note">If a link stops working, tell us on Instagram at <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a>.</p>
         </div>
-
-        <div class="resource-category fade-in">
-          <div class="resource-category-head">
-            <h3>Ethics &amp; Critical Thinking</h3>
-          </div>
-          <div class="resource-list">
-            <a href="https://aiethics.princeton.edu" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Free Course</span>
-                <h4>AI Ethics — Princeton</h4>
-                <p>A rigorous introduction to the ethical implications of AI from one of the world's top universities.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="https://www.ajl.org" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Organization</span>
-                <h4>Algorithmic Justice League</h4>
-                <p>Founded by Joy Buolamwini — explores bias in facial recognition and AI systems through research and art.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="https://www.humanetech.com/resources" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Toolkit</span>
-                <h4>Center for Humane Technology — Resources</h4>
-                <p>Practical tools and discussions for thinking critically about tech, AI, and social media's impact on society.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
+        <div class="section__body--wide">
+          <!-- Links checked on September 30, 2026. The Center for Humane Technology's /resources page
+               now redirects to its homepage, so the entry points to its Youth Toolkit instead. -->
+          <ul class="rows rows--split topics-res">
+            <li>
+              <h3>Getting started</h3>
+              <ul class="topics-res__list">
+                <li id="res-elements">
+                  <span class="label">Free course</span>
+                  <h4><a href="https://www.elementsofai.com" rel="noopener">Elements of AI</a></h4>
+                  <p>An online introduction to AI from the University of Helsinki and MinnaLearn. It needs no programming or complicated math.</p>
+                </li>
+                <li id="res-ml-for-kids">
+                  <span class="label">Interactive</span>
+                  <h4><a href="https://machinelearningforkids.co.uk" rel="noopener">Machine Learning for Kids</a></h4>
+                  <p>Train a computer to recognize text, numbers or pictures, then use what it learned in a Scratch project.</p>
+                </li>
+                <li id="res-neural-network">
+                  <span class="label"><span class="seps"><span>Video</span> <span>19 min</span> <span>3Blue1Brown</span></span></span>
+                  <h4><a href="https://www.youtube.com/watch?v=aircAruvnKk" rel="noopener">But what is a neural network?</a></h4>
+                  <p>An animated walk-through of what the neurons and layers in a neural network do, with handwritten digits as the example. It is chapter 1 of a series on deep learning.</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h3>Ethics and critical thinking</h3>
+              <ul class="topics-res__list">
+                <li id="res-princeton">
+                  <span class="label"><span class="seps"><span>Case studies</span> <span>Princeton University</span></span></span>
+                  <h4><a href="https://aiethics.princeton.edu/case-studies/case-study-pdfs/" rel="noopener">Princeton Dialogues on AI and Ethics</a></h4>
+                  <p>Eight fictional case studies written for discussion, on subjects such as hiring by machine, autonomous vehicles and an automated healthcare app. Each one is a PDF.</p>
+                </li>
+                <li id="res-ajl">
+                  <span class="label">Organization</span>
+                  <h4><a href="https://www.ajl.org" rel="noopener">Algorithmic Justice League</a></h4>
+                  <p>Founded by Joy Buolamwini. It uses research and art to show how AI systems can be biased, including in facial recognition.</p>
+                </li>
+                <li id="res-humane-tech">
+                  <span class="label"><span class="seps"><span>Toolkit</span> <span>Center for Humane Technology</span></span></span>
+                  <h4><a href="https://www.humanetech.com/youth" rel="noopener">Youth Toolkit</a></h4>
+                  <p>Seven guides on how social media is built to hold your attention and what you can do about it, with questions and activities for a class or a group.</p>
+                </li>
+                <li id="res-claude-character">
+                  <span class="label"><span class="seps"><span>Article</span> <span>Anthropic</span> <span>June 2024</span></span></span>
+                  <h4><a href="https://www.anthropic.com/research/claude-character" rel="noopener">Claude’s Character</a></h4>
+                  <p>How Anthropic chose and trained the traits of its Claude models, and why it wants people to know they are not talking to an objective source of truth.</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h3>Prompting</h3>
+              <ul class="topics-res__list">
+                <li id="res-learn-prompting">
+                  <span class="label">Free guide</span>
+                  <h4><a href="https://learnprompting.org" rel="noopener">Learn Prompting</a></h4>
+                  <p>A guide to writing prompts, from the basics to advanced techniques.</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h3>AI in the real world</h3>
+              <ul class="topics-res__list">
+                <li id="res-tech-review">
+                  <span class="label">Publication</span>
+                  <h4><a href="https://www.technologyreview.com/topic/artificial-intelligence/" rel="noopener">MIT Technology Review</a></h4>
+                  <p>Its artificial intelligence section: reporting on AI research, products and policy.</p>
+                </li>
+                <li id="res-ai-now">
+                  <span class="label">Research institute</span>
+                  <h4><a href="https://ainowinstitute.org" rel="noopener">AI Now Institute</a></h4>
+                  <p>Research on what AI does to society, including work, health care and surveillance.</p>
+                </li>
+                <li id="res-owid">
+                  <span class="label">Data and charts</span>
+                  <h4><a href="https://ourworldindata.org/artificial-intelligence" rel="noopener">Our World in Data</a></h4>
+                  <p>Its artificial intelligence page: charts on AI progress, capabilities, risks and adoption.</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h3>Tools to try</h3>
+              <ul class="topics-res__list">
+                <li id="res-claude">
+                  <span class="label"><span class="seps"><span>AI assistant</span> <span>Anthropic</span></span></span>
+                  <h4><a href="https://claude.ai" rel="noopener">Claude</a></h4>
+                  <p>Anthropic’s assistant. Mercurius AI runs on it.</p>
+                </li>
+                <li id="res-teachable-machine">
+                  <span class="label"><span class="seps"><span>Hands-on tool</span> <span>Google</span></span></span>
+                  <h4><a href="https://teachablemachine.withgoogle.com" rel="noopener">Teachable Machine</a></h4>
+                  <p>Train a model to recognize images, sounds or poses in your browser, without writing code.</p>
+                </li>
+                <li id="res-playground">
+                  <span class="label">Interactive demo</span>
+                  <h4><a href="https://playground.tensorflow.org" rel="noopener">TensorFlow Playground</a></h4>
+                  <p>A small neural network in your browser. Change its layers and data, and watch it learn.</p>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
+      </section>
 
-        <div class="resource-category fade-in">
-          <div class="resource-category-head">
-            <h3>Prompt Engineering</h3>
-          </div>
-          <div class="resource-list">
-            <a href="https://learnprompting.org" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Free Guide</span>
-                <h4>Learn Prompting</h4>
-                <p>The most comprehensive free guide to prompt engineering — from basics to advanced techniques.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="https://www.anthropic.com/research/claude-character" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Article</span>
-                <h4>How Claude Thinks — Anthropic</h4>
-                <p>Anthropic explains how large language models are trained and what shapes their behavior and limitations.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="resource-category fade-in">
-          <div class="resource-category-head">
-            <h3>AI in the Real World</h3>
-          </div>
-          <div class="resource-list">
-            <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Publication</span>
-                <h4>MIT Technology Review — AI</h4>
-                <p>Trustworthy, in-depth journalism on the latest AI research, products, and policy debates.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="https://ainowinstitute.org" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Research Institute</span>
-                <h4>AI Now Institute</h4>
-                <p>Leading research on the social implications of AI — covers labor, healthcare, surveillance, and power.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="https://ourworldindata.org/artificial-intelligence" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Data &amp; Charts</span>
-                <h4>Our World in Data — AI</h4>
-                <p>Clear data visualizations on AI progress, capabilities, risks, and global adoption trends.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="resource-category fade-in">
-          <div class="resource-category-head">
-            <h3>Tools Worth Trying</h3>
-          </div>
-          <div class="resource-list">
-            <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">AI Assistant</span>
-                <h4>Claude — Anthropic</h4>
-                <p>One of the leading AI assistants — great for reasoning, writing, research, and coding projects.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Hands-On Tool</span>
-                <h4>Teachable Machine — Google</h4>
-                <p>Train your own image, sound, or pose recognition model in your browser — no code needed.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-            <a href="https://playground.tensorflow.org" target="_blank" rel="noopener noreferrer" class="resource-card">
-              <div class="resource-info">
-                <span class="resource-type">Interactive Demo</span>
-                <h4>TensorFlow Playground</h4>
-                <p>Visualize how a neural network learns in real time. Adjust layers, neurons, and data — great for understanding.</p>
-              </div>
-              <span class="resource-arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="next-strip" aria-label="Next page">
-      <div class="container">
-        <div>
-          <p class="eyebrow">Next</p>
-          <h3>Come see a topic in action.</h3>
-        </div>
-        <a class="next-strip-link" href="/events">Events →</a>
-      </div>
-    </section>
-
+    </div>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-      <div>
-        <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
-          <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
-        </a>
-        <p class="footer-tagline">Understanding AI, together.</p>
+  <footer class="colophon">
+    <div class="wrap">
+      <div class="grid colophon__grid">
+        <div class="colophon__seal-wrap">
+          <img class="colophon__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
+        </div>
+        <div class="colophon__about">
+          <p class="colophon__name">Mayo AI Literacy Club</p>
+          <p>A student-run club at Mayo High School, Rochester, Minnesota.</p>
+        </div>
+        <div class="colophon__meets">
+          <h2 class="label">Meets</h2>
+          <p><span data-schedule="weekdays">Thursdays</span>, <span class="nowrap" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />Open to every Mayo student</p>
+        </div>
+        <nav class="colophon__nav" aria-label="Footer">
+          <h2 class="label">Pages</h2>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/topics" aria-current="page">Topics</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/mercurius">Mercurius AI</a></li>
+            <li><a href="/chapters">Chapters</a></li>
+            <li><a href="/join">Join</a></li>
+          </ul>
+        </nav>
+        <div class="colophon__else">
+          <h2 class="label">Elsewhere</h2>
+          <ul>
+            <li><span class="label">Instagram</span><a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
+            <li><span class="label">Mercurius AI</span><a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="/about">About</a>
-        <a href="/topics">Topics</a>
-        <a href="/events">Events</a>
-        <a href="/blog">Blog</a>
-        <a href="/mercurius">Mercurius Ⅰ</a>
-        <a href="https://www.instagram.com/mayoailiteracy" target="_blank" rel="noopener noreferrer">Instagram</a>
-      </nav>
-      <p class="footer-copy">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+      <div class="colophon__legal">
+        <div class="grid">
+          <div>
+            <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
+            <p class="label">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=1" defer></script>
+  <script src="/script.js?v=4" defer onerror="document.documentElement.classList.remove('js')"></script>
 </body>
 </html>

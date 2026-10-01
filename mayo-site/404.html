@@ -1,80 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0E2A18" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#122e1e" />
   <title>Page not found — Mayo AI Literacy Club</title>
+  <meta name="description" content="There is no page at this address on the Mayo AI Literacy Club site." />
   <meta name="robots" content="noindex" />
-  <link rel="icon" href="/logo.png" type="image/png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mayo AI Literacy Club" />
+  <meta property="og:title" content="Page not found — Mayo AI Literacy Club" />
+  <meta property="og:description" content="There is no page at this address on the Mayo AI Literacy Club site." />
+  <meta property="og:url" content="https://mayoailiteracy.com/404" />
+  <meta property="og:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="The Mayo AI Literacy Club seal beside the club's name" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Page not found — Mayo AI Literacy Club" />
+  <meta name="twitter:description" content="There is no page at this address on the Mayo AI Literacy Club site." />
+  <meta name="twitter:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/icons/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=2" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=5" />
+  <script>document.documentElement.className += ' js';</script>
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
-        <img class="brand-logo" src="/logo.png" alt="" width="34" height="34" />
-        <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Mayo AI Literacy Club, home">
+        <img class="brand__seal" src="/assets/club-logo-128.png" alt="" width="40" height="40" />
+        <span class="brand__name">Mayo AI Literacy Club</span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <a href="/about">About</a>
-        <a href="/topics">Topics</a>
-        <a href="/events">Events</a>
-        <a href="/blog">Blog</a>
-        <a href="/mercurius">Mercurius Ⅰ</a>
-        <a class="cta-pill" href="/join">Join Us</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/topics">Topics</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/mercurius">Mercurius AI</a></li>
+          <li><a href="/chapters">Chapters</a></li>
+          <li><a href="/join">Join</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
-  <main id="main">
-    <section class="page-hero" aria-labelledby="page-heading">
-      <div class="container">
-        <p class="eyebrow">404</p>
-        <h1 id="page-heading" class="display">
-          This page <span class="text-gradient">hallucinated.</span>
-        </h1>
-        <p class="lede">
-          It looks real, but there's nothing behind it — a good reminder to
-          verify your sources. Let's get you back somewhere true.
-        </p>
-        <div class="cta-row" style="justify-content: center; margin-top: var(--space-6);">
-          <a class="btn btn-primary" href="/">Back to Home</a>
-          <a class="btn btn-ghost" href="/blog">Read the Blog</a>
-        </div>
-      </div>
-    </section>
+  <main id="main" class="nf-main">
+    <div class="wrap">
+
+      <section class="page-title grid" aria-labelledby="title">
+        <h1 id="title" class="display">There is no page at this address.</h1>
+        <p class="lede">Some pages moved when we rebuilt the site in 2026. The club still meets <span data-schedule="weekdays">Thursdays</span> at <span class="nowrap" data-schedule="time">8:20 AM</span> in the <span data-schedule="location">MHS Library Classroom</span>.</p>
+        <p class="links page-title__more"><a href="/">Home page</a> <a href="/events">Meeting schedule</a></p>
+      </section>
+
+    </div>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-      <div>
-        <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
-          <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
-        </a>
-        <p class="footer-tagline">Understanding AI, together.</p>
+  <footer class="colophon">
+    <div class="wrap">
+      <div class="grid colophon__grid">
+        <div class="colophon__seal-wrap">
+          <img class="colophon__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
+        </div>
+        <div class="colophon__about">
+          <p class="colophon__name">Mayo AI Literacy Club</p>
+          <p>A student-run club at Mayo High School, Rochester, Minnesota.</p>
+        </div>
+        <div class="colophon__meets">
+          <h2 class="label">Meets</h2>
+          <p><span data-schedule="weekdays">Thursdays</span>, <span class="nowrap" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />Open to every Mayo student</p>
+        </div>
+        <nav class="colophon__nav" aria-label="Footer">
+          <h2 class="label">Pages</h2>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/topics">Topics</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/mercurius">Mercurius AI</a></li>
+            <li><a href="/chapters">Chapters</a></li>
+            <li><a href="/join">Join</a></li>
+          </ul>
+        </nav>
+        <div class="colophon__else">
+          <h2 class="label">Elsewhere</h2>
+          <ul>
+            <li><span class="label">Instagram</span><a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
+            <li><span class="label">Mercurius AI</span><a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="/about">About</a>
-        <a href="/topics">Topics</a>
-        <a href="/events">Events</a>
-        <a href="/blog">Blog</a>
-        <a href="/mercurius">Mercurius Ⅰ</a>
-        <a href="https://www.instagram.com/mayoailiteracy" target="_blank" rel="noopener noreferrer">Instagram</a>
-      </nav>
-      <p class="footer-copy">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+      <div class="colophon__legal">
+        <div class="grid">
+          <div>
+            <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
+            <p class="label">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=1" defer></script>
+  <script src="/script.js?v=4" defer onerror="document.documentElement.classList.remove('js')"></script>
 </body>
 </html>

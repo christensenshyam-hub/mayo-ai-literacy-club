@@ -1,150 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0E2A18" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#122e1e" />
   <title>Blog — Mayo AI Literacy Club</title>
-  <meta name="description" content="Writing from Mayo AI Literacy Club members — AI policy, opinion, meeting recaps, and student perspectives on the AI era." />
+  <meta name="description" content="Essays and meeting recaps by members of the Mayo AI Literacy Club at Mayo High School, published as The AI Literacy Review." />
   <link rel="canonical" href="https://mayoailiteracy.com/blog" />
-
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mayo AI Literacy Club" />
   <meta property="og:title" content="Blog — Mayo AI Literacy Club" />
-  <meta property="og:description" content="What we're thinking about — writing from club members." />
-  <meta property="og:image" content="https://mayoailiteracy.com/logo.png" />
+  <meta property="og:description" content="Essays and meeting recaps by members of the Mayo AI Literacy Club at Mayo High School, published as The AI Literacy Review." />
   <meta property="og:url" content="https://mayoailiteracy.com/blog" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="The Mayo AI Literacy Club seal beside the club's name" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Blog — Mayo AI Literacy Club" />
-  <meta name="twitter:description" content="What we're thinking about — writing from club members." />
-  <meta name="twitter:image" content="https://mayoailiteracy.com/logo.png" />
-
-  <link rel="icon" href="/logo.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-
+  <meta name="twitter:description" content="Essays and meeting recaps by members of the Mayo AI Literacy Club at Mayo High School, published as The AI Literacy Review." />
+  <meta name="twitter:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/icons/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=2" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=5" />
+  <script>document.documentElement.className += ' js';</script>
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
-        <img class="brand-logo" src="/logo.png" alt="" width="34" height="34" />
-        <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Mayo AI Literacy Club, home">
+        <img class="brand__seal" src="/assets/club-logo-128.png" alt="" width="40" height="40" />
+        <span class="brand__name">Mayo AI Literacy Club</span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <a href="/about">About</a>
-        <a href="/topics">Topics</a>
-        <a href="/events">Events</a>
-        <a href="/blog">Blog</a>
-        <a href="/mercurius">Mercurius Ⅰ</a>
-        <a class="cta-pill" href="/join">Join Us</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/topics">Topics</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/blog" aria-current="page">Blog</a></li>
+          <li><a href="/mercurius">Mercurius AI</a></li>
+          <li><a href="/chapters">Chapters</a></li>
+          <li><a href="/join">Join</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
+    <div class="wrap">
 
-    <section class="page-hero" aria-labelledby="page-heading">
-      <div class="container">
-        <p class="eyebrow">From the Club</p>
-        <h1 id="page-heading" class="display">
-          What we're <span class="text-gradient">thinking about.</span>
-        </h1>
-        <p class="lede">
-          Student writing on AI policy, ethics, and the technology reshaping
-          our generation — plus recaps of what happens on Thursdays.
-        </p>
-      </div>
-    </section>
+      <section class="page-title grid" aria-labelledby="title">
+        <h1 id="title" class="display">Essays and meeting recaps by club members.</h1>
+        <p class="lede">We publish them as The AI Literacy Review. Each piece is signed by the member who wrote it.</p>
+      </section>
 
-    <!-- Posts are rendered from blog-content.json — the same file the
-         Mercurius tutor reads, so the app can quote these posts. To
-         publish: add an entry to the top of blog-content.json and push. -->
-    <section class="section" aria-label="Blog posts" style="padding-top: var(--space-5);">
-      <div class="container">
-        <div class="blog-list" id="blog-list">
-          <noscript><p class="blog-empty">The blog needs JavaScript to load. Posts also live at mayoailiteracy.com/blog-content.json.</p></noscript>
-        </div>
-      </div>
-    </section>
+      <section class="section grid blog-posts" aria-labelledby="posts-heading">
+        <h2 id="posts-heading" class="visually-hidden">All posts, newest first</h2>
+        <!-- The script rebuilds this list from /blog-content.json, newest first.
+             This markup is the no-JS fallback; keep it in step with the JSON.
+             To publish a post, add it to blog-content.json (the Mercurius
+             backend reads the same file). A post with its own page, like the
+             Pentagon long read, is mapped in CUSTOM_URLS in script.js. -->
+        <ol class="post-list blog-list" id="blog-list">
+          <li class="grid">
+            <p class="label label--forest blog-list__date"><time datetime="2026-03-19">March 19, 2026</time></p>
+            <div class="blog-list__body">
+              <h3><a href="/blog-anthropic-pentagon.html">Who Gets to Tell the Robot No?</a></h3>
+              <p class="label"><span class="seps"><span>Nathan Dozois</span> <span>AI Policy</span></span></p>
+              <p>Anthropic built the most trusted AI in classified government networks — and then refused to let the Pentagon use it however it wanted.</p>
+            </div>
+          </li>
+          <li class="grid">
+            <p class="label label--forest blog-list__date"><time datetime="2026-03-19">March 19, 2026</time></p>
+            <div class="blog-list__body">
+              <h3><a href="/blog-post?id=student-concerns-ai">Concerns from a Student in the Era of AI</a></h3>
+              <p class="label"><span class="seps"><span>Michael Teng</span> <span>Hear from the Members</span></span></p>
+              <p>AI is one of the strongest tools ever developed — but it must remain a tool.</p>
+            </div>
+          </li>
+          <li class="grid">
+            <p class="label label--forest blog-list__date"><time datetime="2026-03-19">March 19, 2026</time></p>
+            <div class="blog-list__body">
+              <h3><a href="/blog-post?id=ai-dilemmas-march-19">Advanced Seminar Recap: AI Dilemmas</a></h3>
+              <p class="label"><span class="seps"><span>Shyam Christensen</span> <span>Meeting Recap</span></span></p>
+              <p>This week we dove deep into some of the hardest questions in AI today — from autonomous decision-making to alignment.</p>
+            </div>
+          </li>
+          <li class="grid">
+            <p class="label label--forest blog-list__date"><time datetime="2026-03-18">March 18, 2026</time></p>
+            <div class="blog-list__body">
+              <h3><a href="/blog-post?id=vibe-coding-opinion">Vibe Coding Is Real — and That Should Scare You a Little</a></h3>
+              <p class="label"><span class="seps"><span>Shyam Christensen</span> <span>Opinion</span></span></p>
+              <p>AI vibe coding lets anyone build software by describing what they want in plain English.</p>
+            </div>
+          </li>
+          <li class="grid">
+            <p class="label label--forest blog-list__date"><time datetime="2026-03-01">March 1, 2026</time></p>
+            <div class="blog-list__body">
+              <h3><a href="/blog-post?id=welcome-to-the-club">Welcome to the Mayo AI Literacy Club</a></h3>
+              <p class="label"><span class="seps"><span>Shyam Christensen</span> <span>Announcement</span></span></p>
+              <p>We're officially up and running.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
 
-    <section class="next-strip" aria-label="Next page">
-      <div class="container">
-        <div>
-          <p class="eyebrow">Next</p>
-          <h3>Meet the AI tutor our club built.</h3>
-        </div>
-        <a class="next-strip-link" href="/mercurius">Mercurius Ⅰ →</a>
-      </div>
-    </section>
-
+    </div>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-      <div>
-        <a class="brand" href="/" aria-label="Mayo AI Literacy Club home">
-          <span class="brand-name">Mayo <span class="brand-name-accent">AI Literacy</span> Club</span>
-        </a>
-        <p class="footer-tagline">Understanding AI, together.</p>
+  <footer class="colophon">
+    <div class="wrap">
+      <div class="grid colophon__grid">
+        <div class="colophon__seal-wrap">
+          <img class="colophon__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
+        </div>
+        <div class="colophon__about">
+          <p class="colophon__name">Mayo AI Literacy Club</p>
+          <p>A student-run club at Mayo High School, Rochester, Minnesota.</p>
+        </div>
+        <div class="colophon__meets">
+          <h2 class="label">Meets</h2>
+          <p><span data-schedule="weekdays">Thursdays</span>, <span class="nowrap" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />Open to every Mayo student</p>
+        </div>
+        <nav class="colophon__nav" aria-label="Footer">
+          <h2 class="label">Pages</h2>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/topics">Topics</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/blog" aria-current="page">Blog</a></li>
+            <li><a href="/mercurius">Mercurius AI</a></li>
+            <li><a href="/chapters">Chapters</a></li>
+            <li><a href="/join">Join</a></li>
+          </ul>
+        </nav>
+        <div class="colophon__else">
+          <h2 class="label">Elsewhere</h2>
+          <ul>
+            <li><span class="label">Instagram</span><a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
+            <li><span class="label">Mercurius AI</span><a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="/about">About</a>
-        <a href="/topics">Topics</a>
-        <a href="/events">Events</a>
-        <a href="/blog">Blog</a>
-        <a href="/mercurius">Mercurius Ⅰ</a>
-        <a href="https://www.instagram.com/mayoailiteracy" target="_blank" rel="noopener noreferrer">Instagram</a>
-      </nav>
-      <p class="footer-copy">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+      <div class="colophon__legal">
+        <div class="grid">
+          <div>
+            <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
+            <p class="label">© <span id="year">2026</span> Mayo AI Literacy Club</p>
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=1" defer></script>
-  <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Posts with a bespoke standalone page are mapped here.
-      const CUSTOM_URLS = { 'anthropic-pentagon-fallout': '/blog-anthropic-pentagon.html' };
+  <script src="/script.js?v=4" defer onerror="document.documentElement.classList.remove('js')"></script>
+  <script>
+    // Rebuild the post list from /blog-content.json, newest first. If the JSON
+    // doesn't load, the static list above stays as it is.
+    document.addEventListener('DOMContentLoaded', function () {
+      var mayo = window.mayo;
+      var list = document.getElementById('blog-list');
+      if (!mayo || !list || !window.fetch) return;
 
-      const list = document.getElementById('blog-list');
-      window.mayoFetch('/blog-content.json').then((posts) => {
-        if (!posts || !posts.length) {
-          list.insertAdjacentHTML('beforeend', '<p class="blog-empty">No posts yet — check back soon.</p>');
+      function row(post) {
+        var d = mayo.parseDate(post.date);
+        var when = d ? mayo.el('time', { datetime: mayo.isoDate(d) }, mayo.formatDate(d, 'medium')) : (post.date || '');
+        var meta = [post.author, post.category].filter(Boolean);
+        return mayo.el('li', { class: 'grid' }, [
+          mayo.el('p', { class: 'label label--forest blog-list__date' }, when),
+          mayo.el('div', { class: 'blog-list__body' }, [
+            mayo.el('h3', null, mayo.el('a', { href: mayo.postUrl(post) }, post.title)),
+            meta.length ? mayo.el('p', { class: 'label' }, mayo.seps(meta)) : null,
+            post.summary ? mayo.el('p', null, mayo.firstSentence(post.summary)) : null
+          ])
+        ]);
+      }
+
+      mayo.fetch('/blog-content.json').then(function (posts) {
+        if (!Array.isArray(posts)) return;
+        posts = posts.filter(function (p) { return p && p.id && p.title; });
+        while (list.firstChild) list.removeChild(list.firstChild);
+        if (!posts.length) {
+          list.appendChild(mayo.el('li', null, mayo.el('p', null, 'Nothing is published yet.')));
           return;
         }
-        posts.forEach((p) => {
-          const card = document.createElement('a');
-          card.className = 'blog-card fade-in';
-          card.href = CUSTOM_URLS[p.id] || `/blog-post.html?id=${encodeURIComponent(p.id)}`;
-          card.innerHTML = `
-            <div class="blog-meta">
-              <span class="blog-category"></span>
-              <span class="blog-date"></span>
-              <span class="blog-author"></span>
-            </div>
-            <h3></h3>
-            <p></p>
-            <span class="blog-read-more">Read post →</span>`;
-          card.querySelector('.blog-category').textContent = p.category;
-          card.querySelector('.blog-date').textContent = p.date;
-          card.querySelector('.blog-author').textContent = p.author ? `by ${p.author}` : '';
-          card.querySelector('h3').textContent = p.title;
-          card.querySelector('p').textContent = p.summary;
-          list.appendChild(card);
-        });
-        window.observeFadeIns(list);
-      }).catch(() => {
-        list.insertAdjacentHTML('beforeend', '<p class="blog-empty">Couldn’t load posts — please try again shortly.</p>');
-      });
+        // Newest first; posts with the same date keep their JSON order (script.js).
+        mayo.byDate(posts).forEach(function (p) { list.appendChild(row(p)); });
+      }).catch(function () { /* keep the static list */ });
     });
   </script>
 </body>
