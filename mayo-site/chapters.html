@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#122e1e" />
   <title>Start a chapter — Mayo AI Literacy Club</title>
-  <meta name="description" content="Students at other high schools can start a chapter of the Mayo AI Literacy Club program. A chapter needs one student founder and one faculty advisor. It costs nothing." />
+  <meta name="description" content="Start a chapter of the Mayo AI Literacy Club at your high school: what a chapter is for, what it takes, what we provide, and what happens after the founder form. One student founder and one faculty advisor. It costs nothing." />
   <link rel="canonical" href="https://mayoailiteracy.com/chapters" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Mayo AI Literacy Club" />
   <meta property="og:title" content="Start a chapter — Mayo AI Literacy Club" />
-  <meta property="og:description" content="Students at other high schools can start a chapter of the Mayo AI Literacy Club program. A chapter needs one student founder and one faculty advisor. It costs nothing." />
+  <meta property="og:description" content="Start an AI literacy chapter at your high school. One student founder and one faculty advisor, a meeting a month, one event each semester, and no cost." />
   <meta property="og:url" content="https://mayoailiteracy.com/chapters" />
   <meta property="og:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -18,194 +18,362 @@
   <meta property="og:image:alt" content="The Mayo AI Literacy Club seal beside the club's name" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Start a chapter — Mayo AI Literacy Club" />
-  <meta name="twitter:description" content="Students at other high schools can start a chapter of the Mayo AI Literacy Club program. A chapter needs one student founder and one faculty advisor. It costs nothing." />
+  <meta name="twitter:description" content="Start an AI literacy chapter at your high school. One student founder and one faculty advisor, a meeting a month, one event each semester, and no cost." />
   <meta name="twitter:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/icons/favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=5" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500&family=Source+Sans+3:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=8" />
   <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="/" aria-label="Mayo AI Literacy Club, home">
-        <img class="brand__seal" src="/assets/club-logo-128.png" alt="" width="40" height="40" />
-        <span class="brand__name">Mayo AI Literacy Club</span>
+    <div class="frame hd">
+      <a class="hd__brand" href="/">
+        <img class="hd__seal" src="/assets/seal-circle-192.png" alt="" width="40" height="40" />
+        <span class="hd__name"><span>Mayo AI</span> <span>Literacy Club</span></span>
       </a>
+      <a class="btn hd__join" href="/join">Join</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Main">
         <ul>
           <li><a href="/about">About</a></li>
-          <li><a href="/topics">Topics</a></li>
-          <li><a href="/events">Events</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/mercurius">Mercurius AI</a></li>
           <li><a href="/chapters" aria-current="page">Chapters</a></li>
-          <li><a href="/join">Join</a></li>
+          <li><a href="/topics">Learn</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/blog">The Review</a></li>
+          <li class="site-nav__join"><a href="/join">Join</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <div class="wrap">
 
-      <section class="page-title grid" aria-labelledby="title">
-        <h1 id="title" class="display">Start an AI Literacy chapter at your school.</h1>
-        <img class="chapters-seal" src="/assets/seal-circle-320.png" alt="" width="160" height="160" decoding="async" />
-        <p class="lede">Mayo AI Literacy Club is a student-run club at Mayo High School in Rochester, Minnesota. We teach students how to use AI without quietly handing it their thinking. This fall we are opening the program to high schools across the country, and we need one student at each school willing to start a chapter.</p>
-        <p class="act page-title__more"><a class="button" href="https://forms.gle/jVNaM7yyTtLLCDwv8" target="_blank" rel="noopener">Put your name in<span class="visually-hidden"> (Google Form, opens in a new tab)</span></a> <span>A Google Form. It takes about three minutes.</span></p>
-      </section>
+    <!-- /chapters, rebuilt to spec §4. Reading order: purpose -> requirements -> support (with
+         governance in the brief's own words) -> what happens next -> application, then the AACA
+         citation and the record as compact supporting material. Founders' questions are answered
+         in the order they ask them (docs/references/hackclub.md): what is it, what does it take,
+         what do we get, what happens after the form, where do I go.
+         Facts: participation-redesign.md §1 and its "Additional verified facts" (Usable items
+         only). Nothing marked Hold there (content-needs #6, #27, #29-#31, #33, #37), no reply-time
+         promise (#14), no list of other chapters (#15).
+         SHIP GATE: the routes link to /join#form-supporter and /join#form-other-school, which
+         exist only once the rebuilt /join ships (content-needs #42). -->
 
-      <section class="section grid" aria-labelledby="needs-heading">
+    <!-- PAGE TITLE. The lead in two voices (home, /join and /chapters only). One early action,
+         with its honest status beside it; the main application block comes after the
+         explanation. The aside is the offer at a glance. -->
+    <header class="frame pagehead">
+      <div class="grid">
+        <div class="pagehead__main span-lead">
+          <p class="label pagehead__eyebrow">Chapters</p>
+          <h1 class="lead" id="title"><span class="lead__sans">Start an AI Literacy chapter</span> <span class="lead__serif">at your school.</span></h1>
+          <p class="standfirst">This fall we are opening the Mayo AI Literacy Club’s program to high schools across the country. We need one student at each school willing to start a chapter.</p>
+          <p class="pagehead__acts">
+            <a class="btn" href="https://forms.gle/jVNaM7yyTtLLCDwv8" target="_blank" rel="noopener" aria-describedby="top-form-note">Open the founder form (Google Forms)</a>
+          </p>
+          <p class="hint pagehead__note" id="top-form-note">Opens in a new tab and takes about three minutes. Putting your name in is interest, not approval.</p>
+        </div>
+        <div class="pagehead__aside span-aside">
+          <dl class="rows rows--stack rows--across-tablet">
+            <div><dt>Starts with</dt><dd>One student founder and one faculty advisor</dd></div>
+            <div><dt>Commits to</dt><dd>A meeting a month, and one AI literacy event each semester</dd></div>
+            <div><dt>Costs</dt><dd>Nothing</dd></div>
+          </dl>
+        </div>
+      </div>
+    </header>
+
+    <!-- 1. PURPOSE. Why chapters, and what a chapter does at its school. Mission wording: the
+         Year One Report's (p. 1) and the founder's (October 2026), both Usable, as one statement.
+         The program areas and topics are the Year One Report's (p. 2), marked Usable for "what
+         you'd teach", one topic per line and in sentence case, across the thirds under the photo
+         from 768 (stacked on phones). The photo is the
+         Band figure (styles.css section 9): the laptop-free 18:5 cut from the homepage (rows
+         145-645 of the 1800px file, content-needs #23), as WebP and as the JPG fallback, at every
+         width, as on /join and /about. -->
+    <section class="frame" aria-labelledby="purpose-heading">
+      <div class="section" id="purpose">
         <div class="section__head">
-          <h2 id="needs-heading">What a chapter needs</h2>
+          <h2 id="purpose-heading">What a chapter is for</h2>
         </div>
-        <div class="section__body">
-          <ul class="rows rows--split">
-            <li><h3>A founder</h3><p>One student, ideally a sophomore or junior.</p></li>
-            <li><h3>An advisor</h3><p>One faculty advisor. The advisor attends meetings and signs off on room requests.</p></li>
-            <li><h3>Meetings</h3><p>Once a month.</p></li>
-            <li><h3>Events</h3><p>One AI literacy event each semester.</p></li>
-            <li><h3>Cost</h3><p>Starting a chapter costs nothing.</p></li>
-          </ul>
-        </div>
-      </section>
+        <div class="grid grid--gap">
+          <div class="span-lead flow">
+            <p class="reading">We started the club at Mayo High School in October 2025. Our mission is to provide every student with access to a foundational AI education: to help students understand AI, evaluate its output, and preserve their own judgment. Chapters are how the program reaches other schools.</p>
+            <p class="reading">A chapter runs the club’s program at its own school, with lessons it can run as written. It meets once a month and runs one AI literacy event each semester. At Mayo we meet every Thursday, one topic talked through around a table.</p>
+          </div>
 
-      <section class="section grid" aria-labelledby="provide-heading">
+          <figure class="photo photo--band span-full">
+            <picture>
+              <source type="image/webp" width="1800" height="500"
+                srcset="/assets/work/meeting-2025-11-20-band-800.webp 800w, /assets/work/meeting-2025-11-20-band-1200.webp 1200w, /assets/work/meeting-2025-11-20-band-1800.webp 1800w"
+                sizes="(min-width: 1440px) 1280px, (min-width: 1024px) calc(100vw - 2 * clamp(16px, 5.5vw, 80px)), (min-width: 768px) calc(1.2 * (100vw - 2 * clamp(16px, 5.5vw, 80px))), 120vw" />
+              <img
+                src="/assets/photos/meeting-2025-11-20-band-1200.jpg"
+                srcset="/assets/photos/meeting-2025-11-20-band-800.jpg 800w, /assets/photos/meeting-2025-11-20-band-1200.jpg 1200w"
+                sizes="(min-width: 1440px) 1280px, (min-width: 1024px) calc(100vw - 2 * clamp(16px, 5.5vw, 80px)), (min-width: 768px) calc(1.2 * (100vw - 2 * clamp(16px, 5.5vw, 80px))), 120vw"
+                width="1200" height="333" loading="lazy" decoding="async"
+                alt="Students sit around a long wooden table in a classroom with tiled walls, turned toward one another mid-discussion." />
+            </picture>
+            <figcaption class="caption"><strong><time datetime="2025-11-20">Thursday, November 20, 2025.</time></strong> A weekly meeting in the MHS Library Classroom.</figcaption>
+          </figure>
+
+          <div class="span-full">
+            <p class="label" id="teach-label">What you’d teach</p>
+            <dl class="rows rows--stack rows--across" aria-labelledby="teach-label">
+              <div><dt>AI fundamentals</dt><dd><p>How modern AI systems work</p><p>Prompt engineering</p><p>Effective AI use</p><p>AI trends &amp; future developments</p></dd></div>
+              <div><dt>Critical thinking</dt><dd><p>Bias &amp; fairness</p><p>Hallucination &amp; deepfake detection</p><p>Source evaluation</p></dd></div>
+              <div><dt>Responsible use</dt><dd><p>Ethics &amp; alignment</p><p>Academic integrity</p><p>AI in society</p></dd></div>
+            </dl>
+            <p class="meta">The club’s three program areas and their topics, as listed in its Year One Impact Report (July 2026).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. REQUIREMENTS. To start: a founder and an advisor. To keep going: monthly, one event a
+         semester, no cost (Hack Club: the ongoing commitment, stated minimally). One level of
+         definition rows, no deeper. The founder lines are the brief's ("Not the strongest
+         coder...", Usable) and the October 2 site's (the full year before a hand-off); the cost
+         line is the brief's, Usable. The advisor's duties are the brief's public wording only
+         (content-needs #29). The aside helps with the hardest step, asking a
+         teacher, and gives teachers their own route. -->
+    <section class="frame" aria-labelledby="requirements-heading">
+      <div class="section" id="requirements">
+        <div class="section__head">
+          <h2 id="requirements-heading">What it takes</h2>
+        </div>
+        <div class="grid grid--gap">
+          <dl class="defs span-wide">
+            <div>
+              <dt>A student founder</dt>
+              <dd>One student, ideally a sophomore or junior. That gives the chapter a full year before it has to hand off to someone new.</dd>
+              <dd>Not the strongest coder. The one who organizes things and finishes them, usually already running something else.</dd>
+            </div>
+            <div>
+              <dt>A faculty advisor</dt>
+              <dd>One faculty advisor at your school, who attends meetings and signs off on room requests.</dd>
+            </div>
+            <div>
+              <dt>A meeting a month</dt>
+              <dd>Once it starts, the chapter meets once a month.</dd>
+            </div>
+            <div>
+              <dt>An event each semester</dt>
+              <dd>The chapter runs one AI literacy event each semester.</dd>
+            </div>
+            <div>
+              <dt>Cost</dt>
+              <dd>None. There is no budget attached: nothing is purchased, and nothing is billed to the school.</dd>
+            </div>
+          </dl>
+          <div class="note span-aside">
+            <p class="label">Asking a teacher to advise</p>
+            <p>Show them this page. The advisor attends the chapter’s meetings and signs off on its room requests.</p>
+            <p>A teacher who wants to ask us something first can write to the club.</p>
+            <p class="note__act"><a class="tlink" href="/join#form-supporter">Write to the club as a teacher<span class="arrow" aria-hidden="true"> →</span></a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SUPPORT. Lessons, video support through the founding year, and the Central Board vote,
+         in the brief's words, plus one plain sentence that restates the vote and adds no power.
+         Governance wording is the brief's only; see content-needs #29-#31 and #55. The AI on
+         Trial pack (A9) would show "run as written" here once #25 is answered; the poster image
+         waits for #19. -->
+    <section class="frame" aria-labelledby="provide-heading">
+      <div class="section" id="provide">
         <div class="section__head">
           <h2 id="provide-heading">What we provide</h2>
         </div>
-        <div class="section__body">
-          <ul class="rows rows--split">
-            <li><h3>Lessons</h3><p>Curriculum and lesson materials the chapter can run as written, so nobody has to build a program from scratch.</p></li>
-            <li><h3>Support</h3><p>Shyam Christensen and Adam Keegan will support each new chapter directly through its founding year. It happens over video, so it works the same in any state.</p></li>
-            <li><h3>A vote</h3><p>A seat on our Central Board. Every chapter president holds a vote in how the network is run.</p></li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="section grid" aria-labelledby="who-heading">
-        <div class="section__head">
-          <h2 id="who-heading">Who should start one</h2>
-        </div>
-        <div class="section__body prose">
-          <p class="lede">We are looking for a student who organizes things and finishes them. Usually that student is already running something else.</p>
-          <p>You don’t have to be a strong coder. A sophomore or junior gives the chapter a full year before it has to hand off to someone new.</p>
-        </div>
-      </section>
-
-      <section class="section grid" aria-labelledby="stand-heading">
-        <div class="section__head">
-          <h2 id="stand-heading">Where we stand</h2>
-        </div>
-        <div class="section__body">
-          <p class="lede">In June 2026 the four of us on the board presented a poster, “Teaching the Pause: A Student-Led Model for Critical AI Literacy,” at the 43rd Annual Meeting of the American Association of Clinical Anatomists (AACA) in Rochester, <time datetime="2026-06-12">June 12–15, 2026</time>. The meeting had attendees from 23 countries.</p>
-
-          <!-- AACA PHOTO. When /assets/photos/aaca-board-2026-1200.jpg and aaca-board-2026-2400.jpg exist
-               (3:2 landscape, EXIF and GPS stripped, permission and photo credit confirmed), uncomment this
-               figure. The names below are for photo (a); for photo (b) the order is Niko Lazaridis,
-               Adam Keegan, Shyam Christensen and Nathan Dozois.
-          <figure class="photo photo--aaca" data-photo="aaca-board-2026">
-            <img src="/assets/photos/aaca-board-2026-1200.jpg"
-                 srcset="/assets/photos/aaca-board-2026-1200.jpg 1200w, /assets/photos/aaca-board-2026-2400.jpg 2400w"
-                 sizes="(min-width: 1200px) 700px, (min-width: 900px) 66vw, 100vw"
-                 width="1200" height="800" loading="lazy" decoding="async"
-                 alt="The four board members stand side by side in suits, wearing conference name badges." />
-            <figcaption>
-              <p>The board at the AACA meeting, June 2026. From left: Niko Lazaridis, Shyam Christensen, Adam Keegan and Nathan Dozois.</p>
-            </figcaption>
-          </figure>
-          -->
-
-          <div class="citation">
-            <p class="citation__deck">How a high-school club built a Socratic AI tutor that protects the struggle learning requires.</p>
-            <dl class="rows rows--split rows--tight">
-              <div><dt class="label">Authors</dt><dd>Shyam Christensen, Nathan Dozois, Adam Keegan and Niko Lazaridis</dd></div>
-              <div><dt class="label">Affiliation</dt><dd>Mayo High School, Rochester, Minnesota</dd></div>
-              <div><dt class="label">Meeting</dt><dd>43rd Annual Meeting of the American Association of Clinical Anatomists</dd></div>
-              <div><dt class="label">Venue</dt><dd>Mayo Clinic, Rochester, Minnesota</dd></div>
-              <div><dt class="label">Dates</dt><dd><time datetime="2026-06-12">June 12–15, 2026</time></dd></div>
-            </dl>
-          </div>
-          <p class="small fineprint citation__note">The meeting was hosted at Mayo Clinic. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic.</p>
-
-          <p class="chapters-more">At Mayo High School we have also run a school-wide AI literacy debate. Members write for this site, as The AI Literacy Review. The tutor the poster describes is on the App Store as Mercurius AI.</p>
-          <p class="links"><a href="/about">About the club</a> <a href="/blog">The AI Literacy Review</a> <a href="/mercurius">Mercurius AI</a> <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy on Instagram</a></p>
-        </div>
-      </section>
-
-      <section class="section grid" aria-labelledby="approval-heading">
-        <div class="section__head">
-          <h2 id="approval-heading">How approval works</h2>
-        </div>
-        <div class="section__body prose">
-          <p class="lede">Nothing commits a school until a founder and an advisor are both in place and the school’s own approval process has been followed.</p>
-          <p>If you want to start a chapter, <a href="https://forms.gle/jVNaM7yyTtLLCDwv8" target="_blank" rel="noopener">put your name in on the form<span class="visually-hidden"> (opens in a new tab)</span></a>. It takes about three minutes.</p>
-          <div class="chapters-sign">
-            <p class="label">Signed</p>
-            <ul>
-              <li><span class="chapters-sign__name">Shyam Christensen</span> <span class="label label--forest">Co-president</span></li>
-              <li><span class="chapters-sign__name">Adam Keegan</span> <span class="label label--forest">Vice president</span></li>
+        <div class="grid grid--gap">
+          <dl class="defs span-wide">
+            <div>
+              <dt>Lessons you can run as written</dt>
+              <dd>Curriculum and lesson materials the chapter can run as written, so nobody has to build a program from scratch.</dd>
+            </div>
+            <div>
+              <dt>Support over video</dt>
+              <dd>Shyam Christensen and Adam Keegan will support each new chapter directly through its founding year. It happens over video, so it works the same in any state.</dd>
+            </div>
+            <div>
+              <dt>A vote on the Central Board</dt>
+              <dd>A seat on the Central Board, where every chapter president holds a vote in how the network is run.</dd>
+              <dd>In plain words: your chapter has a say in how the network is run, through its president’s vote.</dd>
+            </div>
+          </dl>
+          <div class="span-aside">
+            <p class="label">Who supports new chapters</p>
+            <ul class="people people--stack">
+              <li class="person">
+                <img class="person__photo" src="/assets/board-shyam.jpg" alt="" width="72" height="72" loading="lazy" decoding="async" />
+                <h3 class="person__name">Shyam Christensen</h3>
+                <p class="label person__role">Co-founder and <span class="nowrap">co-president</span></p>
+              </li>
+              <li class="person">
+                <img class="person__photo" src="/assets/board-adam.jpg" alt="" width="72" height="72" loading="lazy" decoding="async" />
+                <h3 class="person__name">Adam Keegan</h3>
+                <p class="label person__role">Vice president</p>
+              </li>
             </ul>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-    </div>
+    <!-- 4. WHAT HAPPENS NEXT. Interest vs an approved chapter, and the brief's three conditions,
+         numbered (Hack Club's apply -> school approval list, with our facts only). They are the
+         conditions the brief names, not a complete process: whether others apply is open
+         (content-needs #31). Who replies to the form, how and how fast is unconfirmed (#14), so
+         nothing is said about a reply. -->
+    <section class="frame" aria-labelledby="next-heading">
+      <div class="section" id="next">
+        <div class="section__head">
+          <h2 id="next-heading">What happens next</h2>
+          <p class="reading">Putting your name in is interest, not approval. Before a chapter exists, three things have to be in place.</p>
+        </div>
+        <ol class="steps w-wide">
+          <li>
+            <h3 class="steps__title">A student founder</h3>
+            <p class="steps__text">It starts with the founder form, on Google Forms.</p>
+          </li>
+          <li>
+            <h3 class="steps__title">A faculty advisor</h3>
+            <p class="steps__text">A faculty member at your school agrees to advise the chapter.</p>
+          </li>
+          <li>
+            <h3 class="steps__title">Your school’s approval process</h3>
+            <p class="steps__text">It is your school’s own. Nothing goes ahead until it has been followed.</p>
+          </li>
+        </ol>
+        <p class="reading steps__after"><strong>Nothing commits a school</strong> until a founder and an advisor are both in place and the school’s own approval process has been followed.</p>
+      </div>
+    </section>
+
+    <!-- 5. APPLICATION. The main block, after the explanation: one Chapter entry per audience
+         (Hack Club), with the one solid button on the founder route. The routes are choices,
+         not a sequence, so they carry no numbers (the numbers on this page are the steps). The form is external:
+         the label says Google Forms, and the new tab and the time are in the hint, tied by
+         aria-describedby. Help at the point of action uses verified channels only. -->
+    <section class="frame" aria-labelledby="apply-heading">
+      <div class="section" id="apply">
+        <div class="section__head">
+          <h2 id="apply-heading">Ready to start one?</h2>
+        </div>
+        <ul class="chapters">
+          <li class="chapter" id="apply-founder">
+            <h3 class="chapter__title">Start a chapter</h3>
+            <p class="chapter__for">For the student who would found it</p>
+            <p class="chapter__status">The form starts the first of the three conditions above. It doesn’t commit your school to anything.</p>
+            <ul class="chapter__acts">
+              <li>
+                <a class="btn" href="https://forms.gle/jVNaM7yyTtLLCDwv8" target="_blank" rel="noopener" aria-describedby="apply-form-note">Open the founder form (Google Forms)</a>
+                <p class="hint chapter__note" id="apply-form-note">Opens in a new tab and takes about three minutes. If it won’t open, message the club on Instagram, @mayoailiteracy.</p>
+              </li>
+            </ul>
+          </li>
+
+          <li class="chapter" id="apply-advisor">
+            <h3 class="chapter__title">Advise a chapter</h3>
+            <p class="chapter__for">For teachers and faculty advisors</p>
+            <p class="chapter__facts">If a student has asked you to advise a chapter, or you would like to, write to the club.</p>
+            <ul class="chapter__acts">
+              <li><a class="tlink" href="/join#form-supporter">Write to the club<span class="arrow" aria-hidden="true"> →</span></a></li>
+            </ul>
+          </li>
+
+          <li class="chapter" id="apply-student">
+            <h3 class="chapter__title">Hear about a chapter</h3>
+            <p class="chapter__for">For students who would rather join one than start one</p>
+            <p class="chapter__facts">Right now the club meets at Mayo High School. To hear about a chapter near you without starting one, tell us your school.</p>
+            <ul class="chapter__acts">
+              <li><a class="tlink" href="/join#form-other-school">Tell us your school<span class="arrow" aria-hidden="true"> →</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6. WHERE WE STAND. Compact supporting material: the AACA poster as a short citation (a
+         POSTER, never a talk) with the Mayo Clinic sentence beside it, and the record. No year-one
+         numbers (#27), no debate date (#6, #33), no Instagram count (#37), no claim that the Year
+         One Report was delivered (#28).
+         AACA PHOTO. When /assets/photos/aaca-board-2026-1200.jpg and aaca-board-2026-2400.jpg exist
+         (3:2 landscape, EXIF and GPS stripped, permission and photo credit confirmed: content-needs
+         #9), a figure.photo.photo--landscape with a .caption can go beside the citation. Names for
+         photo (a), from left: Niko Lazaridis, Shyam Christensen, Adam Keegan and Nathan Dozois; for
+         photo (b): Niko Lazaridis, Adam Keegan, Shyam Christensen and Nathan Dozois. -->
+    <section class="frame" aria-labelledby="stand-heading">
+      <div class="section" id="record">
+        <div class="section__head">
+          <h2 id="stand-heading">Where we stand</h2>
+        </div>
+        <div class="grid grid--gap">
+          <div class="citation citation--compact span-lead">
+            <p class="label"><span class="dots"><span>Poster presentation</span> <span>· <time datetime="2026-06-12">June 12–15, 2026</time></span></span></p>
+            <h3 class="citation__title">Teaching the Pause: A <span class="nowrap">Student-Led</span> Model for Critical AI Literacy</h3>
+            <p>Presented by the club’s board, Shyam Christensen, Nathan Dozois, Adam Keegan and Niko Lazaridis, at the 43rd Annual Meeting of the American Association of Clinical Anatomists (AACA) in Rochester, Minnesota. The meeting had attendees from 23 countries.</p>
+            <p class="citation__note meta">The meeting was hosted at Mayo Clinic. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic.</p>
+          </div>
+          <dl class="rows rows--stack span-aside">
+            <div><dt>Founded</dt><dd><time datetime="2025-10">October 2025</time>, at Mayo High School</dd></div>
+            <div><dt>Debate</dt><dd>We ran a school-wide AI literacy debate at Mayo.</dd></div>
+            <div><dt>Writing</dt><dd>Members write for this site, as The AI Literacy Review.</dd></div>
+            <div><dt>Tutor</dt><dd>The tutor the poster describes is on the App Store as Mercurius AI.</dd></div>
+          </dl>
+          <p class="links span-full"><a class="tlink" href="/about">About the club<span class="arrow" aria-hidden="true"> →</span></a> <a class="tlink" href="/blog">The AI Literacy Review<span class="arrow" aria-hidden="true"> →</span></a> <a class="tlink" href="/mercurius">Mercurius AI<span class="arrow" aria-hidden="true"> →</span></a> <a class="tlink" href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy on Instagram</a></p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="colophon">
-    <div class="wrap">
-      <div class="grid colophon__grid">
-        <div class="colophon__seal-wrap">
-          <img class="colophon__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
-        </div>
-        <div class="colophon__about">
-          <p class="colophon__name">Mayo AI Literacy Club</p>
+  <footer class="ft">
+    <div class="frame">
+      <div class="grid ft__grid">
+        <div class="ft__about">
+          <img class="ft__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
+          <p class="ft__name">Mayo AI Literacy Club</p>
           <p>A student-run club at Mayo High School, Rochester, Minnesota.</p>
         </div>
-        <div class="colophon__meets">
-          <h2 class="label">Meets</h2>
-          <p><span data-schedule="weekdays">Thursdays</span>, <span class="nowrap" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />Open to every Mayo student</p>
+        <div class="ft__meets">
+          <h2 class="ft__label">Meets</h2>
+          <p><span data-schedule="weekdays">Thursdays</span>, <span class="tnum" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />For Mayo High School students</p>
         </div>
-        <nav class="colophon__nav" aria-label="Footer">
-          <h2 class="label">Pages</h2>
+        <nav class="ft__nav" aria-label="Footer">
+          <h2 class="ft__label">Pages</h2>
           <ul>
             <li><a href="/about">About</a></li>
-            <li><a href="/topics">Topics</a></li>
-            <li><a href="/events">Events</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/mercurius">Mercurius AI</a></li>
             <li><a href="/chapters" aria-current="page">Chapters</a></li>
+            <li><a href="/topics">Learn</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/blog">The Review</a></li>
+            <li><a href="/mercurius">Mercurius AI</a></li>
             <li><a href="/join">Join</a></li>
           </ul>
         </nav>
-        <div class="colophon__else">
-          <h2 class="label">Elsewhere</h2>
+        <div class="ft__else">
+          <h2 class="ft__label">Elsewhere</h2>
           <ul>
-            <li><span class="label">Instagram</span><a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
-            <li><span class="label">Mercurius AI</span><a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
+            <li><span class="ft__k">Instagram</span> <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
+            <li><span class="ft__k">Mercurius AI</span> <a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
           </ul>
         </div>
       </div>
-      <div class="colophon__legal">
-        <div class="grid">
-          <div>
-            <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
-            <p class="label">© <span id="year">2026</span> Mayo AI Literacy Club</p>
-          </div>
-        </div>
+      <div class="ft__legal">
+        <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
+        <p>© <span id="year">2026</span> Mayo AI Literacy Club</p>
       </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=4" defer onerror="document.documentElement.classList.remove('js')"></script>
+  <script src="/script.js?v=7" defer onerror="document.documentElement.classList.remove('js')"></script>
 </body>
 </html>

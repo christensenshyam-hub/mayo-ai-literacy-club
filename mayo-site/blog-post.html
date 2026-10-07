@@ -4,131 +4,134 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#122e1e" />
-  <title>Post — Mayo AI Literacy Club</title>
-  <meta name="description" content="An essay or meeting recap from The AI Literacy Review, written by a member of the Mayo AI Literacy Club at Mayo High School." />
+  <title>A piece from The AI Literacy Review — Mayo AI Literacy Club</title>
+  <meta name="description" content="An essay or meeting recap from The AI Literacy Review, signed and dated by the member of the Mayo AI Literacy Club at Mayo High School who wrote it." />
   <!-- No static canonical or og:url on this page: one file renders every post,
        so the script adds <link rel="canonical"> with the post's own ?id= URL.
        A static canonical to /blog-post would mark every post as a copy of an
        empty page, and Google asks for one canonical only, never a changed one. -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Mayo AI Literacy Club" />
-  <meta property="og:title" content="Post — Mayo AI Literacy Club" />
-  <meta property="og:description" content="An essay or meeting recap from The AI Literacy Review, written by a member of the Mayo AI Literacy Club at Mayo High School." />
+  <meta property="og:title" content="A piece from The AI Literacy Review — Mayo AI Literacy Club" />
+  <meta property="og:description" content="An essay or meeting recap from The AI Literacy Review, signed and dated by the member of the Mayo AI Literacy Club at Mayo High School who wrote it." />
   <meta property="og:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="The Mayo AI Literacy Club seal beside the club's name" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Post — Mayo AI Literacy Club" />
-  <meta name="twitter:description" content="An essay or meeting recap from The AI Literacy Review, written by a member of the Mayo AI Literacy Club at Mayo High School." />
+  <meta name="twitter:title" content="A piece from The AI Literacy Review — Mayo AI Literacy Club" />
+  <meta name="twitter:description" content="An essay or meeting recap from The AI Literacy Review, signed and dated by the member of the Mayo AI Literacy Club at Mayo High School who wrote it." />
   <meta name="twitter:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/icons/favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=5" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500&family=Source+Sans+3:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=8" />
   <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="/" aria-label="Mayo AI Literacy Club, home">
-        <img class="brand__seal" src="/assets/club-logo-128.png" alt="" width="40" height="40" />
-        <span class="brand__name">Mayo AI Literacy Club</span>
+    <div class="frame hd">
+      <a class="hd__brand" href="/">
+        <img class="hd__seal" src="/assets/seal-circle-192.png" alt="" width="40" height="40" />
+        <span class="hd__name"><span>Mayo AI</span> <span>Literacy Club</span></span>
       </a>
+      <a class="btn hd__join" href="/join">Join</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Main">
         <ul>
           <li><a href="/about">About</a></li>
-          <li><a href="/topics">Topics</a></li>
-          <li><a href="/events">Events</a></li>
-          <li><a href="/blog" aria-current="page">Blog</a></li>
-          <li><a href="/mercurius">Mercurius AI</a></li>
           <li><a href="/chapters">Chapters</a></li>
-          <li><a href="/join">Join</a></li>
+          <li><a href="/topics">Learn</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/blog" aria-current="page">The Review</a></li>
+          <li class="site-nav__join"><a href="/join">Join</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <div class="wrap">
 
-      <!-- The script replaces everything in #post with the post named by ?id=
-           (or a not-found state). The fallback below shows only without
-           JavaScript, or if script.js fails to load. -->
-      <div id="post" class="post-root" aria-busy="true">
-        <div class="post-fallback" id="post-fallback">
-          <section class="page-title grid post-head" aria-labelledby="title">
-            <h1 id="title" class="title">This post didn’t load.</h1>
-            <p class="lede">Posts on this page need JavaScript to show. Every post is listed on the <a href="/blog">blog page</a>. Nathan Dozois’s long read, <a href="/blog-anthropic-pentagon.html">“Who Gets to Tell the Robot No?”</a>, has its own page and works without it.</p>
-          </section>
-        </div>
+    <!-- THE READING PAGE for one piece of The AI Literacy Review, chosen by ?id=. The script
+         replaces everything in #post with: kicker (kind · The AI Literacy Review), the title,
+         the byline row (By name · date · reading time), the standfirst (the published summary),
+         the body at 66ch (.longform), notes (the piece as a record: writer, date, its topic on
+         Learn), then the pieces either side of it in the Review. Or a not-found state that lists
+         every piece. The fallback below shows only without JavaScript, or if script.js fails. -->
+    <div id="post" class="post-root" aria-busy="true">
+      <div class="post-fallback" id="post-fallback">
+        <header class="frame pagehead">
+          <div class="grid">
+            <div class="pagehead__main span-lead">
+              <p class="label pagehead__eyebrow">The AI Literacy Review</p>
+              <h1 class="h1" id="title">This page needs JavaScript to show a piece.</h1>
+              <p class="standfirst">Every piece is listed in <a href="/blog">The AI Literacy Review</a>. Nathan Dozois’s long read, <a href="/blog-anthropic-pentagon.html">“Who Gets to Tell the Robot No?”</a>, has its own page and works without it.</p>
+            </div>
+          </div>
+        </header>
       </div>
-
     </div>
+
   </main>
 
-  <footer class="colophon">
-    <div class="wrap">
-      <div class="grid colophon__grid">
-        <div class="colophon__seal-wrap">
-          <img class="colophon__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
-        </div>
-        <div class="colophon__about">
-          <p class="colophon__name">Mayo AI Literacy Club</p>
+  <footer class="ft">
+    <div class="frame">
+      <div class="grid ft__grid">
+        <div class="ft__about">
+          <img class="ft__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
+          <p class="ft__name">Mayo AI Literacy Club</p>
           <p>A student-run club at Mayo High School, Rochester, Minnesota.</p>
         </div>
-        <div class="colophon__meets">
-          <h2 class="label">Meets</h2>
-          <p><span data-schedule="weekdays">Thursdays</span>, <span class="nowrap" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />Open to every Mayo student</p>
+        <div class="ft__meets">
+          <h2 class="ft__label">Meets</h2>
+          <p><span data-schedule="weekdays">Thursdays</span>, <span class="tnum" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />For Mayo High School students</p>
         </div>
-        <nav class="colophon__nav" aria-label="Footer">
-          <h2 class="label">Pages</h2>
+        <nav class="ft__nav" aria-label="Footer">
+          <h2 class="ft__label">Pages</h2>
           <ul>
             <li><a href="/about">About</a></li>
-            <li><a href="/topics">Topics</a></li>
-            <li><a href="/events">Events</a></li>
-            <li><a href="/blog" aria-current="page">Blog</a></li>
-            <li><a href="/mercurius">Mercurius AI</a></li>
             <li><a href="/chapters">Chapters</a></li>
+            <li><a href="/topics">Learn</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/blog" aria-current="page">The Review</a></li>
+            <li><a href="/mercurius">Mercurius AI</a></li>
             <li><a href="/join">Join</a></li>
           </ul>
         </nav>
-        <div class="colophon__else">
-          <h2 class="label">Elsewhere</h2>
+        <div class="ft__else">
+          <h2 class="ft__label">Elsewhere</h2>
           <ul>
-            <li><span class="label">Instagram</span><a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
-            <li><span class="label">Mercurius AI</span><a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
+            <li><span class="ft__k">Instagram</span> <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
+            <li><span class="ft__k">Mercurius AI</span> <a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
           </ul>
         </div>
       </div>
-      <div class="colophon__legal">
-        <div class="grid">
-          <div>
-            <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
-            <p class="label">© <span id="year">2026</span> Mayo AI Literacy Club</p>
-          </div>
-        </div>
+      <div class="ft__legal">
+        <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
+        <p>© <span id="year">2026</span> Mayo AI Literacy Club</p>
       </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=4" defer onerror="document.documentElement.classList.remove('js')"></script>
+  <script src="/script.js?v=7" defer onerror="document.documentElement.classList.remove('js')"></script>
   <script>
-    // Renders one post from /blog-content.json, chosen by ?id=.
+    // Renders one piece from /blog-content.json, chosen by ?id=.
     //
-    // Post content is data, never HTML: every string becomes a text node
-    // (mayo.el). The content format is the one the old renderer read, plus
-    // "### " and pull quotes:
+    // Content is data, never HTML: every string becomes a text node (mayo.el).
+    // The content format is the one the old renderer read, plus "### " and
+    // pull quotes:
     //   blank line          new paragraph
     //   ## Heading          section heading (### for a smaller one)
     //   **bold**, *italic*  inside a paragraph, heading-free
     //   > Quoted sentence   pull quote; a last line "> — Name, date" is its source
+    // The reading anatomy (docs/design-system.md, "Post page"): kicker, title,
+    // byline row, standfirst, the body at 66ch, notes, then the pieces either
+    // side of this one in the Review.
     document.addEventListener('DOMContentLoaded', function () {
       var root = document.getElementById('post');
       var fallback = document.getElementById('post-fallback');
@@ -139,11 +142,26 @@
         if (fallback) fallback.classList.add('is-shown');
         root.removeAttribute('aria-busy');
       }
-      if (!mayo || !window.fetch || !window.URLSearchParams) { showFallback(); return; }
+      if (!mayo || !mayo.story || !window.fetch || !window.URLSearchParams) { showFallback(); return; }
 
       var el = mayo.el;
       var SITE = 'Mayo AI Literacy Club';
+      var REVIEW = 'The AI Literacy Review';
       var id = new URLSearchParams(window.location.search).get('id');
+
+      // The Learn topic each piece is about (topics.html ids), for the notes.
+      // Navigation only: it adds nothing to the piece. A piece not listed here
+      // simply has no topic row.
+      var TOPICS = {
+        ethics: 'AI ethics', 'how-ai-works': 'How AI works', health: 'AI in health',
+        finance: 'AI in finance', prompting: 'Prompting', 'critical-thinking': 'Critical thinking'
+      };
+      var POST_TOPICS = {
+        'anthropic-pentagon-fallout': ['ethics'],
+        'student-concerns-ai': ['ethics'],
+        'ai-dilemmas-march-19': ['ethics'],
+        'vibe-coding-opinion': ['critical-thinking']
+      };
 
       /* ---- Content: text in, DOM nodes out ---- */
       function inline(text) {
@@ -173,9 +191,9 @@
               source = lines.pop().replace(/^(—|–|--)\s*/, '');
             }
             if (!lines.length) return;
-            out.push(el('figure', { class: 'post-pull' }, [
+            out.push(el('figure', { class: 'pullquote' }, [
               el('blockquote', null, el('p', null, inline(lines.join(' ')))),
-              source ? el('figcaption', { class: 'label' }, source) : null
+              source ? el('figcaption', { class: 'meta' }, source) : null
             ]));
           } else {
             out.push(el('p', null, inline(block)));
@@ -185,33 +203,26 @@
       }
 
       /* ---- Pieces ---- */
-      function timeOf(dateStr) {
-        var d = mayo.parseDate(dateStr);
-        return d ? el('time', { datetime: mayo.isoDate(d) }, mayo.formatDate(d, 'medium')) : (dateStr || '');
+      function arrow() { return el('span', { class: 'arrow', 'aria-hidden': 'true' }, ' →'); }
+
+      // A Story with its byline first (mayo.reviewStory), or the plain Story if
+      // an older script.js is cached.
+      function story(p, opts) {
+        return mayo.reviewStory ? mayo.reviewStory(p, opts) : mayo.story(p, opts);
       }
 
-      // Newest first; posts with the same date keep their JSON order (script.js).
-      var byDate = mayo.byDate;
-
-      // Same row as the list on /blog: date in the rail, the post beside it.
-      function listRow(post) {
-        var meta = [post.author, post.category].filter(Boolean);
-        return el('li', { class: 'grid' }, [
-          el('p', { class: 'label label--forest blog-list__date' }, timeOf(post.date)),
-          el('div', { class: 'blog-list__body' }, [
-            el('h3', null, el('a', { href: mayo.postUrl(post) }, post.title)),
-            meta.length ? el('p', { class: 'label' }, mayo.seps(meta)) : null,
-            post.summary ? el('p', null, mayo.firstSentence(post.summary)) : null
-          ])
-        ]);
+      // The page title: kicker, H1, then anything else (byline row, standfirst).
+      function head(kicker, title, rest) {
+        return el('header', { class: 'frame pagehead' }, el('div', { class: 'grid' },
+          el('div', { class: 'pagehead__main span-lead' }, [
+            kicker ? el('p', { class: 'label pagehead__eyebrow' }, kicker) : null,
+            el('h1', { id: 'title', class: 'h1' }, title)
+          ].concat(rest || []))
+        ));
       }
 
-      function head(kicker, title, lede) {
-        return el('header', { class: 'page-title grid post-head' }, [
-          kicker ? el('p', { class: 'label label--forest post-kicker' }, kicker) : null,
-          el('h1', { id: 'title', class: 'title' }, title),
-          lede
-        ]);
+      function kicker(post) {
+        return mayo.dots([post.category ? mayo.sentenceCase(post.category) : null, REVIEW]);
       }
 
       function setMeta(name, content) {
@@ -226,6 +237,56 @@
         root.removeAttribute('aria-busy');
       }
 
+      // Notes: the piece as a record, after the body. Only what the JSON says,
+      // plus the topic it belongs to on Learn.
+      function notes(post) {
+        var rows = [];
+        if (post.author) rows.push(el('div', null, [el('dt', null, 'Writer'), el('dd', null, post.author)]));
+        rows.push(el('div', null, [el('dt', null, 'Published'), el('dd', null, [
+          post.date ? mayo.timeEl(post.date) : null, post.date ? ', in ' : 'In ', el('a', { href: '/blog' }, REVIEW)
+        ])]));
+        var topics = (POST_TOPICS[post.id] || []).filter(function (k) { return TOPICS[k]; });
+        if (topics.length) {
+          var links = [];
+          topics.forEach(function (k, i) {
+            if (i) links.push(', ');
+            links.push(el('a', { href: '/topics#' + k }, TOPICS[k]));
+          });
+          links.push(', on Learn');
+          rows.push(el('div', null, [el('dt', null, topics.length > 1 ? 'Topics' : 'Topic'), el('dd', null, links)]));
+        }
+        return el('div', { class: 'frame' }, el('aside', { class: 'post-notes', 'aria-labelledby': 'notes-label' }, [
+          el('h2', { class: 'label post-notes__label', id: 'notes-label' }, 'About this piece'),
+          el('dl', { class: 'rows' }, rows)
+        ]));
+      }
+
+      // The pieces either side of this one, in the Review's order (newest first): the newer one
+      // on the left, the older one always in the right column. The labels say which way in time.
+      function pager(post, posts) {
+        var list = mayo.byDate(posts);
+        var i = list.indexOf(post);
+        function item(p, dir, cls) {
+          return el('li', { class: cls }, [
+            el('p', { class: 'label pager__dir' }, dir),
+            el('p', { class: 'pager__title' }, el('a', { href: mayo.postUrl(p) }, p.title)),
+            el('p', { class: 'meta' }, mayo.dots([
+              p.author ? ['By ', el('span', { class: 'who' }, p.author)] : null,
+              p.date ? mayo.timeEl(p.date) : null
+            ]))
+          ]);
+        }
+        var items = [
+          i > 0 ? item(list[i - 1], 'Newer piece', 'pager__prev') : null,
+          i >= 0 && i < list.length - 1 ? item(list[i + 1], 'Older piece', 'pager__next') : null
+        ].filter(Boolean);
+        return el('section', { class: 'frame', 'aria-labelledby': 'more-heading' }, el('div', { class: 'section' }, [
+          el('div', { class: 'section__head' }, el('h2', { id: 'more-heading' }, 'Keep reading')),
+          items.length ? el('ul', { class: 'pager w-wide' }, items) : null,
+          el('p', { class: 'links' }, el('a', { class: 'tlink', href: '/blog' }, ['All writing in ' + REVIEW, arrow()]))
+        ]));
+      }
+
       /* ---- States ---- */
       function renderPost(post, posts) {
         document.title = post.title + ' — ' + SITE;
@@ -236,59 +297,58 @@
         }));
 
         var words = String(post.content || '').split(/\s+/).filter(Boolean).length;
-        var parts = [
-          post.author ? el('span', null, ['By ', el('span', { class: 'post-byline__author' }, post.author)]) : null,
-          el('span', null, 'The AI Literacy Review'),
-          el('span', null, timeOf(post.date)),
-          el('span', null, Math.max(1, Math.ceil(words / 220)) + ' min read')
-        ].filter(Boolean);
-        var byline = el('p', { class: 'label post-byline' }, parts);   // one short line each
+        var byline = el('p', { class: 'pagehead__byline' }, mayo.dots([
+          post.author ? ['By ', el('span', { class: 'who' }, post.author)] : null,
+          post.date ? mayo.timeEl(post.date) : null,
+          Math.max(1, Math.ceil(words / 220)) + ' min read'
+        ]));
 
+        // A dash in a title stays with the word before it, so a line never starts with one.
+        var title = String(post.title).replace(/ ([—–]) /g, '\u00a0$1 ');
         var article = el('article', { class: 'post', 'aria-labelledby': 'title' }, [
-          head(post.category, post.title, post.summary ? el('p', { class: 'lede post-deck' }, post.summary) : null),
-          el('div', { class: 'grid post-main' }, [
+          head(kicker(post), title, [
             byline,
-            el('div', { class: 'prose post-body' }, blocks(post.content))
-          ])
+            post.summary ? el('p', { class: 'standfirst' }, post.summary) : null
+          ]),
+          el('div', { class: 'frame' }, el('div', { class: 'longform post-body' }, blocks(post.content))),
+          notes(post)
         ]);
 
-        var others = byDate(posts).filter(function (p) { return p !== post; }).slice(0, 3);
-        var more = others.length ? el('section', { class: 'section grid post-more', 'aria-labelledby': 'more-heading' }, [
-          el('div', { class: 'section__head' }, el('h2', { id: 'more-heading' }, 'More writing')),
-          el('div', { class: 'section__body--wide' }, [
-            el('ul', { class: 'post-list' }, others.map(function (p) {
-              return el('li', null, [
-                el('h3', null, el('a', { href: mayo.postUrl(p) }, p.title)),
-                el('p', { class: 'label' }, mayo.seps([p.author, timeOf(p.date)]))
-              ]);
-            })),
-            el('p', { class: 'links' }, el('a', { href: '/blog' }, 'All writing'))
-          ])
-        ]) : null;
+        show([article, pager(post, posts)]);
+      }
 
-        show([article, more]);
+      function everything(posts) {
+        return el('section', { class: 'frame', 'aria-labelledby': 'posts-heading' }, el('div', { class: 'section' }, [
+          el('div', { class: 'section__head' }, [
+            el('h2', { id: 'posts-heading' }, 'Everything in ' + REVIEW),
+            el('p', { class: 'hint' }, 'Newest first.')
+          ]),
+          posts.length
+            ? el('ol', { class: 'story-list' }, mayo.byDate(posts).map(function (p) {
+              return el('li', null, story(p, { heading: 'h3', summary: 'first' }));
+            }))
+            : el('p', null, 'Nothing is published yet.')
+        ]));
       }
 
       function renderNotFound(posts) {
-        document.title = (id ? 'Post not found' : 'Choose a post') + ' — ' + SITE;
+        document.title = (id ? 'Piece not found' : 'Choose a piece') + ' — ' + SITE;
         setMeta('robots', 'noindex');
-        var lede = id
-          ? 'The link may be old or mistyped. Here is everything we have published, newest first.'
-          : 'This page shows one post at a time. Here is everything we have published, newest first.';
         show([
-          head(null, id ? 'We couldn’t find that post.' : 'Choose a post to read.', el('p', { class: 'lede' }, lede)),
-          el('section', { class: 'section grid blog-posts', 'aria-labelledby': 'posts-heading' }, [
-            el('h2', { id: 'posts-heading', class: 'visually-hidden' }, 'All posts, newest first'),
-            el('ol', { class: 'post-list blog-list' }, byDate(posts).map(listRow))
-          ])
+          head(REVIEW, id ? 'We couldn’t find that piece.' : 'Choose a piece to read.', [
+            el('p', { class: 'standfirst' }, id
+              ? 'The link may be old or mistyped. Everything we have published is below, newest first.'
+              : 'This page shows one piece at a time. Everything we have published is below, newest first.')
+          ]),
+          everything(posts)
         ]);
       }
 
       function renderError() {
-        document.title = 'Post — ' + SITE;
-        show(head(null, 'This post didn’t load.', el('p', { class: 'lede' }, [
+        document.title = REVIEW + ' — ' + SITE;
+        show(head(REVIEW, 'This piece didn’t load.', el('p', { class: 'standfirst' }, [
           'Something went wrong while loading it. Try reloading the page, or go back to ',
-          el('a', { href: '/blog' }, 'all writing'), '.'
+          el('a', { href: '/blog' }, REVIEW), '.'
         ])));
       }
 
@@ -297,11 +357,11 @@
         var post = null;
         for (var i = 0; i < posts.length; i++) if (id && posts[i].id === id) { post = posts[i]; break; }
         if (!post) { renderNotFound(posts); return; }
-        // A post with its own page (the Pentagon long read) lives there.
+        // A piece with its own page (the Pentagon long read) lives there.
         var own = mayo.CUSTOM_URLS && Object.prototype.hasOwnProperty.call(mayo.CUSTOM_URLS, post.id) && mayo.CUSTOM_URLS[post.id];
         if (own) {
-          show(head(post.category, post.title, el('p', { class: 'lede' }, [
-            'This post has its own page: ', el('a', { href: own }, post.title), '.'
+          show(head(kicker(post), post.title, el('p', { class: 'standfirst' }, [
+            'This piece has its own page: ', el('a', { href: own }, post.title), '.'
           ])));
           window.location.replace(own);
           return;

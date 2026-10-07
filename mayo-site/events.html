@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#122e1e" />
   <title>Events — Mayo AI Literacy Club</title>
-  <meta name="description" content="The Mayo AI Literacy Club meets every Thursday at 8:20 AM in the MHS Library Classroom. Any Mayo student can come, with no sign-up for a first visit." />
+  <meta name="description" content="The Mayo AI Literacy Club meets every Thursday at 8:20 AM in the MHS Library Classroom. Meetings are for Mayo High School students, with no sign-up for a first visit. What is coming up, and what was on the calendar earlier." />
   <link rel="canonical" href="https://mayoailiteracy.com/events" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Mayo AI Literacy Club" />
   <meta property="og:title" content="Events — Mayo AI Literacy Club" />
-  <meta property="og:description" content="The Mayo AI Literacy Club meets every Thursday at 8:20 AM in the MHS Library Classroom. Any Mayo student can come, with no sign-up for a first visit." />
+  <meta property="og:description" content="The Mayo AI Literacy Club meets every Thursday at 8:20 AM in the MHS Library Classroom. Meetings are for Mayo High School students, with no sign-up for a first visit. What is coming up, and what was on the calendar earlier." />
   <meta property="og:url" content="https://mayoailiteracy.com/events" />
   <meta property="og:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -18,199 +18,211 @@
   <meta property="og:image:alt" content="The Mayo AI Literacy Club seal beside the club's name" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Events — Mayo AI Literacy Club" />
-  <meta name="twitter:description" content="The Mayo AI Literacy Club meets every Thursday at 8:20 AM in the MHS Library Classroom. Any Mayo student can come, with no sign-up for a first visit." />
+  <meta name="twitter:description" content="The Mayo AI Literacy Club meets every Thursday at 8:20 AM in the MHS Library Classroom. Meetings are for Mayo High School students, with no sign-up for a first visit. What is coming up, and what was on the calendar earlier." />
   <meta name="twitter:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/icons/favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=5" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500&family=Source+Sans+3:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=8" />
   <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="/" aria-label="Mayo AI Literacy Club, home">
-        <img class="brand__seal" src="/assets/club-logo-128.png" alt="" width="40" height="40" />
-        <span class="brand__name">Mayo AI Literacy Club</span>
+    <div class="frame hd">
+      <a class="hd__brand" href="/">
+        <img class="hd__seal" src="/assets/seal-circle-192.png" alt="" width="40" height="40" />
+        <span class="hd__name"><span>Mayo AI</span> <span>Literacy Club</span></span>
       </a>
+      <a class="btn hd__join" href="/join">Join</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Main">
         <ul>
           <li><a href="/about">About</a></li>
-          <li><a href="/topics">Topics</a></li>
-          <li><a href="/events" aria-current="page">Events</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/mercurius">Mercurius AI</a></li>
           <li><a href="/chapters">Chapters</a></li>
-          <li><a href="/join">Join</a></li>
+          <li><a href="/topics">Learn</a></li>
+          <li><a href="/events" aria-current="page">Events</a></li>
+          <li><a href="/blog">The Review</a></li>
+          <li class="site-nav__join"><a href="/join">Join</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <div class="wrap">
 
-      <!-- The schedule text below is the static fallback. script.js fills the data-schedule
-           spans from events-data.json "schedule"; the inline script at the end of this page
-           fills the two lists. Keep this markup in step with the JSON. "Who can come" is
-           fixed text, worded as on Home and Join; the JSON's openTo stays for the backend. -->
-      <section class="page-title grid" aria-labelledby="title">
-        <h1 id="title" class="display">When and where we meet.</h1>
-
-        <section class="meet events-meet page-title__more" aria-labelledby="meet-heading">
-          <h2 id="meet-heading" class="meet__label label label--forest" data-schedule="this-day">This Thursday</h2>
-          <p class="meet__time" data-schedule="time">8:20 AM</p>
-          <p class="meet__where" data-schedule="location">MHS Library Classroom</p>
-          <p class="meet__note">We meet every <span data-schedule="weekday">Thursday</span>, one topic each week.</p>
-          <dl class="meet__terms">
-            <div><dt class="label">Who can come</dt><dd>Any Mayo student</dd></div>
-            <div><dt class="label">First visit</dt><dd>No sign-up</dd></div>
-            <div><dt class="label">Experience</dt><dd>None needed</dd></div>
+    <!-- EVENTS (rollout, October 6). Three parts: the standing meeting as a record (page title
+         aside), "Coming up" from events-data.json "upcoming", and "Earlier on the calendar" from
+         "past". The text in the HTML is the fallback: script.js fills the data-schedule spans from
+         "schedule", and the inline script at the end of this page fills both lists. If the JSON
+         fails, the static text stays. Keep the static past list in step with the JSON.
+         "Who can come" is fixed text in the spec's words (§3); the JSON's openTo stays for the
+         backend. When is "Every Thursday" (schedule.day), not "This Thursday": a standing record,
+         so it says nothing about any one week (content-needs #45). -->
+    <header class="frame pagehead">
+      <div class="grid">
+        <div class="pagehead__main span-lead">
+          <p class="label pagehead__eyebrow">Events</p>
+          <h1 class="h1" id="title">When and where we meet.</h1>
+          <p class="standfirst">We meet every <span data-schedule="weekday">Thursday</span>: one topic a week, talked through around a table.</p>
+          <p class="pagehead__acts"><a class="btn" href="/join#form-mayo">Leave your name</a> <a class="tlink" href="/join#join-a-chapter">Your first Thursday<span class="arrow" aria-hidden="true"> →</span></a></p>
+          <p class="hint pagehead__note">Or just come. There is no sign-up for a first visit.</p>
+        </div>
+        <div class="pagehead__aside span-aside">
+          <dl class="rows rows--stack" aria-label="The weekly meeting">
+            <div><dt>When</dt><dd><span data-schedule="day">Every Thursday</span>, <span class="tnum" data-schedule="time">8:20 AM</span></dd></div>
+            <div><dt>Where</dt><dd data-schedule="location">MHS Library Classroom</dd></div>
+            <div>
+              <dt>Who can come</dt>
+              <dd>
+                <p>Mayo High School students</p>
+                <p class="meta">Outside visitors, including students from other schools, can’t attend school meetings. <a class="nowrap" href="/join#form-other-school">At another school? Tell us where</a></p>
+              </dd>
+            </div>
+            <div><dt>First visit</dt><dd>No sign-up</dd></div>
+            <div><dt>Experience</dt><dd>None needed</dd></div>
           </dl>
-          <p class="events-act"><a href="/join">Leave your name</a>, or just come.</p>
-        </section>
-      </section>
+        </div>
+      </div>
+    </header>
 
-      <section class="section grid" aria-labelledby="upcoming-heading">
+    <!-- COMING UP. Only entries dated today or later (mayo.upcoming). With none, the empty state
+         below stays: it says what is true without inventing a date. -->
+    <section class="frame" aria-labelledby="upcoming-heading">
+      <div class="section">
         <div class="section__head">
           <h2 id="upcoming-heading">Coming up</h2>
         </div>
-        <div class="section__body" id="upcoming">
-          <p class="lede events-empty">Nothing special on the calendar right now.</p>
-          <p class="events-follow"><span class="events-empty">Thursday meetings go on as usual. </span>We post new events on Instagram at <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a>.</p>
+        <div class="flow w-wide" id="upcoming">
+          <p class="reading" data-empty>Nothing special on the calendar right now.</p>
+          <p><span data-empty>Thursday meetings go on as usual. </span>We post new events on Instagram at <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a>.</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section grid" aria-labelledby="past-heading">
+    <!-- EARLIER ON THE CALENDAR. Each entry's "description" in events-data.json was written as a
+         preview before the meeting, so this list shows the date, the title and the recap link
+         only (and the September 28 description is open: content-needs #26, #41). -->
+    <section class="frame" aria-labelledby="past-heading">
+      <div class="section">
         <div class="section__head">
           <h2 id="past-heading">Earlier on the calendar</h2>
         </div>
-        <div class="section__body">
-          <!-- Each entry's "description" in events-data.json was written as a preview before the
-               meeting, so this list shows the date, the title and the recap link only. -->
-          <ul class="rows rows--split events-past" id="past">
-            <li>
-              <p class="label label--forest"><time datetime="2026-09-28">September 28, 2026</time></p>
-              <h3>Fall interest meeting</h3>
-            </li>
-            <li>
-              <p class="label label--forest"><time datetime="2026-03-26">March 26, 2026</time></p>
-              <h3>Ethical Dilemmas: Decisions That Will Define the Future</h3>
-            </li>
-            <li>
-              <p class="label label--forest"><time datetime="2026-03-19">March 19, 2026</time></p>
-              <h3>Advanced Seminar: AI Dilemmas</h3>
-              <p><a class="nowrap" href="/blog-post?id=ai-dilemmas-march-19">Read the recap</a></p>
-            </li>
-          </ul>
-          <p class="links"><a href="/blog">Meeting recaps and other writing</a></p>
-        </div>
-      </section>
+        <ul class="hairlist w-wide" id="past">
+          <li>
+            <p class="label"><time datetime="2026-09-28">September 28, 2026</time></p>
+            <h3>Fall interest meeting</h3>
+          </li>
+          <li>
+            <p class="label"><time datetime="2026-03-26">March 26, 2026</time></p>
+            <h3>Ethical Dilemmas: Decisions That Will Define the Future</h3>
+          </li>
+          <li>
+            <p class="label"><time datetime="2026-03-19">March 19, 2026</time></p>
+            <h3>Advanced Seminar: AI Dilemmas</h3>
+            <p><a class="tlink" href="/blog-post?id=ai-dilemmas-march-19">Read the recap<span class="arrow" aria-hidden="true"> →</span></a></p>
+          </li>
+        </ul>
+        <p class="links"><a class="tlink" href="/blog">Meeting recaps and other writing<span class="arrow" aria-hidden="true"> →</span></a></p>
+      </div>
+    </section>
 
-    </div>
   </main>
 
-  <footer class="colophon">
-    <div class="wrap">
-      <div class="grid colophon__grid">
-        <div class="colophon__seal-wrap">
-          <img class="colophon__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
-        </div>
-        <div class="colophon__about">
-          <p class="colophon__name">Mayo AI Literacy Club</p>
+  <footer class="ft">
+    <div class="frame">
+      <div class="grid ft__grid">
+        <div class="ft__about">
+          <img class="ft__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
+          <p class="ft__name">Mayo AI Literacy Club</p>
           <p>A student-run club at Mayo High School, Rochester, Minnesota.</p>
         </div>
-        <div class="colophon__meets">
-          <h2 class="label">Meets</h2>
-          <p><span data-schedule="weekdays">Thursdays</span>, <span class="nowrap" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />Open to every Mayo student</p>
+        <div class="ft__meets">
+          <h2 class="ft__label">Meets</h2>
+          <p><span data-schedule="weekdays">Thursdays</span>, <span class="tnum" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />For Mayo High School students</p>
         </div>
-        <nav class="colophon__nav" aria-label="Footer">
-          <h2 class="label">Pages</h2>
+        <nav class="ft__nav" aria-label="Footer">
+          <h2 class="ft__label">Pages</h2>
           <ul>
             <li><a href="/about">About</a></li>
-            <li><a href="/topics">Topics</a></li>
-            <li><a href="/events" aria-current="page">Events</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/mercurius">Mercurius AI</a></li>
             <li><a href="/chapters">Chapters</a></li>
+            <li><a href="/topics">Learn</a></li>
+            <li><a href="/events" aria-current="page">Events</a></li>
+            <li><a href="/blog">The Review</a></li>
+            <li><a href="/mercurius">Mercurius AI</a></li>
             <li><a href="/join">Join</a></li>
           </ul>
         </nav>
-        <div class="colophon__else">
-          <h2 class="label">Elsewhere</h2>
+        <div class="ft__else">
+          <h2 class="ft__label">Elsewhere</h2>
           <ul>
-            <li><span class="label">Instagram</span><a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
-            <li><span class="label">Mercurius AI</span><a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
+            <li><span class="ft__k">Instagram</span> <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
+            <li><span class="ft__k">Mercurius AI</span> <a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
           </ul>
         </div>
       </div>
-      <div class="colophon__legal">
-        <div class="grid">
-          <div>
-            <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
-            <p class="label">© <span id="year">2026</span> Mayo AI Literacy Club</p>
-          </div>
-        </div>
+      <div class="ft__legal">
+        <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
+        <p>© <span id="year">2026</span> Mayo AI Literacy Club</p>
       </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=4" defer onerror="document.documentElement.classList.remove('js')"></script>
+  <script src="/script.js?v=7" defer onerror="document.documentElement.classList.remove('js')"></script>
   <script>
-    // Events: the upcoming list and the earlier list, from /events-data.json.
+    // Events: "Coming up" and "Earlier on the calendar", from /events-data.json.
     // script.js fills the data-schedule spans. If it or the JSON fails, the static text stays.
     document.addEventListener('DOMContentLoaded', function () {
       var mayo = window.mayo;
       if (!mayo || !window.fetch) return;
       var el = mayo.el;
+      function text(v) { return typeof v === 'string' && v.trim() ? v.trim() : ''; }
 
-      function when(ev, long) {
+      function when(ev, style) {
         var d = mayo.parseDate(ev.date);
-        if (!d) return ev.date || '';
-        if (!long) return el('time', { datetime: mayo.isoDate(d) }, mayo.formatDate(d, 'medium'));
-        // "Thursday" on one line, "October 1, 2026" on the next.
-        var parts = mayo.formatDate(d, 'long').split(', ');
-        return el('time', { datetime: mayo.isoDate(d) }, [parts.shift(), el('br'), parts.join(', ')]);
+        if (!d) return text(ev.date);
+        return el('time', { datetime: mayo.isoDate(d) }, mayo.formatDate(d, style));
       }
 
+      // One upcoming entry: label (date · time · place) -> H3 -> what it is and its questions,
+      // as reading text (an ol: a nested ul would take the browser's hollow bullets) -> reading.
       function upcomingItem(ev) {
-        var where = [ev.time, ev.location].filter(function (x) { return typeof x === 'string' && x.trim(); });
-        var questions = Array.isArray(ev.keyQuestions) ? ev.keyQuestions.filter(Boolean) : [];
-        // The date can run to three lines, so the right-hand column is one
-        // block: its lines stay together instead of following the date's rows.
+        var questions = Array.isArray(ev.keyQuestions) ? ev.keyQuestions.map(text).filter(Boolean) : [];
+        var body = [
+          text(ev.description) ? el('p', null, text(ev.description)) : null,
+          questions.length ? el('ol', null, questions.map(function (q) { return el('li', null, q); })) : null
+        ].filter(Boolean);
         return el('li', null, [
-          el('p', { class: 'label label--forest' }, [when(ev, true), where.length ? el('span', { class: 'events-where' }, mayo.seps(where)) : null]),
-          el('div', null, [
-            el('h3', null, ev.title || 'Meeting'),
-            ev.description ? el('p', null, ev.description) : null,
-            questions.length ? el('ul', { class: 'events-questions' }, questions.map(function (q) { return el('li', null, String(q)); })) : null,
-            ev.suggestedReading ? el('p', { class: 'small fineprint' }, ev.suggestedReading) : null
-          ])
+          el('p', { class: 'label' }, mayo.dots([when(ev, 'long'), text(ev.time), text(ev.location)])),
+          el('h3', null, text(ev.title) || 'Meeting'),
+          body.length ? el('div', { class: 'longform' }, body) : null,
+          text(ev.suggestedReading) ? el('p', { class: 'meta' }, text(ev.suggestedReading)) : null
         ]);
       }
 
+      // One earlier entry: date -> H3 -> the recap link, if there is one.
       function pastItem(ev) {
+        var url = ev.recapUrl ? mayo.localUrl(ev.recapUrl) : '';
         return el('li', null, [
-          el('p', { class: 'label label--forest' }, when(ev, false)),
-          el('h3', null, ev.title || 'Meeting'),
-          ev.recapUrl ? el('p', null, el('a', { class: 'nowrap', href: mayo.localUrl(ev.recapUrl) }, 'Read the recap')) : null
+          el('p', { class: 'label' }, when(ev, 'medium')),
+          el('h3', null, text(ev.title) || 'Meeting'),
+          url ? el('p', null, el('a', { class: 'tlink', href: url }, [
+            'Read the recap', el('span', { class: 'arrow', 'aria-hidden': 'true' }, ' →')
+          ])) : null
         ]);
       }
 
       mayo.fetch('/events-data.json').then(function (data) {
-        // Coming up: only entries dated today or later. With none, the static
-        // "Nothing special on the calendar" text stays.
+        // Coming up: entries dated today or later, soonest first. With none, the empty state stays.
         var next = mayo.upcoming(data);
         var upRoot = document.getElementById('upcoming');
         if (upRoot && next.length) {
-          Array.prototype.forEach.call(upRoot.querySelectorAll('.events-empty'), function (n) { n.parentNode.removeChild(n); });
-          upRoot.insertBefore(el('ul', { class: 'rows rows--split events-list' }, next.map(upcomingItem)), upRoot.firstChild);
+          Array.prototype.forEach.call(upRoot.querySelectorAll('[data-empty]'), function (n) { n.parentNode.removeChild(n); });
+          upRoot.insertBefore(el('ul', { class: 'hairlist' }, next.map(upcomingItem)), upRoot.firstChild);
         }
 
         // Earlier: past[] plus any upcoming[] entry whose date has gone by, newest first.

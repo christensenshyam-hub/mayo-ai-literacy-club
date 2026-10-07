@@ -9,6 +9,9 @@
 // env: SHOOT_WAIT=<ms> extra settle time (default 600); SHOOT_SCROLL=1 scrolls
 // through the page first so lazy-loaded images render (useful on external sites);
 // SHOOT_MAXH=<px> caps the full-page height (default 16000).
+// Before the first-screen capture it waits for two animation frames, so the
+// page has painted; a first screen that still comes out blank (a tiny PNG:
+// one flat colour) is retried for up to 3 s and then reported as "fold=blank".
 import { spawn } from 'node:child_process';
 import { mkdtempSync, writeFileSync, rmSync, mkdirSync } from 'node:fs';
 import os from 'node:os';
@@ -102,11 +105,22 @@ try {
     const parsed = JSON.parse(result.value);
     const h = Math.min(parsed.h, MAXH);
     const over = parsed.over;
-    const fold = await send('Page.captureScreenshot', { format: 'png', clip: { x: 0, y: 0, width, height: foldH, scale: 1 } });
+    const painted = () => send('Runtime.evaluate', { awaitPromise: true,
+      expression: 'new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(() => r(true))))' });
+    await painted();
+    // A flat one-colour frame compresses to a few KB; a rendered first screen never does.
+    const flat = (b64) => Buffer.from(b64, 'base64').length < 1500 + width * foldH * 0.006;
+    let fold = await send('Page.captureScreenshot', { format: 'png', clip: { x: 0, y: 0, width, height: foldH, scale: 1 } });
+    for (let tries = 0; tries < 6 && flat(fold.data); tries++) {
+      await sleep(500);
+      await painted();
+      fold = await send('Page.captureScreenshot', { format: 'png', clip: { x: 0, y: 0, width, height: foldH, scale: 1 } });
+    }
+    const blank = flat(fold.data);
     writeFileSync(`${prefix}-${width}-fold.png`, Buffer.from(fold.data, 'base64'));
     const full = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true, clip: { x: 0, y: 0, width, height: h, scale: 1 } });
     writeFileSync(`${prefix}-${width}.png`, Buffer.from(full.data, 'base64'));
-    console.log(`${width} ${h}px overflow=${over}`);
+    console.log(`${width} ${h}px overflow=${over}${blank ? ' fold=blank' : ''}`);
   }
 } finally {
   try { ws && ws.close(); } catch { /* ignore */ }

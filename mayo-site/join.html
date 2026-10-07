@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#122e1e" />
   <title>Join — Mayo AI Literacy Club</title>
-  <meta name="description" content="Come to a meeting on Thursday at 8:20 AM in the MHS Library Classroom. No sign-up for your first visit. Or leave your name and we will email you." />
+  <meta name="description" content="Three ways to take part: come to a Thursday meeting at Mayo High School, help start a chapter at your own school, or support the club as a teacher, advisor, parent or partner." />
   <link rel="canonical" href="https://mayoailiteracy.com/join" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Mayo AI Literacy Club" />
   <meta property="og:title" content="Join — Mayo AI Literacy Club" />
-  <meta property="og:description" content="Come to a meeting on Thursday at 8:20 AM in the MHS Library Classroom. No sign-up for your first visit. Or leave your name and we will email you." />
+  <meta property="og:description" content="Come to a Thursday meeting at Mayo High School, help start a chapter at your own school, or support the club as a teacher, advisor, parent or partner." />
   <meta property="og:url" content="https://mayoailiteracy.com/join" />
   <meta property="og:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -18,203 +18,727 @@
   <meta property="og:image:alt" content="The Mayo AI Literacy Club seal beside the club's name" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Join — Mayo AI Literacy Club" />
-  <meta name="twitter:description" content="Come to a meeting on Thursday at 8:20 AM in the MHS Library Classroom. No sign-up for your first visit. Or leave your name and we will email you." />
+  <meta name="twitter:description" content="Come to a Thursday meeting at Mayo High School, help start a chapter at your own school, or support the club as a teacher, advisor, parent or partner." />
   <meta name="twitter:image" content="https://mayoailiteracy.com/assets/og-image.jpg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/icons/favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=5" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500&family=Source+Sans+3:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=8" />
   <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="/" aria-label="Mayo AI Literacy Club, home">
-        <img class="brand__seal" src="/assets/club-logo-128.png" alt="" width="40" height="40" />
-        <span class="brand__name">Mayo AI Literacy Club</span>
+    <div class="frame hd">
+      <a class="hd__brand" href="/">
+        <img class="hd__seal" src="/assets/seal-circle-192.png" alt="" width="40" height="40" />
+        <span class="hd__name"><span>Mayo AI</span> <span>Literacy Club</span></span>
       </a>
+      <a class="btn hd__join" href="/join" aria-current="page">Join</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Main">
         <ul>
           <li><a href="/about">About</a></li>
-          <li><a href="/topics">Topics</a></li>
-          <li><a href="/events">Events</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/mercurius">Mercurius AI</a></li>
           <li><a href="/chapters">Chapters</a></li>
-          <li><a href="/join" aria-current="page">Join</a></li>
+          <li><a href="/topics">Learn</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/blog">The Review</a></li>
+          <li class="site-nav__join"><a href="/join" aria-current="page">Join</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <div class="wrap">
 
-      <section class="page-title grid join-title" aria-labelledby="title">
-        <h1 id="title" class="display">Join</h1>
-        <p class="lede">Any Mayo High School student can come to a Thursday meeting, and you don’t need to sign up for your first visit. If you would rather hear from us first, leave your name below and we will email you.</p>
+    <!-- /join, rebuilt to spec §3. The lead in two voices; the intro in the aside; then the three
+         routes BEFORE the form (Chapter component), the November 20, 2025 photo with them, and the
+         one Netlify form. Every fact here is in participation-redesign.md §1; nothing about
+         meeting length, the first bell, reply times or other chapters (content-needs #14-#17). -->
+    <header class="frame pagehead">
+      <div class="grid">
+        <div class="pagehead__main span-lead">
+          <p class="label pagehead__eyebrow">Join</p>
+          <h1 class="lead" id="title"><span class="lead__sans">Find your place</span> <span class="lead__serif">in the movement.</span></h1>
+        </div>
+        <div class="pagehead__aside span-aside">
+          <!-- Shown by script.js only for a dated upcoming meeting (content-needs #4). -->
+          <p class="hero__next" data-render="next-meeting" hidden></p>
+          <p class="reading">Learn alongside other students at Mayo High School. Help start a chapter at your own school. Or support the work as a teacher, parent or partner.</p>
+        </div>
+      </div>
+    </header>
 
-        <!-- Time and place only: the lede says who can come, and the form starts right under it. -->
-        <section class="meet join-meet" aria-labelledby="meet-heading">
-          <h2 id="meet-heading" class="meet__label label label--forest" data-schedule="this-day">This Thursday</h2>
-          <p class="meet__time" data-schedule="time">8:20 AM</p>
-          <p class="meet__where" data-schedule="location">MHS Library Classroom</p>
-          <p class="meet__next" data-render="next-meeting" hidden></p>
-        </section>
-      </section>
+    <!-- THREE ROUTES. Each has an id the homepage links to (#join-a-chapter, #start-a-chapter,
+         #support). The links to #form-mayo, #form-other-school and #form-supporter land on the
+         matching radio in the form; the page script also preselects it and moves focus there. -->
+    <section class="frame" aria-labelledby="routes-heading">
+      <div class="section">
+        <div class="section__head">
+          <h2 id="routes-heading">Three ways to take part</h2>
+        </div>
 
-      <section class="section grid" id="leave" aria-labelledby="leave-heading">
+        <ol class="chapters">
+          <li class="chapter" id="join-a-chapter">
+            <p class="chapter__num" aria-hidden="true">01</p>
+            <h3 class="chapter__title">Join a chapter</h3>
+            <p class="chapter__for">For Mayo High School students</p>
+            <p class="chapter__facts">Right now the club meets at Mayo High School in Rochester, Minnesota. Come on a Thursday.</p>
+            <!-- Filled from events-data.json "schedule" by script.js; this text is the fallback.
+                 No meeting length and no first-bell time: unconfirmed (content-needs #16, #38). -->
+            <p class="label chapter__label" id="first-thursday">Your first Thursday</p>
+            <dl class="rows" aria-labelledby="first-thursday">
+              <div><dt>When</dt><dd><span data-schedule="weekdays">Thursdays</span>, <span class="tnum" data-schedule="time">8:20 AM</span></dd></div>
+              <div><dt>Where</dt><dd data-schedule="location">MHS Library Classroom</dd></div>
+              <div><dt>Format</dt><dd>One topic, talked through around a table</dd></div>
+              <div><dt>Sign-up</dt><dd>None for a first visit</dd></div>
+              <div><dt>Experience</dt><dd>None needed</dd></div>
+            </dl>
+            <p class="chapter__status"><strong>Who can come.</strong> Thursday meetings are for Mayo High School students. Outside visitors, including students from other schools, can’t attend school meetings.</p>
+            <ul class="chapter__acts">
+              <li><a class="btn btn--secondary" href="#form-mayo">Leave your name</a></li>
+              <li>
+                <a class="tlink" href="#form-other-school" aria-describedby="other-school-note">I’m at another school<span class="arrow" aria-hidden="true"> →</span></a>
+                <p class="hint chapter__note" id="other-school-note">Tell us where, to hear about a chapter near you without starting one.</p>
+              </li>
+            </ul>
+          </li>
+
+          <li class="chapter" id="start-a-chapter">
+            <p class="chapter__num" aria-hidden="true">02</p>
+            <h3 class="chapter__title">Start a chapter</h3>
+            <p class="chapter__for">For a student founder and a faculty advisor at another high school</p>
+            <!-- One tight list (spec §3), in the short wording of /chapters' title record; the full
+                 requirements, who should found one and who gives the video support are on /chapters. -->
+            <p class="label chapter__label" id="what-it-takes">What it takes, and what you get</p>
+            <dl class="rows" aria-labelledby="what-it-takes">
+              <div><dt>Needs</dt><dd>One student founder and one faculty advisor</dd></div>
+              <div><dt>Commits</dt><dd>A meeting a month, and one AI literacy event each semester</dd></div>
+              <div><dt>Cost</dt><dd>Nothing</dd></div>
+              <div><dt>Support</dt><dd>Lessons you can run as written, video support through the founding year, and a vote on the Central Board</dd></div>
+            </dl>
+            <!-- No reply time and no next step after the form: unconfirmed (content-needs #14). -->
+            <p class="chapter__status"><strong>Interest, not approval.</strong> Putting your name in is interest. A chapter exists only once a founder and an advisor are in place and the school’s own approval process has been followed.</p>
+            <ul class="chapter__acts">
+              <li>
+                <a class="btn btn--secondary" href="https://forms.gle/jVNaM7yyTtLLCDwv8" target="_blank" rel="noopener" aria-describedby="founder-form-note">Open the founder form (Google Forms)</a>
+                <p class="hint chapter__note" id="founder-form-note">Opens in a new tab and takes about three minutes.</p>
+              </li>
+              <li><a class="tlink" href="/chapters">Read how chapters work<span class="arrow" aria-hidden="true"> →</span></a></li>
+            </ul>
+          </li>
+
+          <li class="chapter" id="support">
+            <p class="chapter__num" aria-hidden="true">03</p>
+            <h3 class="chapter__title">Support the movement</h3>
+            <p class="chapter__for">For teachers, prospective faculty advisors, parents, and partners or sponsors</p>
+            <p class="chapter__facts">If you teach, would consider advising a chapter, are a parent or guardian, or speak for an organization that wants to help, write to the club.</p>
+            <p class="chapter__facts">Dermatology Partners supports the club.</p>
+            <ul class="chapter__acts">
+              <li><a class="btn btn--secondary" href="#form-supporter">Write to the club</a></li>
+            </ul>
+          </li>
+        </ol>
+
+        <!-- EVIDENCE beside the decision: the November 20, 2025 meeting, with the homepage's
+             caption. The Band figure (styles.css section 9), as on /chapters and /about: every
+             width gets the 18:5 cut above the laptop, as WebP and as the JPG fallback, so no
+             served file holds its screen (content-needs #23): 18:5 from 1024px, 3:1 below, edge
+             to edge on phones (hence the 1.2 and 120vw in sizes). Below the fold: lazy. -->
+        <figure class="photo photo--band">
+          <picture>
+            <source type="image/webp" width="1800" height="500"
+              srcset="/assets/work/meeting-2025-11-20-band-800.webp 800w, /assets/work/meeting-2025-11-20-band-1200.webp 1200w, /assets/work/meeting-2025-11-20-band-1800.webp 1800w"
+              sizes="(min-width: 1440px) 1280px, (min-width: 1024px) calc(100vw - 2 * clamp(16px, 5.5vw, 80px)), (min-width: 768px) calc(1.2 * (100vw - 2 * clamp(16px, 5.5vw, 80px))), 120vw" />
+            <img
+              src="/assets/photos/meeting-2025-11-20-band-1200.jpg"
+              srcset="/assets/photos/meeting-2025-11-20-band-800.jpg 800w, /assets/photos/meeting-2025-11-20-band-1200.jpg 1200w"
+              sizes="(min-width: 1440px) 1280px, (min-width: 1024px) calc(100vw - 2 * clamp(16px, 5.5vw, 80px)), (min-width: 768px) calc(1.2 * (100vw - 2 * clamp(16px, 5.5vw, 80px))), 120vw"
+              width="1200" height="333" loading="lazy" decoding="async"
+              alt="Students sit around a long wooden table in a classroom with tiled walls, turned toward one another mid-discussion." />
+          </picture>
+          <figcaption class="caption"><strong><time datetime="2025-11-20">Thursday, November 20, 2025.</time></strong> A weekly meeting in the MHS Library Classroom.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- THE FORM. One Netlify form, as before: name="contact", data-netlify, the honeypot and the
+         hidden form-name stay, and so do the field names name, email, grade, experience and
+         message (Netlify's notifications and the Mercurius tutor rely on them). route, school,
+         role and organization are new and sit in the static HTML so Netlify registers them at
+         deploy. No field name appears twice: grade is shared by both student routes and message
+         by all three, so a no-JS post never sends two values for one name.
+         Without JS: every group shows under its own heading, only route, name and email are
+         required, the browser validates, and Netlify shows its own confirmation page.
+         With JS (script at the end): only the chosen route's fields show; the others are hidden
+         AND disabled, so they are neither sent nor checked; labels, required fields and the
+         submit label follow the route; the post goes by fetch and the page shows each state. -->
+    <section class="frame" id="leave" aria-labelledby="leave-heading">
+      <div class="section">
         <div class="section__head">
           <h2 id="leave-heading">Leave your name</h2>
-          <p class="small fineprint section__note">We will email you with more about joining. Teachers, parents and sponsors can write to us here too.</p>
+          <p class="hint">One form for Mayo High School students, students at other schools, and adults who want to help.</p>
         </div>
-        <div class="section__body section__body--wide">
-          <!-- Netlify Forms. Keep name="contact", the honeypot and every field name as they are:
-               Netlify matches submissions to this markup, and the Mercurius tutor tells students
-               which fields to fill in. The script below submits with fetch; without JS the form
-               posts natively and Netlify shows its own confirmation page. -->
-          <form class="form join-form" id="contact-form" name="contact" method="POST" action="/join" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contact" />
-            <p class="hidden-field" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
 
-            <div class="field">
-              <label for="f-name">Name</label>
-              <input id="f-name" name="name" type="text" autocomplete="name" required />
-            </div>
-            <div class="field">
-              <label for="f-email">Email</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" required />
-            </div>
-            <div class="field">
-              <label for="f-grade">Grade</label>
-              <select id="f-grade" name="grade" required>
-                <option value="" disabled selected>Choose one</option>
-                <option value="9">9th grade</option>
-                <option value="10">10th grade</option>
-                <option value="11">11th grade</option>
-                <option value="12">12th grade</option>
-                <option value="adult">Not a student (teacher, parent, sponsor)</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-experience">Experience with AI <span class="opt">Optional</span></label>
-              <select id="f-experience" name="experience">
-                <option value="" disabled selected>Choose one</option>
-                <option value="none">None yet</option>
-                <option value="some">Some (I have used ChatGPT or similar)</option>
-                <option value="intermediate">Intermediate (I know the basics)</option>
-                <option value="advanced">Advanced (I build with AI)</option>
-              </select>
-            </div>
-            <div class="field field--full">
-              <label for="f-message">Message <span class="opt">Optional</span></label>
-              <textarea id="f-message" name="message" rows="4" aria-describedby="f-message-hint"></textarea>
-              <p class="field__hint" id="f-message-hint">Why you want to join, or a question for us.</p>
-            </div>
+        <div class="grid form-layout">
+          <div class="form-layout__main span-lead">
+            <form class="form" id="contact-form" name="contact" method="POST" action="/join" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="contact" />
+              <p class="hidden-field" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
 
-            <div class="form__actions">
-              <button class="button" type="submit" id="submit-btn">Send</button>
-              <p class="form-status" id="form-error" role="alert" hidden>That didn’t send. Try again, or just come on Thursday.</p>
+              <!-- Invalid: a short summary, announced (the wrapper is the live region). -->
+              <div class="form__alert" role="alert">
+                <div class="status status--error" id="form-summary" hidden>
+                  <p><strong id="form-summary-title">Some answers need a look.</strong></p>
+                  <ul id="form-summary-list"></ul>
+                </div>
+              </div>
+
+              <fieldset class="choices" id="route-field">
+                <legend class="field__label">I am</legend>
+                <span class="field__error" id="route-error" hidden></span>
+                <div class="choices__list">
+                  <label class="choice"><input type="radio" name="route" value="mayo-student" id="form-mayo" required /><span class="choice__title">A Mayo High School student</span><span class="choice__hint">You can also just come on Thursday.</span></label>
+                  <label class="choice"><input type="radio" name="route" value="other-school-student" id="form-other-school" required /><span class="choice__title">A student at another school</span><span class="choice__hint">To hear about a chapter near you, without founding one.</span></label>
+                  <label class="choice"><input type="radio" name="route" value="supporter" id="form-supporter" required /><span class="choice__title">A teacher, advisor, parent or partner</span><span class="choice__hint">Including sponsors, and anyone thinking of advising a chapter.</span></label>
+                </div>
+              </fieldset>
+
+              <div class="field">
+                <label class="field__label" for="f-name">Name</label>
+                <span class="field__error" id="f-name-error" hidden></span>
+                <input id="f-name" name="name" type="text" autocomplete="name" autocapitalize="words" spellcheck="false" required />
+              </div>
+              <div class="field">
+                <label class="field__label" for="f-email">Email</label>
+                <span class="field__error" id="f-email-error" hidden></span>
+                <input id="f-email" name="email" type="email" autocomplete="email" autocapitalize="off" spellcheck="false" required />
+              </div>
+
+              <!-- Both student routes. School: other schools only. Grade: required for Mayo
+                   students, optional for students elsewhere. Experience: Mayo students only. -->
+              <fieldset class="fieldgroup" id="group-students" data-routes="mayo-student other-school-student">
+                <legend class="fieldgroup__head">If you’re a student</legend>
+                <div class="field" data-routes="other-school-student">
+                  <label class="field__label" for="f-school">School name and city</label>
+                  <span class="field__hint" id="f-school-hint" data-nojs>Only if you’re at another school.</span>
+                  <span class="field__error" id="f-school-error" hidden></span>
+                  <input id="f-school" name="school" type="text" autocapitalize="words" aria-describedby="f-school-hint" />
+                </div>
+                <div class="field field--short">
+                  <label class="field__label" for="f-grade"><span class="field__text">Grade</span> <span class="field__opt" hidden>(optional)</span></label>
+                  <span class="field__error" id="f-grade-error" hidden></span>
+                  <select id="f-grade" name="grade">
+                    <option value="">Choose one</option>
+                    <option value="9">9th grade</option>
+                    <option value="10">10th grade</option>
+                    <option value="11">11th grade</option>
+                    <option value="12">12th grade</option>
+                  </select>
+                </div>
+                <div class="field" data-routes="mayo-student">
+                  <label class="field__label" for="f-experience">Experience with AI <span class="field__opt">(optional)</span></label>
+                  <select id="f-experience" name="experience">
+                    <option value="">Choose one</option>
+                    <option value="none">None yet</option>
+                    <option value="some">Some (I have used ChatGPT or similar)</option>
+                    <option value="intermediate">Intermediate (I know the basics)</option>
+                    <option value="advanced">Advanced (I build with AI)</option>
+                  </select>
+                </div>
+              </fieldset>
+
+              <fieldset class="fieldgroup" id="group-supporter" data-routes="supporter">
+                <legend class="fieldgroup__head">If you’re a teacher, advisor, parent or partner</legend>
+                <div class="field">
+                  <label class="field__label" for="f-role">Your role</label>
+                  <span class="field__error" id="f-role-error" hidden></span>
+                  <select id="f-role" name="role">
+                    <option value="">Choose one</option>
+                    <option value="teacher-or-staff">Teacher or school staff</option>
+                    <option value="prospective-advisor">Interested in advising a chapter</option>
+                    <option value="parent-or-guardian">Parent or guardian</option>
+                    <option value="organization-or-sponsor">Organization or sponsor</option>
+                    <option value="something-else">Something else</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="f-organization">School or organization <span class="field__opt">(optional)</span></label>
+                  <input id="f-organization" name="organization" type="text" autocomplete="organization" autocapitalize="words" />
+                </div>
+              </fieldset>
+
+              <!-- Every route. Optional for students; required for supporters, as "How would
+                   you like to help?" (the script swaps the label and hint). The heading is for
+                   the no-JS layout only; the script removes it. -->
+              <div class="fieldgroup">
+                <p class="fieldgroup__head" data-nojs>For everyone</p>
+                <div class="field">
+                  <label class="field__label" for="f-message"><span class="field__text">Message</span> <span class="field__opt">(optional)</span></label>
+                  <span class="field__hint" id="f-message-hint">Anything you’d like us to know. Teachers, advisors, parents and partners: how would you like to help?</span>
+                  <span class="field__error" id="f-message-error" hidden></span>
+                  <textarea id="f-message" name="message" rows="5" aria-describedby="f-message-hint"></textarea>
+                </div>
+              </div>
+
+              <div class="form__actions">
+                <button class="btn" type="submit" id="submit-btn">Send</button>
+              </div>
+              <!-- "We will email you" is the promise the site already made (spec §3; content-needs
+                   #1, #17). No reply time. -->
+              <p class="hint form__after" id="form-after">We will email you. Mayo High School students can also just come on Thursday: there’s no sign-up for a first visit.</p>
+
+              <!-- Failure (server or network): announced; every input stays as typed. -->
+              <div class="form__alert form__alert--end" role="alert">
+                <div class="status status--error" id="form-failure" hidden>
+                  <p><strong>That didn’t send.</strong> <span id="form-failure-text">Your details are still here, so try again.</span> If it keeps failing, message us on Instagram <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a>.</p>
+                  <p data-routes="mayo-student">Or just come on Thursday.</p>
+                  <p><button class="btn btn--secondary" type="button" id="retry-btn">Try sending again</button></p>
+                </div>
+              </div>
+              <p class="visually-hidden" id="form-live" aria-live="polite"></p>
+            </form>
+
+            <!-- Success: shown ONLY after the server answers OK; replaces the form and takes focus. -->
+            <div class="status" id="form-done" role="status" tabindex="-1" hidden>
+              <h3 class="status__title">Got it.</h3>
+              <p>We will email you.</p>
+              <p data-routes="mayo-student">Or just come on Thursday: <span class="tnum" data-schedule="time">8:20 AM</span>, <span data-schedule="location">MHS Library Classroom</span>. There’s no sign-up for a first visit.</p>
+              <p data-routes="other-school-student">Right now the club meets only at Mayo High School. To start a chapter at your own school, <a href="/chapters">read how chapters work</a>.</p>
+              <p data-routes="supporter">To see what a chapter asks of its founder and its faculty advisor, <a href="/chapters">read how chapters work</a>.</p>
             </div>
-          </form>
-          <p class="form-status join-success" id="form-success" role="status" tabindex="-1" hidden>Got it. We will email you.</p>
+          </div>
+
+          <!-- Beside the form from 1024px; after it on phones. -->
+          <div class="form-layout__aside span-aside">
+            <dl class="rows rows--stack">
+              <div>
+                <dt>Starting a chapter?</dt>
+                <dd>
+                  <p>This form isn’t the founder application. Use the founder form instead.</p>
+                  <p><a class="tlink" href="https://forms.gle/jVNaM7yyTtLLCDwv8" target="_blank" rel="noopener" aria-describedby="founder-form-note-2">Open the founder form (Google Forms)</a></p>
+                  <p class="meta" id="founder-form-note-2">Opens in a new tab and takes about three minutes.</p>
+                </dd>
+              </div>
+              <div>
+                <dt>Rather not use a form?</dt>
+                <dd>Message us on Instagram, <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a>.</dd>
+              </div>
+            </dl>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section grid" aria-labelledby="else-heading">
-        <div class="section__head">
-          <h2 id="else-heading">Students at other schools</h2>
-        </div>
-        <div class="section__body prose">
-          <p>The club meets at Mayo High School. Students at other high schools can start a chapter of their own, with our lesson materials and support. <a class="nowrap" href="/chapters">How chapters work</a></p>
-          <p>We post updates on Instagram at <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a>.</p>
-        </div>
-      </section>
-
-    </div>
   </main>
 
-  <footer class="colophon">
-    <div class="wrap">
-      <div class="grid colophon__grid">
-        <div class="colophon__seal-wrap">
-          <img class="colophon__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
-        </div>
-        <div class="colophon__about">
-          <p class="colophon__name">Mayo AI Literacy Club</p>
+  <footer class="ft">
+    <div class="frame">
+      <div class="grid ft__grid">
+        <div class="ft__about">
+          <img class="ft__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
+          <p class="ft__name">Mayo AI Literacy Club</p>
           <p>A student-run club at Mayo High School, Rochester, Minnesota.</p>
         </div>
-        <div class="colophon__meets">
-          <h2 class="label">Meets</h2>
-          <p><span data-schedule="weekdays">Thursdays</span>, <span class="nowrap" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />Open to every Mayo student</p>
+        <div class="ft__meets">
+          <h2 class="ft__label">Meets</h2>
+          <p><span data-schedule="weekdays">Thursdays</span>, <span class="tnum" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />For Mayo High School students</p>
         </div>
-        <nav class="colophon__nav" aria-label="Footer">
-          <h2 class="label">Pages</h2>
+        <nav class="ft__nav" aria-label="Footer">
+          <h2 class="ft__label">Pages</h2>
           <ul>
             <li><a href="/about">About</a></li>
-            <li><a href="/topics">Topics</a></li>
-            <li><a href="/events">Events</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/mercurius">Mercurius AI</a></li>
             <li><a href="/chapters">Chapters</a></li>
+            <li><a href="/topics">Learn</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/blog">The Review</a></li>
+            <li><a href="/mercurius">Mercurius AI</a></li>
             <li><a href="/join" aria-current="page">Join</a></li>
           </ul>
         </nav>
-        <div class="colophon__else">
-          <h2 class="label">Elsewhere</h2>
+        <div class="ft__else">
+          <h2 class="ft__label">Elsewhere</h2>
           <ul>
-            <li><span class="label">Instagram</span><a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
-            <li><span class="label">Mercurius AI</span><a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
+            <li><span class="ft__k">Instagram</span> <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
+            <li><span class="ft__k">Mercurius AI</span> <a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
           </ul>
         </div>
       </div>
-      <div class="colophon__legal">
-        <div class="grid">
-          <div>
-            <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
-            <p class="label">© <span id="year">2026</span> Mayo AI Literacy Club</p>
-          </div>
-        </div>
+      <div class="ft__legal">
+        <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
+        <p>© <span id="year">2026</span> Mayo AI Literacy Club</p>
       </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=4" defer onerror="document.documentElement.classList.remove('js')"></script>
+  <script src="/script.js?v=7" defer onerror="document.documentElement.classList.remove('js')"></script>
   <script>
-    // Submit in place so the success message shows on this page. Without JS
-    // (or without fetch) the form posts natively and Netlify shows its own
-    // confirmation page. Same request as before: POST /join, urlencoded.
-    document.addEventListener('DOMContentLoaded', function () {
-      var form = document.getElementById('contact-form');
-      if (!form || !window.fetch || !window.FormData || !window.URLSearchParams) return;
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var btn = document.getElementById('submit-btn');
-        var err = document.getElementById('form-error');
-        var ok = document.getElementById('form-success');
-        btn.disabled = true;
+    /* /join: the form, enhanced. Runs straight away (the form is already parsed above), so the
+       route-specific fields are hidden before the first paint; it needs nothing from script.js.
+       Without JS, or without fetch, the form posts natively and Netlify shows its own
+       confirmation page. Checked by tools/check-join.mjs.
+       States: idle -> invalid (inline errors + an announced summary, focus on the first
+       problem) -> sending (button disabled, "Sending…", aria-busy) -> success (ONLY on res.ok:
+       the form is replaced by a confirmation that takes focus) or failure (server, dropped
+       connection, or offline: every input stays, the message is announced, retry offered). */
+    (function () {
+      'use strict';
+      var doc = document;
+      var form = doc.getElementById('contact-form');
+      if (!form || !window.fetch || !window.FormData || !window.URLSearchParams || !form.closest) return;
+
+      var section = doc.getElementById('leave');
+      var radios = form.querySelectorAll('input[name="route"]');
+      var routeField = doc.getElementById('route-field');
+      var routeError = doc.getElementById('route-error');
+      var submitBtn = doc.getElementById('submit-btn');
+      var after = doc.getElementById('form-after');
+      var summary = doc.getElementById('form-summary');
+      var summaryTitle = doc.getElementById('form-summary-title');
+      var summaryList = doc.getElementById('form-summary-list');
+      var failure = doc.getElementById('form-failure');
+      var failureText = doc.getElementById('form-failure-text');
+      var retryBtn = doc.getElementById('retry-btn');
+      var done = doc.getElementById('form-done');
+      var live = doc.getElementById('form-live');
+      var each = function (list, fn) { Array.prototype.forEach.call(list, fn); };
+
+      // Per route: the hash that preselects it, the submit label, and the line under the button.
+      var ROUTES = {
+        'mayo-student': { hash: 'form-mayo', submit: 'Leave your name',
+          after: 'We will email you. You can also just come on Thursday: there’s no sign-up for a first visit.' },
+        'other-school-student': { hash: 'form-other-school', submit: 'Send my interest',
+          after: 'We will email you. This doesn’t start a chapter: for that, use the founder form.' },
+        'supporter': { hash: 'form-supporter', submit: 'Send your message', after: 'We will email you.' }
+      };
+      var NO_ROUTE = { submit: 'Send', after: 'We will email you.' };
+      var BY_HASH = {};
+      Object.keys(ROUTES).forEach(function (r) { BY_HASH[ROUTES[r].hash] = r; });
+
+      // Fields whose required state, label or hint depend on the route ('' = no route chosen).
+      var FIELDS = {
+        school: { required: { 'other-school-student': true } },
+        grade: { required: { 'mayo-student': true } },
+        role: { required: { 'supporter': true } },
+        message: {
+          required: { 'supporter': true },
+          label: { '': 'Message', 'supporter': 'How would you like to help?' },
+          hint: { '': 'Anything you’d like us to know.',
+                  'supporter': 'For example, advising a chapter, or what your organization could offer.' }
+        }
+      };
+
+      var MESSAGES = {
+        route: 'Choose who you are.',
+        name: 'Enter your name.',
+        email: 'Enter your email address.',
+        emailBad: 'Enter a full email address, like name@example.com.',
+        school: 'Enter your school’s name and city.',
+        grade: 'Choose your grade.',
+        role: 'Choose the role that fits you best.',
+        message: 'Tell us how you’d like to help.'
+      };
+      var COUNT = ['', 'One answer needs a look.', 'Two answers need a look.', 'Three answers need a look.',
+        'Four answers need a look.', 'Five answers need a look.'];
+      var FAIL = {
+        server: 'Your details are still here, so try again.',
+        network: 'The connection dropped. Your details are still here, so check your connection and try again.',
+        offline: 'You seem to be offline. Your details are still here, so try again once you’re connected.'
+      };
+      var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      var tried = false;     // a submit has been attempted: edits may now clear errors
+      var sending = false;   // a post is in flight: no double submits
+
+      /* ---- Enhance: the script validates (in words, per field) instead of the browser ---- */
+      form.noValidate = true;
+      form.classList.add('is-enhanced');
+      each(form.querySelectorAll('[data-nojs]'), function (n) { n.parentNode.removeChild(n); });
+
+      function currentRoute() {
+        for (var i = 0; i < radios.length; i++) if (radios[i].checked) return radios[i].value;
+        return '';
+      }
+      function off(ctl) { return ctl.disabled || ctl.matches(':disabled'); }
+      function fieldOf(ctl) { return ctl.closest('.field'); }
+
+      // aria-describedby = the visible hint, then the error while there is one.
+      function describe(ctl) {
+        var f = fieldOf(ctl);
+        if (!f) return;
+        var ids = [];
+        var hint = f.querySelector('.field__hint');
+        var err = f.querySelector('.field__error');
+        if (hint && hint.id && !hint.hidden && hint.textContent.trim()) ids.push(hint.id);
+        if (err && err.id && !err.hidden) ids.push(err.id);
+        if (ids.length) ctl.setAttribute('aria-describedby', ids.join(' '));
+        else ctl.removeAttribute('aria-describedby');
+      }
+      function controls() {
+        return form.querySelectorAll('input:not([type="hidden"]):not([type="radio"]):not([name="bot-field"]), select, textarea');
+      }
+
+      /* ---- Errors ---- */
+      function setError(name, msg) {
+        if (name === 'route') {
+          routeError.textContent = msg;
+          routeError.hidden = false;
+          routeField.classList.add('is-invalid');
+          each(radios, function (r) { r.setAttribute('aria-invalid', 'true'); r.setAttribute('aria-describedby', 'route-error'); });
+          return;
+        }
+        var ctl = form.elements[name];
+        var err = fieldOf(ctl).querySelector('.field__error');
+        err.textContent = msg;
+        err.hidden = false;
+        ctl.setAttribute('aria-invalid', 'true');
+        describe(ctl);
+      }
+      function clearError(name) {
+        if (name === 'route') {
+          routeError.hidden = true;
+          routeError.textContent = '';
+          routeField.classList.remove('is-invalid');
+          each(radios, function (r) { r.removeAttribute('aria-invalid'); r.removeAttribute('aria-describedby'); });
+          return;
+        }
+        var ctl = form.elements[name];
+        var err = ctl && fieldOf(ctl).querySelector('.field__error');
+        if (!err) return;
         err.hidden = true;
-        fetch('/join', {
+        err.textContent = '';
+        ctl.removeAttribute('aria-invalid');
+        describe(ctl);
+      }
+
+      // Every problem, in the order the fields appear. Hidden (disabled) fields never count.
+      function problems() {
+        var out = [];
+        if (!currentRoute()) out.push({ name: 'route', el: radios[0], msg: MESSAGES.route });
+        each(controls(), function (c) {
+          if (!c.name || off(c)) return;
+          var v = c.value.trim();
+          if (c.required && !v) out.push({ name: c.name, el: c, msg: MESSAGES[c.name] || 'Answer this question.' });
+          else if (c.type === 'email' && v && !EMAIL.test(v)) out.push({ name: c.name, el: c, msg: MESSAGES.emailBad });
+        });
+        return out;
+      }
+
+      function paint(list) {
+        clearError('route');
+        each(controls(), function (c) { if (c.name) clearError(c.name); });
+        list.forEach(function (p) { setError(p.name, p.msg); });
+      }
+
+      // The summary sits in a role="alert" wrapper; it is refilled a beat after hiding so a
+      // second failed attempt is announced again.
+      function showSummary(list) {
+        summary.hidden = true;
+        while (summaryList.firstChild) summaryList.removeChild(summaryList.firstChild);
+        list.forEach(function (p) {
+          var a = doc.createElement('a');
+          a.href = '#' + p.el.id;
+          a.textContent = p.msg;
+          a.addEventListener('click', function (e) { e.preventDefault(); p.el.focus(); });
+          var li = doc.createElement('li');
+          li.setAttribute('data-name', p.name);
+          li.appendChild(a);
+          summaryList.appendChild(li);
+        });
+        summaryTitle.textContent = COUNT[list.length] || (list.length + ' answers need a look.');
+        setTimeout(function () { summary.hidden = !summaryList.firstChild; }, 30);
+      }
+      // After an edit: drop fixed answers from the summary (never add new ones while typing).
+      function pruneSummary(list) {
+        var still = {};
+        list.forEach(function (p) { still[p.name] = true; });
+        each(summaryList.querySelectorAll('li'), function (li) {
+          if (!still[li.getAttribute('data-name')]) li.parentNode.removeChild(li);
+        });
+        var n = summaryList.children.length;
+        if (!n) summary.hidden = true;
+        else summaryTitle.textContent = COUNT[n] || (n + ' answers need a look.');
+      }
+
+      /* ---- Route: which fields show, which are required, what the labels say ---- */
+      function applyRoute() {
+        var route = currentRoute();
+        var conf = ROUTES[route] || NO_ROUTE;
+        form.setAttribute('data-route', route);
+        each(section.querySelectorAll('[data-routes]'), function (node) {
+          var on = !!route && (' ' + node.getAttribute('data-routes') + ' ').indexOf(' ' + route + ' ') > -1;
+          node.hidden = !on;
+          if (node.tagName === 'FIELDSET') node.disabled = !on;
+          else each(node.querySelectorAll('input, select, textarea'), function (c) { c.disabled = !on; });
+        });
+        Object.keys(FIELDS).forEach(function (name) {
+          var f = FIELDS[name];
+          var ctl = form.elements[name];
+          var field = fieldOf(ctl);
+          var req = !!(f.required && f.required[route]);
+          ctl.required = req;
+          var opt = field.querySelector('.field__opt');
+          if (opt) opt.hidden = req;
+          if (f.label) field.querySelector('.field__text').textContent = f.label[route] || f.label[''];
+          if (f.hint) {
+            var hint = field.querySelector('.field__hint');
+            var text = f.hint[route] !== undefined ? f.hint[route] : f.hint[''];
+            hint.textContent = text;
+            hint.hidden = !text;
+          }
+        });
+        each(controls(), function (c) {
+          if (c.name && off(c)) clearError(c.name);   // a hidden field can't be wrong
+          describe(c);
+        });
+        if (route) clearError('route');
+        if (!sending) submitBtn.textContent = conf.submit;
+        after.textContent = conf.after;
+        if (tried) pruneSummary(problems());
+      }
+
+      /* ---- Preselect from a link or the address: /join#form-mayo and friends ----
+         Each radio's scroll-margin is its distance below the top of the section, so the
+         browser's own jump to #form-… (on load) and ours (from a route action) both land
+         with "Leave your name" and every choice in view, whichever card it is. */
+      function setLanding() {
+        var top = section.getBoundingClientRect().top;
+        each(radios, function (r) {
+          r.style.scrollMarginTop = Math.max(0, Math.round(r.getBoundingClientRect().top - top)) + 'px';
+        });
+      }
+      function choose(route, scroll) {
+        var radio = form.querySelector('input[name="route"][value="' + route + '"]');
+        if (!radio) return;
+        if (form.hidden) {                       // already sent: show the confirmation instead
+          if (scroll) done.scrollIntoView({ block: 'center' });
+          done.focus({ preventScroll: true });
+          return;
+        }
+        radio.checked = true;
+        applyRoute();
+        if (scroll) { setLanding(); radio.scrollIntoView({ block: 'start' }); }
+        radio.focus({ preventScroll: true });
+      }
+      function fromHash(scroll) {
+        var route = BY_HASH[(location.hash || '').slice(1)];
+        if (route) choose(route, scroll);
+      }
+      doc.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="#form-"]');
+        if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        var hash = a.getAttribute('href').slice(1);
+        if (!BY_HASH[hash]) return;
+        e.preventDefault();
+        if (location.hash !== '#' + hash && window.history && history.pushState) history.pushState(null, '', '#' + hash);
+        choose(BY_HASH[hash], true);
+      });
+      window.addEventListener('hashchange', function () { fromHash(true); });
+
+      /* ---- Edits ---- */
+      function onEdit(e) {
+        var t = e.target;
+        if (t.name === 'route') applyRoute();
+        if (!tried || !t.name) return;
+        var list = problems();
+        var still = list.some(function (p) { return p.name === t.name; });
+        if (!still) clearError(t.name);
+        pruneSummary(list);
+      }
+      form.addEventListener('input', onEdit);
+      form.addEventListener('change', onEdit);
+
+      /* ---- Send ---- */
+      function busy(on) {
+        sending = on;
+        submitBtn.disabled = on;
+        if (on) {
+          submitBtn.setAttribute('aria-busy', 'true');
+          form.setAttribute('aria-busy', 'true');
+          submitBtn.textContent = 'Sending…';
+          live.textContent = 'Sending…';
+        } else {
+          submitBtn.removeAttribute('aria-busy');
+          form.removeAttribute('aria-busy');
+          submitBtn.textContent = (ROUTES[currentRoute()] || NO_ROUTE).submit;
+          live.textContent = '';
+        }
+      }
+      function hideFailure() { failure.hidden = true; }
+      function showFailure(kind) {
+        failure.hidden = true;
+        failure.setAttribute('data-kind', kind);
+        failureText.textContent = FAIL[kind];
+        setTimeout(function () {
+          failure.hidden = false;
+          var a = doc.activeElement;
+          // Focus was on the (disabled) button or nowhere: give it the retry button.
+          if (!a || a === doc.body || a === submitBtn) retryBtn.focus();
+        }, 30);
+      }
+      function succeed() {
+        busy(false);
+        hideFailure();
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+      }
+
+      function send() {
+        busy(true);
+        var body = new URLSearchParams(new FormData(form)).toString();
+        var ctrl = window.AbortController ? new AbortController() : null;
+        var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 20000) : null;
+        fetch(form.getAttribute('action') || '/join', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(new FormData(form)).toString()
+          body: body,
+          signal: ctrl ? ctrl.signal : undefined
         }).then(function (res) {
-          if (!res.ok) throw new Error(String(res.status));
-          form.hidden = true;
-          ok.hidden = false;
-          ok.focus();
-        }).catch(function () {
-          btn.disabled = false;
-          err.hidden = false;
+          clearTimeout(timer);
+          if (res.ok) { succeed(); return; }
+          busy(false);
+          showFailure('server');
+        }, function () {
+          clearTimeout(timer);
+          busy(false);
+          showFailure(navigator.onLine === false ? 'offline' : 'network');
         });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (sending) return;
+        tried = true;
+        hideFailure();
+        var list = problems();
+        paint(list);
+        if (list.length) {
+          showSummary(list);
+          list[0].el.focus();
+          return;
+        }
+        summary.hidden = true;
+        if (navigator.onLine === false) { showFailure('offline'); return; }
+        send();
       });
-    });
+      retryBtn.addEventListener('click', function () {
+        if (form.requestSubmit) form.requestSubmit();
+        else form.dispatchEvent(new Event('submit', { cancelable: true }));
+      });
+
+      /* ---- Start ---- */
+      applyRoute();                 // also picks up a radio the browser restored
+      setLanding();
+      fromHash(false);              // the browser scrolls to the radio itself (scroll-margin)
+      window.addEventListener('resize', setLanding);
+      if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(setLanding);
+      window.addEventListener('pageshow', function (e) { if (e.persisted) applyRoute(); });
+    })();
   </script>
 </body>
 </html>

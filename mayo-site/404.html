@@ -25,91 +25,90 @@
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" />
-  <link rel="stylesheet" href="/styles.css?v=5" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500&family=Source+Sans+3:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css?v=8" />
   <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="/" aria-label="Mayo AI Literacy Club, home">
-        <img class="brand__seal" src="/assets/club-logo-128.png" alt="" width="40" height="40" />
-        <span class="brand__name">Mayo AI Literacy Club</span>
+    <div class="frame hd">
+      <a class="hd__brand" href="/">
+        <img class="hd__seal" src="/assets/seal-circle-192.png" alt="" width="40" height="40" />
+        <span class="hd__name"><span>Mayo AI</span> <span>Literacy Club</span></span>
       </a>
+      <a class="btn hd__join" href="/join">Join</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Main">
         <ul>
           <li><a href="/about">About</a></li>
-          <li><a href="/topics">Topics</a></li>
-          <li><a href="/events">Events</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/mercurius">Mercurius AI</a></li>
           <li><a href="/chapters">Chapters</a></li>
-          <li><a href="/join">Join</a></li>
+          <li><a href="/topics">Learn</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/blog">The Review</a></li>
+          <li class="site-nav__join"><a href="/join">Join</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="main" class="nf-main">
-    <div class="wrap">
+  <main id="main">
 
-      <section class="page-title grid" aria-labelledby="title">
-        <h1 id="title" class="display">There is no page at this address.</h1>
-        <p class="lede">Some pages moved when we rebuilt the site in 2026. The club still meets <span data-schedule="weekdays">Thursdays</span> at <span class="nowrap" data-schedule="time">8:20 AM</span> in the <span data-schedule="location">MHS Library Classroom</span>.</p>
-        <p class="links page-title__more"><a href="/">Home page</a> <a href="/events">Meeting schedule</a></p>
-      </section>
+    <!-- 404 (rollout, October 6). Plain: what happened, the meeting (filled from
+         events-data.json "schedule"; the text is the fallback), and two ways on. -->
+    <header class="frame pagehead">
+      <div class="grid">
+        <div class="pagehead__main span-lead">
+          <p class="label pagehead__eyebrow">Page not found</p>
+          <h1 class="h1" id="title">There is no page at this address.</h1>
+          <p class="standfirst">Some pages moved when we rebuilt the site in 2026. The club still meets <span data-schedule="weekdays">Thursdays</span> at <span class="nowrap" data-schedule="time">8:20 AM</span> in the <span data-schedule="location">MHS Library Classroom</span>.</p>
+          <p class="pagehead__acts"><a class="btn" href="/">Go to the home page</a> <a class="tlink" href="/events">Meeting schedule<span class="arrow" aria-hidden="true"> →</span></a></p>
+        </div>
+      </div>
+    </header>
 
-    </div>
   </main>
 
-  <footer class="colophon">
-    <div class="wrap">
-      <div class="grid colophon__grid">
-        <div class="colophon__seal-wrap">
-          <img class="colophon__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
-        </div>
-        <div class="colophon__about">
-          <p class="colophon__name">Mayo AI Literacy Club</p>
+  <footer class="ft">
+    <div class="frame">
+      <div class="grid ft__grid">
+        <div class="ft__about">
+          <img class="ft__seal" src="/assets/seal-circle-192.png" alt="" width="96" height="96" loading="lazy" decoding="async" />
+          <p class="ft__name">Mayo AI Literacy Club</p>
           <p>A student-run club at Mayo High School, Rochester, Minnesota.</p>
         </div>
-        <div class="colophon__meets">
-          <h2 class="label">Meets</h2>
-          <p><span data-schedule="weekdays">Thursdays</span>, <span class="nowrap" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />Open to every Mayo student</p>
+        <div class="ft__meets">
+          <h2 class="ft__label">Meets</h2>
+          <p><span data-schedule="weekdays">Thursdays</span>, <span class="tnum" data-schedule="time">8:20 AM</span><br /><span data-schedule="location">MHS Library Classroom</span><br />For Mayo High School students</p>
         </div>
-        <nav class="colophon__nav" aria-label="Footer">
-          <h2 class="label">Pages</h2>
+        <nav class="ft__nav" aria-label="Footer">
+          <h2 class="ft__label">Pages</h2>
           <ul>
             <li><a href="/about">About</a></li>
-            <li><a href="/topics">Topics</a></li>
-            <li><a href="/events">Events</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/mercurius">Mercurius AI</a></li>
             <li><a href="/chapters">Chapters</a></li>
+            <li><a href="/topics">Learn</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/blog">The Review</a></li>
+            <li><a href="/mercurius">Mercurius AI</a></li>
             <li><a href="/join">Join</a></li>
           </ul>
         </nav>
-        <div class="colophon__else">
-          <h2 class="label">Elsewhere</h2>
+        <div class="ft__else">
+          <h2 class="ft__label">Elsewhere</h2>
           <ul>
-            <li><span class="label">Instagram</span><a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
-            <li><span class="label">Mercurius AI</span><a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
+            <li><span class="ft__k">Instagram</span> <a href="https://www.instagram.com/mayoailiteracy" rel="noopener">@mayoailiteracy</a></li>
+            <li><span class="ft__k">Mercurius AI</span> <a href="https://trymercurius.com" rel="noopener">trymercurius.com</a></li>
           </ul>
         </div>
       </div>
-      <div class="colophon__legal">
-        <div class="grid">
-          <div>
-            <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
-            <p class="label">© <span id="year">2026</span> Mayo AI Literacy Club</p>
-          </div>
-        </div>
+      <div class="ft__legal">
+        <p>Mayo AI Literacy Club is a student organization. Nothing on this site implies endorsement by any district, school, or organization named. Mayo High School is a Rochester public high school; neither it nor this club is affiliated with Mayo Clinic, where the <abbr title="American Association of Clinical Anatomists">AACA</abbr> meeting was hosted.</p>
+        <p>© <span id="year">2026</span> Mayo AI Literacy Club</p>
       </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=4" defer onerror="document.documentElement.classList.remove('js')"></script>
+  <script src="/script.js?v=7" defer onerror="document.documentElement.classList.remove('js')"></script>
 </body>
 </html>

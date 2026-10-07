@@ -1,82 +1,125 @@
-/* Mayo AI Literacy Club: one stylesheet for every page.
-   Referenced as /styles.css?v=5 from every page. Brand-kit tokens only.
+/* Mayo AI Literacy Club: the one stylesheet for every page.
+   Loaded as /styles.css?v=8 by every page (bump the number on every change,
+   on every page at once). It was next.css, the approved homepage first pass
+   (a35e39d); the old styles.css is retired. The page builds' interim files
+   (styles-join.css, styles-chapters.css, styles-learn-review.css) are merged
+   in below, in the sections their components belong to; no page loads a
+   second stylesheet. Art direction:
+   docs/design-direction.md. Tokens, ratios, components and their markup:
+   docs/design-system.md. The page shell (head, header, footer, scripts):
+   docs/shell.md.
 
-   Layout: a 12-column grid inside a 1280px measure. Section headings sit
-   in a rail on the left (columns 1-4 at 1200px+, 1-3 at 900-1199px) and
-   content starts beside it. Sections are separated by space and a 1px
-   hairline, never by cards, shadows or tinted bands. Gold appears only in
-   small details: link underlines, the current-page mark, the rule on top
-   of the meeting block, the footer hairline and the seal. Gold is never
-   text on a light ground.
+   The frame is fixed and the content is the variable:
+   - a 4px Forest rule opens every section; 1px hairlines divide rows;
+   - three components carry the content: Story, Chapter, Resource;
+   - one lead per page, in two voices: Source Sans 3 700 (using the tool),
+     then Newsreader italic 500 (the student's own thinking). Home, /join
+     and /chapters only; every other page title is an H1 in Newsreader;
+   - headings and labels are Ink; Forest means "you can act on this" (links,
+     buttons) or structure (rules, numbers, the lead's serif clause);
+   - four brand colours, no shadows, no gradients, no motion.
 
    Contents
      1. Tokens
-     2. Base and type
-     3. Layout and grid
-     4. Header
-     5. Footer colophon
-     6. Buttons and links
-     7. Meeting block
-     8. Captions and figures
-     9. Lists and rows
-    10. Citation
-    11. Writing (lead post, post list, article prose)
-    12. Mercurius and supporter
-    13. Forms
-    14. Page-specific (home, about, topics, events, blog, blog-post,
-        blog-anthropic-pentagon, mercurius, chapters, join, 404)
-    15. Motion and print
+     2. Base
+     3. Type roles
+     4. Frame, grid, sections, bands
+     5. Actions: buttons and text links
+     6. Header and phone menu
+     7. Page title (inner pages)
+     8. Hero (home)
+     9. Figure and caption
+    10. Record rows and definition rows
+    11. Chapter (a chapter, or a way to take part)
+    12. Story (a student story or byline piece), and the story list
+    13. Resource (a learning resource or work sample), and the resource list
+    14. Long-form reading
+    15. Forms, choices and status messages
+    16. Tables
+    17. People (the board, the people who support new chapters)
+    18. Topics and supporting sections (Learn's topics, the homepage's
+        questions, the AACA citation, the record, the app)
+    19. Footer
+    20. The Pentagon long read: shell only
+    21. Print
 */
 
 /* ==========================================================================
    1. Tokens
    ========================================================================== */
 
+/* Metric-matched fallbacks, so text wraps the same before and after the
+   Google Fonts files arrive (no layout shift on swap). size-adjust is the
+   measured width ratio of each web font to the local face, per weight. */
+@font-face { font-family: "Source Sans 3 fallback"; src: local("Arial"), local("ArialMT"); font-weight: 400; size-adjust: 93.2%; }
+@font-face { font-family: "Source Sans 3 fallback"; src: local("Arial Bold"), local("Arial-BoldMT"); font-weight: 600; size-adjust: 89.4%; }
+@font-face { font-family: "Source Sans 3 fallback"; src: local("Arial Bold"), local("Arial-BoldMT"); font-weight: 700; size-adjust: 91.8%; }
+@font-face { font-family: "Newsreader fallback"; src: local("Georgia"); font-weight: 400; font-style: normal; size-adjust: 96%; }
+@font-face { font-family: "Newsreader fallback"; src: local("Georgia Bold"), local("Georgia-Bold"); font-weight: 600; font-style: normal; size-adjust: 87.6%; }
+@font-face { font-family: "Newsreader fallback"; src: local("Georgia Italic"), local("Georgia-Italic"); font-weight: 400 500; font-style: italic; size-adjust: 91.9%; }
+
 :root {
-  /* Brand kit */
-  --forest: #1B4D32;
-  --deep-forest: #122e1e;
-  --forest-light: #2a6645;
-  --green-pale: #edf4ef;
-  --gold: #C9922A;
-  --light-gold: #E8B84B;
-  --gold-dark: #9a6d18;
-  --gold-pale: #fdf6e3;
-  --parchment: #faf8f4;
-  --ink: #1a1714;
-  --muted: #6b7a6e;
-  --rule: #d4e0d8;
+  /* Colour roles. Contrast ratios are listed in docs/design-system.md. */
+  --parchment: #faf8f4;     /* page ground; text on dark grounds */
+  --ink: #1a1714;           /* body text; 16.8:1 on Parchment */
+  --forest: #1B4D32;        /* links, primary button, rules, numbers, focus, the lead's serif clause; 9.2:1 */
+  --deep: #122e1e;          /* footer and phone menu only */
+  --gold: #C9922A;          /* the seal; rules on Deep Forest. Never text on light grounds */
+  --gold-light: #E8B84B;    /* dark grounds only: labels, focus, menu Join; 7.9:1 */
+  --muted: #5e6b60;         /* captions, meta, hints; 5.3:1 on Parchment, 5.0:1 on Tint */
+  --rule: #d4e0d8;          /* 1px hairlines, decorative only */
+  --rule-dark: rgba(232, 184, 75, 0.32);  /* hairline on Deep Forest, decorative */
+  --tint: #edf4ef;          /* the one band colour, behind the featured Story */
+  --rule-on-tint: #c9d8ce;  /* the Rule hairline, one step darker so it shows on Tint; decorative */
+  --on-dark-soft: #dfe7e1;  /* fine print on Deep Forest; 11.7:1 */
+  --error: #a3241a;         /* form errors only, always with words; 7.0:1 on Parchment */
+  --field: #fffdf9;         /* ground of text fields; Ink 17.6:1, Muted 5.5:1, Error 7.3:1 */
+  --field-line: #5e6b60;    /* field and choice borders (Muted); 5.3:1, past the 3:1 non-text rule */
 
-  /* Derived for AA contrast */
-  --muted-text: #5e6b60;          /* 5.28:1 on Parchment; brand Muted is 4.27:1 */
-  --on-dark: #faf8f4;             /* Parchment on Deep Forest, 13.8:1 */
-  --on-dark-soft: #dfe7e1;        /* fine print on Deep Forest, 11.7:1 */
-  --rule-dark: rgba(232, 184, 75, 0.32);   /* hairline on Deep Forest */
-  --field-bg: #fffdf9;
-  --field-border: #5e6b60;        /* 5.28:1, passes the 3:1 non-text rule */
+  /* Faces */
+  --serif: "Newsreader", "Newsreader fallback", Georgia, serif;
+  --sans: "Source Sans 3", "Source Sans 3 fallback", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
-  /* Type */
-  --display: "Josefin Sans", "Futura", "Century Gothic", system-ui, sans-serif;
-  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* Scale: fluid between 390px and 1440px viewports */
+  --fs-lead: clamp(2.5rem, 1.943rem + 2.286vw, 4rem);          /* 40 -> 64 */
+  --fs-h1: clamp(2.25rem, 1.786rem + 1.905vw, 3.5rem);         /* 36 -> 56 */
+  --fs-feature: clamp(1.875rem, 1.55rem + 1.333vw, 2.75rem);   /* 30 -> 44 */
+  --fs-h2: clamp(1.625rem, 1.439rem + 0.762vw, 2.125rem);      /* 26 -> 34 */
+  --fs-h3: clamp(1.3125rem, 1.196rem + 0.476vw, 1.625rem);     /* 21 -> 26 */
+  --fs-read: clamp(1.125rem, 1.055rem + 0.286vw, 1.3125rem);   /* 18 -> 21 */
+  --fs-body: 1.125rem;                                          /* 18 */
+  --fs-ui: 1rem;                                                /* 16 */
+  --fs-cap: clamp(0.875rem, 0.829rem + 0.19vw, 1rem);          /* 14 -> 16 */
+  --fs-label: 0.875rem;                                         /* 14 */
+  --fs-input: 1.125rem;                                         /* 18: form text; 16+ so iOS doesn't zoom */
+  --fs-brand: clamp(1.0625rem, 0.9rem + 0.6vw, 1.1875rem);     /* 17 -> 19: the name in the header */
+  --fs-menu: 1.3125rem;                                         /* 21: links in the open phone menu */
 
-  /* Five sizes, plus the label */
-  --t-display: clamp(2.4rem, 1rem + 3.9vw, 4.5rem);
-  --t-title: clamp(2.1rem, 1.3rem + 2.4vw, 3.25rem);
-  --t-h2: clamp(1.5rem, 1.25rem + 0.6vw, 1.85rem);
-  --t-lede: clamp(1.2rem, 1.08rem + 0.35vw, 1.375rem);
-  --t-body: 1.0625rem;
-  --t-small: 0.95rem;
-  --t-label: 0.75rem;
+  /* Spacing scale: 4 8 12 16 24 32 48 64 96 */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+  --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
 
-  /* Space */
-  --gutter: clamp(16px, 5.5vw, 80px);
-  --gap: clamp(16px, 2.2vw, 32px);
-  --section: clamp(4rem, 2rem + 5vw, 7rem);
+  /* Frame */
+  --measure: 1280px;
+  --margin: clamp(16px, 5.5vw, 80px);
+  --gutter: 16px;
+  --section-gap: var(--s8);
+  --rule-w: 4px;
+}
+
+@media (min-width: 768px) {
+  :root { --gutter: 24px; }
+}
+@media (min-width: 1024px) {
+  :root {
+    --section-gap: var(--s9);
+    /* one of 12 columns, for hairlines centred in an empty column */
+    --col: calc((min(100vw, var(--measure) + 2 * var(--margin)) - 2 * var(--margin) - 11 * var(--gutter)) / 12);
+  }
 }
 
 /* ==========================================================================
-   2. Base and type
+   2. Base
    ========================================================================== */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -84,7 +127,6 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  color-scheme: light;
 }
 
 body {
@@ -92,1010 +134,1729 @@ body {
   background: var(--parchment);
   color: var(--ink);
   font-family: var(--serif);
-  font-size: var(--t-body);
-  line-height: 1.7;
+  font-size: var(--fs-body);
+  line-height: 1.55;
   font-optical-sizing: auto;
-  font-variant-numeric: oldstyle-nums proportional-nums;
   -webkit-font-smoothing: antialiased;
   overflow-wrap: break-word;
 }
-@media (min-width: 900px) { body { font-size: 1.125rem; } }
 
-img, svg { display: block; max-width: 100%; height: auto; }
+img, picture { display: block; max-width: 100%; height: auto; }
 
 h1, h2, h3, h4 {
-  font-family: var(--display);
-  color: var(--forest);
   margin: 0;
+  font-family: var(--serif);
   font-weight: 600;
-  letter-spacing: -0.005em;
-  font-variant-numeric: lining-nums;
+  color: var(--ink);
+  text-wrap: balance;
 }
 
-p, dd, li, td, figcaption { text-wrap: pretty; }
-p { margin: 0 0 1em; }
-p:last-child { margin-bottom: 0; }
-strong, b { font-weight: 600; }
+p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
+p, li, dd, blockquote { text-wrap: pretty; }
+ul, ol { padding: 0; }
 
-/* Links: Forest words with a thin gold underline. */
 a {
   color: var(--forest);
-  text-decoration: underline;
-  text-decoration-color: var(--gold);
+  text-decoration-line: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
-  transition: text-decoration-thickness 120ms ease, color 120ms ease, background-color 120ms ease;
+  text-underline-offset: 0.2em;
 }
-a:hover { text-decoration-thickness: 2px; color: var(--deep-forest); }
+a:hover { text-decoration-thickness: 2px; }
 
 :focus-visible {
   outline: 2px solid var(--forest);
   outline-offset: 3px;
-  border-radius: 1px;
 }
 
-.skip-link {
-  position: absolute;
-  left: var(--gutter);
-  top: -100px;
-  padding: 12px 16px 9px;
-  background: var(--forest);
-  color: var(--parchment);
-  font-family: var(--display);
-  font-weight: 600;
-  text-decoration: none;
-  z-index: 20;
-}
-.skip-link:focus { top: 12px; color: var(--parchment); }
+time, .tnum { font-variant-numeric: lining-nums tabular-nums; }
+abbr[title] { text-decoration: none; }
+strong { font-weight: 600; }
 
 .visually-hidden {
   position: absolute !important;
   width: 1px; height: 1px;
+  margin: -1px; padding: 0;
   overflow: hidden;
   clip: rect(0 0 0 0);
-  clip-path: inset(50%);
   white-space: nowrap;
+  border: 0;
 }
 
-/* Type roles */
-.display {
-  font-weight: 700;
-  font-size: var(--t-display);
-  line-height: 1.03;
-  letter-spacing: -0.022em;
-  text-wrap: balance;
+.skip-link {
+  position: absolute;
+  left: var(--s4);
+  top: var(--s2);
+  z-index: 100;
+  padding: var(--s3) var(--s4);
+  background: var(--forest);
+  color: var(--parchment);
+  font: 600 var(--fs-ui)/1.25 var(--sans);
+  transform: translateY(-200%);
 }
-.title {
-  font-weight: 700;
-  font-size: var(--t-title);
-  line-height: 1.06;
-  letter-spacing: -0.018em;
-  text-wrap: balance;
-}
-.h2 {
-  font-size: var(--t-h2);
-  line-height: 1.2;
-  text-wrap: balance;
-}
-.label {
-  font-family: var(--mono);
-  font-size: var(--t-label);
-  line-height: 1.5;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-variant-numeric: lining-nums tabular-nums;
-  font-weight: 400;
-  color: var(--muted-text);
-}
-.label--forest { color: var(--forest); }
-.label time { white-space: nowrap; }
-/* A date in running text stays on one line ("March 19, 2026", never
-   "March" / "19, 2026"). Tag dates with <time>. The events list resets it. */
-p time, dd time, li time { white-space: nowrap; }
+.skip-link:focus { transform: none; }
 
-/* A label in parts separated by middle dots:
-     <p class="label"><span class="seps"><span>Author</span> <span><time>…</time></span></span></p>
-   Each part keeps together, and the dot is drawn in front of every part.
-   The whole block is pulled left by the dot's width and that strip is
-   clipped, so a part that wraps to a new line takes its dot with it into
-   the hidden strip: no line ever starts or ends with a dot. */
-.seps { display: block; margin-left: -1.4em; clip-path: inset(0 0 0 1.4em); }
-.seps > span { display: inline-block; }
-.seps > span::before { content: "·"; display: inline-block; width: 1.4em; }
-
-.lede { font-size: var(--t-lede); line-height: 1.5; }
-.prose { max-width: 34em; }
-.small { font-size: var(--t-small); line-height: 1.6; }
-.fineprint { color: var(--muted-text); }
-.nowrap { white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* ==========================================================================
-   3. Layout and grid
+   3. Type roles
    ========================================================================== */
 
-.wrap {
-  max-width: calc(1280px + 2 * var(--gutter));
-  margin: 0 auto;
-  padding-inline: var(--gutter);
+/* Lead: one per page (home, /join, /chapters). Two voices in one heading. */
+.lead {
+  font-family: var(--sans);
+  font-size: var(--fs-lead);
+  line-height: 1.02;
+  font-weight: 700;
+  color: var(--ink);
+  max-width: 22ch;
+}
+.lead__sans { letter-spacing: -0.02em; }
+.lead__serif {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--forest);
+  letter-spacing: -0.01em;
 }
 
+.h1 { font-size: var(--fs-h1); line-height: 1.05; max-width: 20ch; }
+h2, .h2 { font-size: var(--fs-h2); line-height: 1.15; max-width: 24ch; }
+h3, .h3 { font-size: var(--fs-h3); line-height: 1.2; }
+
+.standfirst {
+  font-family: var(--serif);
+  font-size: var(--fs-h3);
+  font-weight: 400;
+  line-height: 1.35;
+  max-width: 40ch;
+}
+
+.reading { font-size: var(--fs-read); line-height: 1.6; max-width: 66ch; }
+.prose { max-width: 66ch; }
+
+/* Label / eyebrow: sentence case, never all caps. Ink, not Forest: a label
+   is never clickable, so it doesn't wear the link colour. */
+.label {
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.label--ink { color: var(--ink); }
+
+.meta {
+  font-family: var(--sans);
+  font-size: var(--fs-cap);
+  line-height: 1.45;
+  color: var(--muted);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.hint {
+  font-family: var(--sans);
+  font-size: var(--fs-cap);
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* A middot list: "Advanced Seminar · Mayo High School".
+   Markup: <span class="dots"><span>A</span> <span>· B</span></span>. Each dot is
+   real text INSIDE the part it introduces, and each part is kept whole, so a
+   line can only break before a dot: a dot never ends a line or sits alone. */
+.dots { white-space: normal; }
+.dots > span { white-space: nowrap; }
+
+/* Keep a short phrase on one line ("8:20 AM", "co-president"). */
+.nowrap { white-space: nowrap; }
+
+/* A stack of blocks inside a section, 24px apart (opt-in, so components
+   keep their own spacing elsewhere). A label directly over a list sits 8px
+   above it. */
+.flow > * + * { margin-top: var(--s5); }
+.label + :is(.rows, .defs, .hairlist, .story-list, .people) { margin-top: var(--s2); }
+
+/* A sub-heading inside a section (H3), between groups of content. */
+.subhead { margin-bottom: var(--s4); }
+* + .subhead { margin-top: var(--s7); }
+/* One plain line under a sub-heading on why the group is there (Learn's
+   "Getting started"): 8px under the heading, 16px above the list. */
+.subhead__note { margin-top: calc(var(--s2) - var(--s4)); margin-bottom: var(--s4); max-width: 60ch; }
+
+/* ==========================================================================
+   4. Frame, grid, sections, bands
+   ========================================================================== */
+
+.frame {
+  width: 100%;
+  max-width: calc(var(--measure) + 2 * var(--margin));
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+/* 4 columns below 768, 8 to 1023, 12 from 1024. Below 1024 every named
+   span is one column in reading order. */
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gap);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--gutter);
 }
 .grid > * { grid-column: 1 / -1; min-width: 0; }
 
-/* A section: a hairline, a heading in the rail, content beside it.
-   <section class="section grid">
-     <div class="section__head"><h2>…</h2></div>
-     <div class="section__body">…</div>          (or section__body--wide)
-   </section> */
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .grid > .span-lead  { grid-column: 1 / span 7; }
+  .grid > .span-wide  { grid-column: 1 / span 8; }
+  .grid > .span-aside { grid-column: 9 / span 4; }
+  .grid > .span-full  { grid-column: 1 / -1; }
+}
+
+/* A grid whose blocks stack below 1024 needs room between them (.grid sets
+   column gaps only): 32px, the gap between related blocks. A row of links
+   closing it belongs to the block above, so the row gap is its only space. */
+.grid--gap { row-gap: var(--s6); }
+.grid--gap > .links { margin-top: 0; }
+/* A section opens: 4px Forest rule, 16px, the H2, 24px, the content. */
 .section {
-  margin-top: var(--section);
-  padding-top: 1.6rem;
+  margin-top: var(--section-gap);
+  border-top: var(--rule-w) solid var(--forest);
+  padding-top: var(--s4);
+}
+.section__head { margin-bottom: var(--s5); }
+.section__head .label { margin-bottom: var(--s2); }
+.section__head .standfirst,
+.section__head .reading { margin-top: var(--s3); }
+.section__head .hint,
+.section__head .meta { margin-top: var(--s2); max-width: 66ch; }
+/* An in-page index under a section heading: a row of jump links. */
+.section__head .links { margin-top: var(--s2); }
+
+/* Deep links (/join#start-a-chapter, /topics#ethics, /about#board) land
+   24px below the window's top edge. A section.frame's top edge is its
+   section's rule (the margin collapses through it), so every section lands
+   the same way whichever element carries the id. */
+main [id] { scroll-margin-top: var(--s5); }
+
+/* The one band colour, behind the featured Story. Square edges. */
+.band {
+  margin-top: var(--section-gap);
+  background: var(--tint);
+  padding-block: var(--s7) var(--s8);
+}
+.band > .frame > .section:first-child { margin-top: 0; }
+
+/* Hairline-divided list (no bullets). Inside an item: a label (date or
+   kind), an H3, then text, 8px apart. */
+.hairlist { list-style: none; }
+.hairlist > li { border-top: 1px solid var(--rule); padding-block: var(--s4); }
+.hairlist > li:last-child { border-bottom: 1px solid var(--rule); }
+.hairlist > li > * + * { margin-top: var(--s2); }
+.hairlist > li > p:not(.label):not(.meta) { max-width: 66ch; }
+
+/* Steps: a numbered sequence, one step per row between hairlines
+   (/chapters, "What happens next"). The number is the Chapter number (sans
+   700, Forest, tabular, 01-03), generated from the <ol> so it can't drift;
+   the title is an H3; one line under it. Markup:
+   ol.steps > li > h3.steps__title + p.steps__text, then p.steps__after. */
+.steps {
+  list-style: none;
+  counter-reset: step;
   border-top: 1px solid var(--rule);
 }
-.section__head { margin-bottom: 1.5rem; }
-.section__head h2 {
-  font-size: var(--t-h2);
-  line-height: 1.2;
-  max-width: 15ch;
-  text-wrap: balance;
+.steps > li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  column-gap: var(--s4);
+  align-items: baseline;
+  padding-block: var(--s4) var(--s5);
+  border-bottom: 1px solid var(--rule);
 }
-.section__head .label { display: block; margin-top: 0.55rem; }
-.section__note { margin-top: 0.9rem; max-width: 19em; }
+/* The number shares the title's baseline (both are in the first row). */
+.steps > li::before {
+  content: counter(step, decimal-leading-zero);
+  grid-column: 1;
+  grid-row: 1;
+  font: 700 1.125rem/1.2 var(--sans);
+  color: var(--forest);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.steps__title { grid-column: 2; font-size: var(--fs-h3); line-height: 1.2; }
+.steps__text { grid-column: 2; margin-top: var(--s2); max-width: 56ch; }
+.steps + .steps__after { margin-top: var(--s5); }
+@media (min-width: 768px) {
+  .steps > li { grid-template-columns: 3rem minmax(0, 1fr); }
+}
 
-@media (min-width: 900px) {
-  .section__head { grid-column: 1 / span 3; margin-bottom: 0; padding-right: var(--gap); }
-  .section__body, .section__body--wide { grid-column: 4 / -1; }
-}
-@media (min-width: 1200px) {
-  .section__head { grid-column: 1 / span 4; }
-  .section__body { grid-column: 5 / span 7; }
-  .section__body--wide { grid-column: 5 / -1; }
+/* Width caps for blocks outside a .grid, matching the named spans from
+   1024px (columns 1-7 and 1-8 of the section's width). Full width below. */
+@media (min-width: 1024px) {
+  .w-lead { max-width: calc((100% + var(--gutter)) * 7 / 12 - var(--gutter)); }
+  .w-wide { max-width: calc((100% + var(--gutter)) * 8 / 12 - var(--gutter)); }
 }
 
-/* Inner-page opening: H1, then a lede offset to the body column.
-   <section class="page-title grid"><h1 class="display">…</h1><p class="lede">…</p></section> */
-.page-title { padding-top: clamp(1.75rem, 0.5rem + 4vw, 4.5rem); }
-.page-title h1 { max-width: 15em; }
-.page-title .lede { margin-top: 1.5rem; max-width: 30em; }
-/* Anything that follows the lede in an opening (the App Store row, the
-   chapter button, a row of links, the Events meeting block) sits on the
-   lede's column with the same space above it. */
-.page-title .page-title__more { margin-top: 2rem; }
-@media (min-width: 900px) {
-  .page-title h1 { grid-column: 1 / span 9; }
-  .page-title .lede { grid-column: 4 / span 8; margin-top: 2.25rem; }
-  .page-title .page-title__more { grid-column: 4 / span 8; margin-top: 2.25rem; }
+/* A row of plain text links under a section. .links--stack stacks them. */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--s5);
+  margin-top: var(--s5);
 }
-@media (min-width: 1200px) { .page-title .lede, .page-title .page-title__more { grid-column: 5 / span 7; } }
+.links--stack { flex-direction: column; align-items: flex-start; gap: 0; }
+
+/* Note: a short aside beside a section's main content (/chapters, "Asking
+   a teacher to advise"). A label, a line or two at the body size, at most
+   one text link (.note__act). No box and no rule: the column sets it apart. */
+.note > * + * { margin-top: var(--s2); }
+.note > p:not(.label):not(.note__act) { max-width: 40ch; }
+.note > .note__act { margin-top: var(--s1); }
 
 /* ==========================================================================
-   4. Header
+   5. Actions: buttons and text links
    ========================================================================== */
 
-.site-header { padding-block: 20px; }
-.site-header .wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px 24px;
-  flex-wrap: wrap;
-}
-
-.brand {
+.btn {
   display: inline-flex;
   align-items: center;
-  gap: 20px;                       /* 1x the seal's radius of clear space */
-  min-height: 44px;
-  color: var(--forest);
-  text-decoration: none;
-  flex: 0 1 auto;
-  min-width: 0;
-}
-.brand:hover { color: var(--forest); }
-.brand__seal { width: 40px; height: 40px; border-radius: 50%; flex: none; }
-.brand__name {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.06rem;
-  letter-spacing: 0.01em;
-  line-height: 1.1;
-  padding-top: 3px;                /* Josefin sits high in its line box */
-}
-
-.site-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 28px;
-}
-.site-nav a {
-  display: inline-block;
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 0.98rem;
-  line-height: 1;
-  color: var(--ink);
-  text-decoration: none;
-  padding: 14px 0 9px;
-  border-bottom: 2px solid transparent;
-}
-.site-nav a:hover { color: var(--forest); border-bottom-color: var(--rule); }
-.site-nav a[aria-current="page"] { color: var(--forest); border-bottom-color: var(--gold); }
-
-.nav-toggle {
-  display: none;
-  margin-left: auto;
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1;
-  color: var(--forest);
-  background: transparent;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  min-height: 44px;
-  min-width: 76px;
-  padding: 14px 16px 10px;
-  cursor: pointer;
-}
-.nav-toggle:hover { border-color: var(--forest); }
-
-@media (min-width: 1000px) and (max-width: 1199px) {
-  .site-nav ul { gap: 4px 22px; }
-}
-
-@media (max-width: 999px) {
-  /* The name wraps before the Menu button is pushed to a second line. */
-  .brand { flex: 1 1 0; }
-  /* Without JS the links simply wrap under the name. */
-  .site-nav { width: 100%; }
-  .site-nav ul { gap: 0 22px; }
-  .site-nav a { padding: 12px 0 9px; }
-
-  /* With JS they fold behind the Menu button. */
-  .js .nav-toggle { display: inline-block; }
-  .js .site-nav { display: none; }
-  .js .site-nav.is-open { display: block; }
-  .js .site-nav ul { flex-direction: column; gap: 0; }
-  .js .site-nav li { border-top: 1px solid var(--rule); }
-  .js .site-nav li:last-child { border-bottom: 1px solid var(--rule); }
-  .js .site-nav a { display: block; padding: 16px 0 12px; font-size: 1.1rem; border-bottom: 0; }
-  .js .site-nav a[aria-current="page"] {
-    text-decoration: underline;
-    text-decoration-color: var(--gold);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.3em;
-  }
-}
-
-/* ==========================================================================
-   5. Footer colophon (Deep Forest, 2px gold hairline)
-   ========================================================================== */
-
-.colophon {
-  margin-top: var(--section);
-  background: var(--deep-forest);
-  border-top: 2px solid var(--gold);
-  color: var(--on-dark);
-  padding: 56px 0 40px;
-  font-size: 0.98rem;
-  line-height: 1.6;
-}
-.colophon a { color: var(--on-dark); text-decoration-color: var(--light-gold); }
-.colophon a:hover { color: var(--on-dark); }
-.colophon :focus-visible { outline-color: var(--light-gold); }
-.colophon .label { color: var(--light-gold); }
-.colophon h2 { margin: 0 0 0.75rem; }
-.colophon ul { list-style: none; margin: 0; padding: 0; }
-.colophon p { margin: 0; }
-
-.colophon__grid { row-gap: 2.25rem; }
-.colophon__seal { width: 96px; height: 96px; border-radius: 50%; }
-.colophon__name {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.1rem;
-  line-height: 1.3;
-  color: var(--on-dark);
-  margin-bottom: 0.4rem !important;
-}
-.colophon__about p:not(.colophon__name) { color: var(--on-dark-soft); max-width: 20em; text-wrap: balance; }
-.colophon__nav a { display: inline-block; padding: 3px 0; text-decoration-color: transparent; }
-.colophon__nav a:hover,
-.colophon__nav a[aria-current="page"] { text-decoration-color: var(--light-gold); }
-.colophon__else li + li { margin-top: 0.8rem; }
-.colophon__else .label { display: block; }
-.colophon__else a { display: inline-block; padding: 2px 0; }
-
-.colophon__legal {
-  margin-top: 3rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--rule-dark);
-}
-.colophon__legal p { font-size: 0.875rem; line-height: 1.6; color: var(--on-dark-soft); max-width: 60em; }
-.colophon__legal .label { margin-top: 1rem; }
-/* "AACA" carries its full name in title=; a dotted rule in the text colour, so it doesn't read as a gold link */
-.colophon__legal abbr[title] { text-decoration: underline dotted; text-decoration-color: currentColor; text-decoration-thickness: 1px; text-underline-offset: 0.2em; cursor: help; }
-
-@media (max-width: 699px) {
-  .colophon__seal-wrap, .colophon__about, .colophon__meets { grid-column: 1 / -1; }
-  .colophon__nav, .colophon__else { grid-column: span 6; }
-  .colophon__seal { width: 80px; height: 80px; }
-}
-@media (min-width: 700px) and (max-width: 899px) {
-  .colophon__seal-wrap { grid-column: 1 / span 3; }
-  .colophon__about { grid-column: 4 / -1; align-self: center; }
-  .colophon__meets, .colophon__nav, .colophon__else { grid-column: span 4; }
-}
-@media (min-width: 900px) {
-  .colophon__seal-wrap { grid-column: 1 / span 2; }
-  .colophon__about { grid-column: 3 / span 3; }
-  .colophon__meets { grid-column: 6 / span 3; }
-  .colophon__nav { grid-column: 9 / span 2; }
-  .colophon__else { grid-column: 11 / span 2; }
-  .colophon__legal .grid > * { grid-column: 3 / -1; }
-}
-
-/* ==========================================================================
-   6. Buttons and links
-   One primary button per screen area. Everything else is a text link.
-   ========================================================================== */
-
-.button {
-  display: inline-block;
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1;
-  padding: 0.95rem 1.3rem 0.8rem;   /* Josefin caps sit high; extra top */
-  min-height: 44px;
+  justify-content: center;
+  min-height: 48px;
+  padding: var(--s2) 20px;
+  border: 2px solid var(--forest);
+  border-radius: 0;
   background: var(--forest);
   color: var(--parchment);
-  border: 1px solid var(--forest);
-  border-radius: 2px;
+  font: 600 var(--fs-ui)/1.25 var(--sans);
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
 }
-.button:hover { background: var(--deep-forest); border-color: var(--deep-forest); color: var(--parchment); }
+.btn:hover { background: var(--deep); border-color: var(--deep); }
+.btn--secondary { background: transparent; color: var(--forest); }
+.btn--secondary:hover { background: var(--tint); border-color: var(--forest); }
 
-/* The one button with a short plain note beside it:
-   <p class="act"><a class="button" href="…">Leave your name</a> <span>or just come.</span></p> */
-.act { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
-.act > span { font-size: var(--t-small); color: var(--muted-text); }
-
-/* A row of plain text links under a block */
-.links { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
-.links a { display: inline-block; padding-block: 3px; }
+/* Text link in the sans, for actions: "How chapters work ->".
+   Padded to a 44px target without changing how it reads. */
+.tlink {
+  display: inline-block;
+  padding-block: 10px;
+  font: 600 var(--fs-ui)/1.5 var(--sans);
+  color: var(--forest);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+.tlink:hover { text-decoration-thickness: 2px; }
+.tlink .arrow { text-decoration: none; display: inline-block; margin-left: 0.15em; }
+.tlink .ext { font-weight: 400; }
 
 /* ==========================================================================
-   7. Meeting block ("This Thursday"): the page's one call to action
+   6. Header and phone menu
    ========================================================================== */
 
-.meet {
-  border-top: 2px solid var(--gold);
-  padding-top: 1rem;
+.site-header {
+  position: relative;
+  z-index: 20;
+  background: var(--parchment);
 }
-.meet__label { margin: 0 0 0.55rem; }
-.meet__time {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(2.4rem, 2rem + 1.1vw, 3rem);
-  line-height: 1;
-  letter-spacing: -0.01em;
+
+.hd {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 72px;
+  padding-block: var(--s3);
+}
+
+/* The name in the club's serif voice, as in the footer. */
+.hd__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  min-height: 44px;
+  margin-right: auto;
   color: var(--forest);
-  font-variant-numeric: lining-nums;
-  margin: 0 0 0.35rem;
+  font: 600 var(--fs-brand)/1.1 var(--serif);
+  text-decoration: none;
 }
-.meet__where {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 1.2rem;
-  line-height: 1.3;
+.hd__brand:hover .hd__name { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
+/* The seal: seal-circle-192.png is already round (transparent corners), so it
+   is shown as drawn, never masked. */
+.hd__seal { width: 40px; height: 40px; flex: none; }
+.hd__name > span { white-space: nowrap; }
+/* Below 360 (and under user text-spacing), let the name wrap inside its
+   halves rather than push Menu off the screen (WCAG 1.4.12). */
+@media (max-width: 359.98px) {
+  .hd__brand { min-width: 0; }
+  .hd__name > span { white-space: normal; }
+}
+
+.hd__join { flex: none; min-height: 44px; padding-inline: var(--s4); }
+
+/* Menu is a plain text control (44px target), so the solid Join beside it
+   stays the one boxed action in the phone header. */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 var(--s1);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--forest);
+  font: 600 var(--fs-ui)/1.25 var(--sans);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  cursor: pointer;
+}
+.nav-toggle:hover { text-decoration-thickness: 2px; }
+
+.site-nav ul { list-style: none; margin: 0; padding: 0; }
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
   color: var(--ink);
-  margin: 0 0 0.9rem;
+  font: 600 var(--fs-ui)/1.25 var(--sans);
+  text-decoration: none;
 }
-.meet__note { font-size: 1rem; line-height: 1.6; max-width: 26em; }
-/* One grid for all three rows, so the label column is as wide as the
-   longest label and the rules run unbroken across both columns. */
-.meet__terms {
+.site-nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.3em; }
+.site-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--forest);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
+/* Phones and tablets: brand, Join, Menu. The list opens on Deep Forest. */
+@media (max-width: 999.98px) {
+  .hd__brand { gap: var(--s2); }
+  html:not(.js) .nav-toggle { display: none; }
+  html:not(.js) .hd { flex-wrap: wrap; }
+  html:not(.js) .site-nav { flex-basis: 100%; }
+  html:not(.js) .site-nav ul { display: flex; flex-wrap: wrap; gap: 0 var(--s5); }
+  html:not(.js) .site-nav__join { display: none; }
+
+  .js .site-nav { display: none; }
+  .js .site-nav.is-open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    min-height: calc(100vh - 72px);
+    min-height: calc(100dvh - 72px);
+    padding: var(--s6) var(--margin) var(--s8);
+    background: var(--deep);
+    border-top: var(--rule-w) solid var(--gold);
+    color: var(--parchment);
+  }
+  .site-nav.is-open li { border-bottom: 1px solid var(--rule-dark); }
+  .site-nav.is-open a {
+    display: flex;
+    justify-content: flex-start;
+    min-height: 56px;
+    color: var(--parchment);
+    font-size: var(--fs-menu);
+  }
+  .site-nav.is-open a[aria-current="page"] { text-decoration-color: var(--gold-light); }
+  .site-nav.is-open :focus-visible { outline-color: var(--gold-light); }
+  .site-nav.is-open .site-nav__join { border-bottom: 0; padding-top: var(--s5); }
+  .site-nav.is-open .site-nav__join a {
+    display: inline-flex;
+    min-height: 48px;
+    padding: 0 var(--s5);
+    background: var(--gold-light);
+    color: var(--deep);
+    font-size: var(--fs-ui);
+  }
+  .hd:has(.site-nav.is-open) .hd__join { visibility: hidden; }
+}
+
+/* Wide screens: the full list, Join outlined in Forest. It stays the
+   distinct item in the nav, but the hero's solid button is the one call on
+   the first screen. */
+@media (min-width: 1000px) {
+  .hd { min-height: 88px; padding-block: var(--s4); }
+  .hd__join, .nav-toggle { display: none; }
+  .site-nav ul { display: flex; align-items: center; gap: 0 var(--s5); }
+  .site-nav__join a {
+    min-height: 44px;
+    padding: 0 var(--s4);
+    border: 2px solid var(--forest);
+    color: var(--forest);
+  }
+  .site-nav__join a:hover { background: var(--tint); text-decoration: none; }
+}
+
+/* ==========================================================================
+   7. Page title (inner pages): eyebrow -> H1 -> standfirst -> actions in
+      columns 1-7, and an optional aside in 9-12 (a record, the app badge),
+      top-aligned like the homepage hero. /join and /chapters set the H1 as
+      the lead (.lead, two voices) instead of .h1; no other page does.
+   ========================================================================== */
+
+.pagehead { padding-top: var(--s5); }
+.pagehead__eyebrow { margin-bottom: var(--s3); }
+.pagehead .standfirst { margin-top: var(--s4); }
+.pagehead__main > .reading { margin-top: var(--s4); }
+.pagehead__acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2) var(--s5);
+  margin-top: var(--s5);
+}
+/* A line under the actions: what a button leads to, or how long it takes. */
+.pagehead__note { margin-top: var(--s2); max-width: 60ch; }
+.pagehead__aside { margin-top: var(--s6); }
+.pagehead__aside > * + * { margin-top: var(--s4); }
+/* The hidden "Next: …" line (p.hero__next, shown only for a dated upcoming
+   meeting) must not push the aside's next block down while it is hidden. */
+.pagehead__aside > [hidden] + * { margin-top: 0; }
+/* One real photograph under the title (columns 1-7, or the band across). */
+.pagehead__photo { margin-top: var(--s6); }
+
+@media (min-width: 1024px) {
+  .pagehead { padding-top: var(--s8); }
+  .pagehead__aside { margin-top: 0; padding-top: var(--s2); }
+}
+
+/* ==========================================================================
+   8. Hero (home): lead in columns 1-7, intro and button in 9-12, then the
+      meeting as a record across the thirds (When / Where / Who), then the
+      photograph as a 3:1 band (5:3 on phones).
+   ========================================================================== */
+
+.hero { padding-top: var(--s5); }
+.hero__aside { margin-top: var(--s5); }
+.hero__intro { font-size: var(--fs-read); line-height: 1.55; max-width: 40ch; }
+.hero__acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2) var(--s5);
+  margin-top: var(--s5);
+}
+/* Filled by script.js only when events-data.json has a future "upcoming" entry. */
+.hero__next {
+  margin-bottom: var(--s3);
+  font: 400 var(--fs-ui)/1.45 var(--sans);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.hero__next .label { margin-right: var(--s2); }
+.hero__next strong { font-weight: 600; }
+.hero__meets { margin-top: var(--s6); }
+/* Phones: one-word labels (When / Where / Who) need only a narrow column. */
+.rows.hero__meets > div { grid-template-columns: 4rem minmax(0, 1fr); }
+.hero__photo { margin-top: var(--s5); }
+/* Phones: the 2:1 file at 5:3, edge to edge; the caption stays in the margin.
+   Tablets: the 2:1 file whole. (.photo.hero__photo outranks the generic
+   .photo img rule in section 8.) */
+.photo.hero__photo img { aspect-ratio: 5 / 3; object-position: 38% 50%; }
+@media (max-width: 767.98px) {
+  .hero__photo picture { max-width: none; margin-inline: calc(-1 * var(--margin)); }
+  .photo.hero__photo img { border-radius: 0; }
+}
+@media (min-width: 768px) {
+  .photo.hero__photo img { aspect-ratio: 2 / 1; object-position: 50% 50%; }
+}
+/* From 1024: an 18:5 band. The WebP is already cut to 18:5 (rows 145-645 of
+   the 1800px file); for the 2:1 JPG fallback, 50% 36% shows the same rows. */
+@media (min-width: 1024px) {
+  .photo.hero__photo img { aspect-ratio: 18 / 5; object-position: 50% 36%; }
+}
+/* Tablet: intro beside the actions, so the first screen uses its width. */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .hero__aside { display: flex; align-items: flex-start; gap: var(--s6); }
+  .hero__intro { flex: 1 1 auto; }
+  .hero__acts { flex: none; flex-direction: column; align-items: flex-start; gap: var(--s2); margin-top: var(--s1); }
+}
+
+@media (min-width: 1024px) {
+  .hero { padding-top: var(--s8); }
+  .hero__aside { margin-top: 0; padding-top: var(--s2); }
+  .hero__acts { flex-direction: column; align-items: flex-start; gap: var(--s2); }
+  .hero__meets { margin-top: var(--s7); }
+  .hero__photo { margin-top: var(--s5); }
+}
+
+/* ==========================================================================
+   9. Figure and caption
+   ========================================================================== */
+
+.photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: 50% 40%;
+  border-radius: 2px;
+  background: var(--tint);
+}
+/* A 3:2 landscape crop; keeps the floor and tables, trims the ceiling. */
+.photo.photo--landscape img { aspect-ratio: 3 / 2; object-position: 50% 80%; }
+
+/* Band: the November 20, 2025 meeting as a wide strip on an inner page
+   (/about, /chapters, /join). The WebP is the hero's band file, cut above
+   the laptop (assets/work/meeting-2025-11-20-band-*.webp: 18:5, rows
+   145-645 of the 1800px source, content-needs #23), and it is the only
+   <source>, with no media query, so no width is served the laptop's screen.
+   18:5 from 1024; a 3:1 crop of it below 1024, edge to edge on phones (the
+   caption stays in the margin). 3:1 keeps every face and the table in frame
+   (a 5:2 phone crop cut the head off the student at the right edge).
+   `sizes` asks for the band's rendered width: the box from 1024, 1.2x it
+   below (18:5 shown at 3:1 is 3.6 / 3 = 1.2 times as wide as its box), and
+   120vw on phones, where the box is the full window:
+     sizes="(min-width: 1440px) 1280px, (min-width: 1024px) calc(100vw - 2 * clamp(16px, 5.5vw, 80px)), (min-width: 768px) calc(1.2 * (100vw - 2 * clamp(16px, 5.5vw, 80px))), 120vw"
+   The JPG fallback (assets/photos/meeting-2025-11-20-band-{800,1200}.jpg)
+   is the same cut, so no file a band serves holds the laptop's screen. */
+.photo.photo--band img { aspect-ratio: 3 / 1; object-position: 50% 15%; }
+@media (max-width: 767.98px) {
+  .photo--band picture { max-width: none; margin-inline: calc(-1 * var(--margin)); }
+  .photo.photo--band img { border-radius: 0; }
+}
+@media (min-width: 1024px) {
+  .photo.photo--band img { aspect-ratio: 18 / 5; object-position: 50% 36%; }
+}
+/* A figure straight after the Chapter row (/join's routes): evidence beside
+   the decision, 48px clear (64px from 1024). */
+.chapters + .photo { margin-top: var(--s7); }
+@media (min-width: 1024px) {
+  .chapters + .photo { margin-top: var(--s8); }
+}
+
+/* Caption: the date in words (Ink 600), then what it shows. Never clock times. */
+.caption {
+  margin-top: var(--s2);
+  max-width: 66ch;
+  font-family: var(--sans);
+  font-size: var(--fs-cap);
+  line-height: 1.45;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+.caption strong { color: var(--ink); font-weight: 600; }
+
+/* ==========================================================================
+   10. Record rows (label / value, tabular figures) and definition rows
+   ========================================================================== */
+
+.rows { border-top: 1px solid var(--rule); }
+.rows > div {
   display: grid;
-  grid-template-columns: max-content minmax(0, 1fr);
-  margin: 1.1rem 0 0;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: var(--s1) var(--s4);
+  padding-block: var(--s3);
   border-bottom: 1px solid var(--rule);
 }
-.meet__terms > div { display: contents; }
-/* Both cells share one 24px line box, so their top rules line up and the
-   mono label sits on (almost exactly) the same baseline as the text. */
-.meet__terms dt, .meet__terms dd { border-top: 1px solid var(--rule); padding: 0.55rem 0 0.5rem; line-height: 1.5rem; }
-.meet__terms dt { color: var(--forest); padding-right: 16px; }
-.meet__terms dd { margin: 0; font-size: 1rem; }
-.meet__act { margin: 1.4rem 0 0; }   /* with .act */
-.meet__next { margin-top: 1rem; font-size: var(--t-small); line-height: 1.55; }
-.meet__next[hidden] { display: none; }
+.rows dt {
+  font: 600 var(--fs-label)/1.3 var(--sans);
+  color: var(--muted);
+  font-variant-numeric: lining-nums tabular-nums;
+  padding-top: 0.2em;
+}
+.rows dd {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+/* A value in more than one part, e.g. a fact and then its .meta note. */
+.rows dd > * + * { margin-top: var(--s2); }
+/* A source line straight under a list of rows sits close to it. */
+.rows + .meta { margin-top: var(--s3); max-width: 66ch; }
 
-/* ==========================================================================
-   8. Captions and figures
-   Captions: a Space Mono date line in words, then one Newsreader sentence.
-   ========================================================================== */
-
-.photo { margin: 0; }
-.photo img { width: 100%; object-fit: cover; border-radius: 0; background: var(--green-pale); }
-.photo figcaption { margin-top: 0.75rem; max-width: 50em; }
-.photo figcaption .label { display: block; margin-bottom: 0.15rem; }
-.photo figcaption p { font-size: var(--t-small); line-height: 1.55; margin: 0; }
-
-/* Phones: photos run edge to edge. */
-@media (max-width: 899px) {
-  .photo--bleed img {
-    width: calc(100% + 2 * var(--gutter));
-    max-width: none;
-    margin-left: calc(-1 * var(--gutter));
-  }
+@media (min-width: 768px) {
+  .rows > div { grid-template-columns: minmax(7rem, 1fr) 3fr; column-gap: var(--s5); }
+  .chapter .rows > div { grid-template-columns: 5.5rem minmax(0, 1fr); column-gap: var(--s4); }
 }
 
-/* Thursday meeting, served as a 2:1 crop of the 3:4 original that ends
-   above the drink can. 21:9 on desktop, 5:3 on phones. */
-.photo--meeting img { aspect-ratio: 21 / 9; object-position: 50% 75%; }
-@media (max-width: 899px) { .photo--meeting img { aspect-ratio: 5 / 3; object-position: 40% 50%; } }
+/* Stacked rows: the label sits above its value at every width. For labels
+   longer than a word ("Fall interest meeting") and for narrow columns. */
+.rows--stack > div,
+.rows.rows--stack > div { grid-template-columns: minmax(0, 1fr); row-gap: var(--s1); }
 
-/* Fall interest meeting (4:3 original): the three screens and the windows. */
-.photo--commons img { aspect-ratio: 2 / 1; object-position: 50% 62%; }
-@media (max-width: 899px) { .photo--commons img { aspect-ratio: 3 / 2; } }
-
-/* AACA board photo, when it arrives: 3:2 landscape, uncropped. */
-.photo--aaca img { aspect-ratio: 3 / 2; }
-
-/* ==========================================================================
-   9. Lists and rows
-   ========================================================================== */
-
-/* Ruled rows: <ul class="rows"> or <dl class="rows"> with <div> groups. */
-.rows { list-style: none; margin: 0; padding: 0; }
-.rows > li, .rows > div {
-  border-top: 1px solid var(--rule);
-  padding: 1.1rem 0 1.2rem;
-}
-.rows > :last-child { border-bottom: 1px solid var(--rule); }
-/* A list that opens a section already has the section's hairline above it,
-   and one that ends a section is followed by the next section's hairline. */
-.section__body > .rows:first-child > :first-child,
-.section__body--wide > .rows:first-child > :first-child { border-top: 0; padding-top: 0.1rem; }
-.section__body > .rows:last-child > :last-child,
-.section__body--wide > .rows:last-child > :last-child { border-bottom: 0; padding-bottom: 0; }
-.rows h3 { font-size: 1.15rem; line-height: 1.3; margin-bottom: 0.3rem; }
-.rows p, .rows dd { margin: 0; }
-.rows dt { margin-bottom: 0.3rem; }
-.rows dd + dd { margin-top: 0.5rem; }
-
-/* Split rows: a label or h3 on the left, text on the right. */
-@media (min-width: 700px) {
-  .rows--split > li, .rows--split > div {
+/* Across: one row of cells on the thirds (tablet and up), label above value.
+   Below 768 it is an ordinary label / value list. */
+@media (min-width: 768px) {
+  .rows--across {
     display: grid;
-    grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
-    column-gap: var(--gap);
-    align-items: baseline;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--gutter);
+    border-bottom: 1px solid var(--rule);
   }
-  .rows--split > * > :not(:first-child) { grid-column: 2; }
-  .rows--split dt, .rows--split h3 { margin-bottom: 0; }
+  .rows.rows--across > div {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    row-gap: var(--s1);
+    border-bottom: 0;
+  }
 }
-/* Tighter rows (the AACA citation). Same 13rem label column as every other
-   split list, so neighbouring lists keep one text edge. */
-.rows--tight > li, .rows--tight > div { padding: 0.7rem 0 0.75rem; }
+/* Across on tablets only: a short record that is stacked in a span-aside
+   from 1024 runs across the thirds from 768 to 1023, where the aside is
+   full width and a stacked list would leave most of the line empty. Same
+   cells as .rows--across. */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .rows--across-tablet {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--gutter);
+    border-bottom: 1px solid var(--rule);
+  }
+  .rows.rows--across-tablet > div {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    row-gap: var(--s1);
+    border-bottom: 0;
+  }
+}
 
-/* Topic questions: a label over one Josefin question, ruled, two columns. */
-.questions {
-  list-style: none;
-  margin: 1.5rem 0 0;
-  padding: 0;
+/* Definition rows: a named thing and what it is ("A founder" / "One
+   student, ideally a sophomore or junior."). The term is content, so it
+   is set in the serif (600), not as a sans field label like .rows.
+   Stacked below 768; term in a third, description in two thirds from 768.
+   Markup: dl.defs > div > dt + dd (+ dd), or, when each term should be a
+   heading in the outline, ul.defs > li > h3.defs__term + p (+ p). */
+.defs { list-style: none; border-top: 1px solid var(--rule); }
+.defs > div,
+.defs > li {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  column-gap: var(--gap);
+  gap: var(--s1) var(--s5);
+  padding-block: var(--s4);
   border-bottom: 1px solid var(--rule);
 }
-.questions li {
-  font-family: var(--display);
-  font-weight: 600;
+.defs dt,
+.defs__term {
+  font: 600 var(--fs-body)/1.4 var(--serif);
+  color: var(--ink);
+}
+.defs dd,
+.defs > li > :not(.defs__term) {
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  max-width: 60ch;
+}
+.defs dd + dd,
+.defs > li > :not(.defs__term) + :not(.defs__term) { margin-top: var(--s2); }
+
+@media (min-width: 768px) {
+  .defs > div,
+  .defs > li { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+  .defs dt,
+  .defs__term { grid-column: 1; grid-row: 1 / span 4; }
+  .defs dd,
+  .defs > li > :not(.defs__term) { grid-column: 2; }
+  .defs dd + dd,
+  .defs > li > :not(.defs__term) + :not(.defs__term) { margin-top: var(--s1); }
+}
+
+/* ==========================================================================
+   11. Chapter: a chapter, or a way to take part
+       number (or place line) -> H3 -> who it's for -> facts -> rows ->
+       status -> at most two actions. Thirds with vertical hairlines on
+       desktop; stacked between hairlines on phones. Never cards.
+   ========================================================================== */
+
+.chapters { list-style: none; max-width: 44rem; }
+
+.chapter + .chapter {
+  margin-top: var(--s5);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule);
+}
+
+.chapter__num {
+  font: 700 1.125rem/1 var(--sans);
   color: var(--forest);
-  font-size: clamp(1.08rem, 1rem + 0.3vw, 1.22rem);
-  line-height: 1.35;
-  padding: 0.85rem 0 0.95rem;
-  border-top: 1px solid var(--rule);
+  font-variant-numeric: lining-nums tabular-nums;
+  margin-bottom: var(--s3);
 }
-.questions .label { display: block; margin-bottom: 0.3rem; color: var(--muted-text); }
-@media (min-width: 700px) {
-  .questions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.chapter__place { margin-bottom: var(--s3); }
+.chapter__title { font-size: var(--fs-h3); line-height: 1.2; }
+.chapter__for {
+  margin-top: var(--s2);
+  font: 600 var(--fs-ui)/1.35 var(--sans);
+  color: var(--ink);
 }
+.chapter__facts { margin-top: var(--s3); max-width: 46ch; }
+.chapter .rows { margin-top: var(--s4); }
 
-/* Timeline: a date label over one entry. */
-.timeline { margin: 0; }
-.timeline > div + div { margin-top: 1.75rem; }
-.timeline dt { color: var(--forest); margin-bottom: 0.3rem; }
-.timeline dd { margin: 0; }
+/* Status: said honestly, next to the action, readable without a click. */
+.chapter__status {
+  margin-top: var(--s3);
+  max-width: 46ch;
+  font: 400 var(--fs-ui)/1.45 var(--sans);
+  color: var(--ink);
+}
+.chapter__status strong { font-weight: 700; }
 
-/* Data table (termcards, schedules): Space Mono heads, ruled rows. */
-.table { width: 100%; border-collapse: collapse; }
-.table th, .table td {
-  text-align: left;
-  vertical-align: top;
-  padding: 0.9rem 1.25rem 0.95rem 0;
-  border-top: 1px solid var(--rule);
-  font-weight: 400;
-}
-.table thead th { border-top: 0; padding-top: 0; padding-bottom: 0.6rem; }
-.table tbody tr:last-child > * { border-bottom: 1px solid var(--rule); }
-.table td:last-child, .table th:last-child { padding-right: 0; }
+.chapter__acts { margin-top: var(--s2); list-style: none; }
+.chapter__acts > li { list-style: none; }
+/* A button sits 12px further from the status above it than a text link
+   does, so the two don't read as one block; the action after a button sits
+   4px clear of it. Two text links stack on their own 10px padding. */
+.chapter__acts > li > .btn:first-child { margin-top: var(--s3); }
+.chapter__acts > li:has(> .btn) + li { margin-top: var(--s1); }
+/* A note under an action, in the same li and tied to it with
+   aria-describedby: what an external link does and how long it takes
+   ("Opens in a new tab and takes about three minutes."), or what a text
+   link is for. 8px under a button; right under a text link, whose 10px
+   padding is the gap. */
+.chapter__note { max-width: 60ch; margin-bottom: var(--s1); }
+.btn + .chapter__note { margin-top: var(--s2); }
 
-/* Officer roster: a single ruled column. Portrait, name and office, one line. */
-.roster { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--forest); }
-.roster li {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  column-gap: clamp(16px, 2vw, 24px);
-  row-gap: 0.35rem;
-  align-items: start;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--rule);
+/* A label naming a chapter's record rows ("Your first Thursday"), which
+   point back at it with aria-labelledby. A second facts line sits close. */
+.chapter__label { margin-top: var(--s5); }
+.chapter .chapter__label + .rows { margin-top: var(--s2); }
+.chapter__facts + .chapter__facts { margin-top: var(--s2); }
+
+@media (min-width: 1024px) {
+  .chapters {
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+  .chapter + .chapter {
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: var(--s3);
+    border-top: 0;
+    position: relative;
+  }
+  /* 1px hairline centred in the gutter */
+  .chapter + .chapter::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--gutter) / -2);
+    width: 1px;
+    background: var(--rule);
+  }
+  .chapter { display: flex; flex-direction: column; padding-right: var(--s3); }
 }
-.roster img {
-  width: 72px;
-  height: 72px;
-  object-fit: cover;
-  border-radius: 0;
-  background: var(--green-pale);
-  grid-row: span 2;
-}
-.roster h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.2; color: var(--ink); margin: 0.2rem 0 0.25rem; }
-.roster .label { display: block; color: var(--forest); }
-.roster p { margin: 0; font-size: 1rem; line-height: 1.55; }
-@media (min-width: 760px) {
-  .roster li { grid-template-columns: 72px minmax(0, 15rem) minmax(0, 1fr); column-gap: var(--gap); }
-  .roster img { grid-row: auto; }
-  .roster p { padding-top: 0.2rem; }
-}
-/* When the roster opens its section, the section hairline is its top rule.
-   (With the AACA photo above it, the Forest rule comes back.) When it ends
-   the section, the next section's hairline closes it, as for .rows. */
-.section__body > .roster:first-child,
-.section__body--wide > .roster:first-child { border-top: 0; }
-.section__body > .roster:first-child > li:first-child,
-.section__body--wide > .roster:first-child > li:first-child { padding-top: 0.1rem; }
-.section__body > .roster:last-child > li:last-child,
-.section__body--wide > .roster:last-child > li:last-child { border-bottom: 0; padding-bottom: 0; }
 
 /* ==========================================================================
-   10. Citation (a formal reference, used for the AACA poster)
+   12. Story: eyebrow (kind · source) -> linked title -> byline row ->
+       standfirst (published summary, or verbatim excerpt in quotes) ->
+       optional real figure -> one text link. Complete without an image.
    ========================================================================== */
 
-.citation { margin-top: 1.75rem; border-top: 1px solid var(--forest); padding-top: 1.1rem; }
-.citation__deck {
-  font-style: italic;
-  font-size: var(--t-lede);
-  line-height: 1.45;
-  max-width: 30em;
-  margin: 0 0 1.25rem;
-}
-.citation .rows { margin: 0; }
-.citation .rows > div { padding: 0.65rem 0 0.7rem; }
-.citation .rows > :last-child { border-bottom: 1px solid var(--rule); }
-.citation dt { color: var(--forest); }
-.citation dd { font-size: 1rem; line-height: 1.55; }
-.citation__note { margin-top: 1.25rem; max-width: 34em; }
-
-/* ==========================================================================
-   11. Writing
-   ========================================================================== */
-
-/* Home: a lead story and a ruled list of the next two posts beside it. */
-.writing { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 2rem; }
-@media (min-width: 1000px) {
-  .writing { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); column-gap: calc(var(--gap) * 1.5); }
-  .writing .post-list { border-left: 1px solid var(--rule); padding-left: var(--gap); }
-  .writing .post-list > li:first-child { border-top: 0; padding-top: 0; }
-}
-
-.lead-post .label { margin: 0; }
-.lead-post h3 {
-  font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.35rem);
-  font-weight: 700;
+/* The band's heading is the question both pieces answer, so it is the
+   loudest thing in the band: feature size, two lines across columns 1-9. */
+.question {
+  font-size: var(--fs-feature);
   line-height: 1.1;
-  margin: 0.55rem 0 0.9rem;
-  max-width: 20ch;
-  text-wrap: balance;
-  letter-spacing: -0.012em;
+  max-width: 28ch;
 }
-.lead-post h3 a { color: inherit; text-decoration: none; }
-.lead-post h3 a:hover { text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 2px; }
-.lead-post .deck { font-size: var(--t-lede); line-height: 1.5; max-width: 30em; margin: 0; }
-.lead-post .byline { margin-top: 1rem; color: var(--ink); }
+.band .section__head { margin-bottom: var(--s6); }
 
-.post-list { list-style: none; margin: 0; padding: 0; }
-.post-list > li { padding: 1rem 0 1.05rem; border-top: 1px solid var(--rule); }
-.post-list > li:last-child { border-bottom: 1px solid var(--rule); }
-.writing .post-list > li:last-child { border-bottom: 0; }
-.post-list h3 { font-size: 1.15rem; line-height: 1.3; margin: 0 0 0.3rem; }
-/* Post titles are Forest links without an underline until hover, like the lead post. */
-.post-list h3 a { color: var(--forest); text-decoration: none; display: inline-block; padding-block: 3px; }
-.post-list h3 a:hover { color: var(--deep-forest); text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 2px; }
-.post-list .label { margin: 0; }
-.post-list p:not(.label) { font-size: var(--t-small); line-height: 1.55; margin: 0.35rem 0 0; }
+.stories { row-gap: var(--s5); }
 
-/* Long-form text (posts, topic notes). Put .prose on the container. */
-.prose h2 { font-size: var(--t-h2); line-height: 1.2; margin: 2.25rem 0 0.75rem; }
-.prose h3 { font-size: 1.2rem; line-height: 1.3; margin: 1.75rem 0 0.5rem; }
-.prose ul, .prose ol { margin: 0 0 1em; padding-left: 1.25em; }
-.prose li + li { margin-top: 0.35em; }
-.prose blockquote {
-  margin: 1.5rem 0;
-  padding-left: 1rem;
-  border-left: 2px solid var(--gold);
-  font-style: italic;
+.story__eyebrow { margin-bottom: var(--s2); }
+.story__title { font-size: var(--fs-h3); line-height: 1.2; max-width: 24ch; }
+/* Linked titles (Story, Resource, the post pager) read as headings first:
+   Ink, with a quiet 1px Forest underline that is always shown. The padding
+   lifts a Story title's target past 44px without moving the text. */
+.story__title a,
+.resource__title a,
+.pager__title a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: var(--forest);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
-
-/* ==========================================================================
-   12. Mercurius and supporter (home: side by side under one rule)
-   ========================================================================== */
-
-.app { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 1.25rem; column-gap: clamp(16px, 2.5vw, 28px); align-items: start; }
-.app__icon { width: 56px; height: 56px; border-radius: 12px; }
-@media (min-width: 700px) { .app { grid-template-columns: 56px minmax(0, 1fr); } }
-@media (min-width: 900px) {
-  .app { grid-template-columns: 64px minmax(0, 1fr); }
-  .app__icon { width: 64px; height: 64px; border-radius: 14px; }
+.story__title a:hover,
+.resource__title a:hover,
+.pager__title a:hover { text-decoration-thickness: 2px; }
+.story__title a { padding-block: 0.6em; }
+.story__byline {
+  margin-top: var(--s2);
+  font-family: var(--sans);
+  font-size: var(--fs-cap);
+  line-height: 1.45;
+  color: var(--muted);
 }
-.badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.75rem; margin-top: 1.5rem; }
-.badge-row a { display: inline-block; padding-block: 3px; }
-.badge-row a.badge { line-height: 0; padding: 0; border-radius: 7px; text-decoration: none; }
-.badge-row a.badge img { height: 44px; width: auto; }
+.story__byline .who { color: var(--ink); font-weight: 600; }
+.story__stand { margin-top: var(--s4); max-width: 60ch; }
+.story__more { margin-top: var(--s2); }
 
-.supporter h2 { margin: 0 0 1rem; }
-.supporter img { height: 40px; width: auto; margin-bottom: 1rem; }
-.supporter p { font-size: var(--t-small); line-height: 1.6; text-wrap: balance; }
-.supporter p + p { margin-top: 0.6rem; }
-
-.pair__side { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
-@media (min-width: 900px) {
-  .pair__main { grid-column: 4 / span 6; }
-  .pair__side { grid-column: 10 / -1; margin-top: 0; padding: 0 0 0 var(--gap); border-top: 0; border-left: 1px solid var(--rule); }
+/* Featured: the same title size as its companion (both answer the band's
+   question); it is wider and its excerpt is set a step larger. */
+.story--featured .story__stand {
+  font-size: var(--fs-read);
+  line-height: 1.5;
+  max-width: 48ch;
 }
-@media (min-width: 1200px) {
-  .pair__main { grid-column: 5 / span 5; }
-}
+/* Hang the opening quotation mark so the text edge stays straight. */
+.story__stand.is-quote > p { text-indent: -0.42em; }
 
-/* ==========================================================================
-   13. Forms
-   ========================================================================== */
-
-.form { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1rem var(--gap); max-width: 44rem; }
-@media (min-width: 700px) {
-  .form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .form .field--full, .form .form__actions { grid-column: 1 / -1; }
-}
-.field label {
-  display: block;
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 0.98rem;
-  line-height: 1.3;
-  color: var(--ink);
-  margin-bottom: 0.45rem;
-}
-.field .opt {
-  font-family: var(--mono);
-  font-weight: 400;
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted-text);
-  margin-left: 6px;
-}
-.field input, .field select, .field textarea {
-  width: 100%;
-  font: 400 1.0625rem/1.4 var(--serif);
-  color: var(--ink);
-  background: var(--field-bg);
-  border: 1px solid var(--field-border);
-  border-radius: 2px;
-  padding: 11px 12px;
-  min-height: 48px;
-}
-.field textarea { min-height: 8rem; resize: vertical; }
-.field select {
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%231B4D32' stroke-width='1.6'/%3E%3C/svg%3E");
-  background-position: right 14px center;
-  background-size: 12px 8px;
-  background-repeat: no-repeat;
-  padding-right: 40px;
-}
-.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
-  outline: 2px solid var(--forest);
-  outline-offset: 1px;
-  border-color: var(--forest);
-}
-.field__hint { font-size: var(--t-small); color: var(--muted-text); margin-top: 0.35rem; }
-.hidden-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-.form[hidden] { display: none; }   /* .form sets display:grid, which would beat [hidden] */
-.form-status { margin-top: 1rem; font-size: 1rem; }
-.form-status[hidden] { display: none; }
-
-/* ==========================================================================
-   14. Page-specific
-   Page rules only, one block per page, each class prefixed with its page.
-   Shared patterns belong in sections 1-13.
-   ========================================================================== */
-
-/* ---- Page: home ---- */
-
-.opening { padding-top: clamp(1.75rem, 0.5rem + 4vw, 4.5rem); }
-.opening h1 { order: 1; }
-.opening .intro { order: 2; margin-top: 1.5rem; max-width: 30em; font-size: var(--t-lede); line-height: 1.5; }
-.opening .meet { order: 3; margin-top: 2.25rem; }
-.opening .photo--meeting { order: 4; margin-top: 2.5rem; }
-
-@media (min-width: 900px) {
-  .opening h1 { grid-column: 1 / span 8; grid-row: 1; }
-  .opening .intro { grid-column: 1 / span 7; grid-row: 2; margin-top: 2rem; }
-  .opening .meet { grid-column: 9 / -1; grid-row: 1 / span 2; margin-top: 0.35rem; align-self: start; }
-  .opening .photo--meeting { grid-column: 1 / -1; grid-row: 3; margin-top: clamp(2.5rem, 1rem + 2vw, 3.5rem); }
-}
-/* ---- Page: about ---- */
-
-.about-photo { margin-top: clamp(2.5rem, 1rem + 4vw, 4.5rem); }
-.board-photo { margin-bottom: 1.75rem; }
-
-/* Three groups (#groups): a plain table on wide screens, stacked on phones. */
-.groups { width: 100%; border-collapse: collapse; margin-top: 1.75rem; }
-.groups th, .groups td {
-  text-align: left;
-  vertical-align: top;
-  padding: 1rem 1.25rem 1.05rem 0;
+/* Companion stories are separated by a hairline: above on phones, beside on desktop. */
+.story--companion {
   border-top: 1px solid var(--rule);
-  font-weight: 400;
+  padding-top: var(--s5);
 }
-.groups td:last-child { padding-right: 0; }
-.groups tbody tr:last-child > * { border-bottom: 1px solid var(--rule); }
-.groups thead th { border-top: 0; padding-top: 0; padding-bottom: 0.6rem; }
-.groups tbody th { width: 28%; }
-.groups td:nth-of-type(1) { width: 36%; }
-.groups td:nth-of-type(2) { width: 22%; }
-.groups__name {
-  display: block;
-  font-family: var(--display);
-  font-weight: 600;
-  color: var(--forest);
-  font-size: 1.15rem;
-  line-height: 1.3;
-  margin-top: 0.15rem;
-}
-.groups td { font-size: 1rem; line-height: 1.55; }
-/* The table ends its section; the next section's hairline closes it. */
-.section__body--wide > .groups:last-child tbody tr:last-child > * { border-bottom: 0; }
+.band .story--companion { border-color: var(--rule-on-tint); }
 
-@media (max-width: 699px) {
-  .groups thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  .groups, .groups tbody, .groups tr, .groups th, .groups td { display: block; width: auto; }
-  .groups tr { border-top: 1px solid var(--rule); padding: 1.1rem 0 1.2rem; }
-  .groups tbody tr:last-child { border-bottom: 1px solid var(--rule); }
-  .section__body--wide > .groups:last-child tbody tr:last-child { border-bottom: 0; padding-bottom: 0; }
-  .groups th, .groups td, .groups tbody tr:last-child > * { border: 0; padding: 0; }
-  .groups tbody th { width: auto; margin-bottom: 0.5rem; }
-  .groups tbody tr > td:nth-of-type(n) { width: auto; padding: 0.45rem 0 0.2rem; }
-  .groups td::before {
-    content: attr(data-col);
-    display: block;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted-text);
+@media (min-width: 1024px) {
+  .story--companion {
+    position: relative;
+    border-top: 0;
+    padding-top: 0;
+  }
+  /* featured in 1-7, companion in 9-12: the hairline sits in the middle of column 8 */
+  .story--companion::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(-1 * (var(--gutter) + var(--col) / 2));
+    width: 1px;
+    background: var(--rule);
+  }
+  .band .story--companion::before { background: var(--rule-on-tint); }
+  .story--companion .story__stand { font-size: var(--fs-body); }
+}
+
+.stories__close {
+  margin-top: var(--s6);
+  padding-top: var(--s2);
+  border-top: 1px solid var(--rule-on-tint);
+}
+
+/* Story list: Stories one under another, between hairlines (The Review,
+   "More writing" under a post). Put .w-wide on the list to hold it to
+   columns 1-8 from 1024. A list item's title may be an H2 (on /blog, where
+   each post is a main item) or an H3; both are set at the H3 size. */
+.story-list { list-style: none; border-top: 1px solid var(--rule); }
+.story-list > li { padding-block: var(--s5); border-bottom: 1px solid var(--rule); }
+.story-list .story__title { max-width: 36ch; }
+.story-list .story__stand { max-width: 60ch; }
+
+/* Byline first (The Review): The Creative Independent puts the person
+   first, so the byline row comes before the eyebrow and title, in the
+   reading order too. Below 1024 it is one line above the eyebrow; from 1024
+   it is a column of its own (1-4) beside the story (5-12), so a list of
+   pieces reads down a column of names and dates. Markup: the Story, with
+   .story__byline moved to the top (mayo.reviewStory does it). */
+.story--byline-first > .story__byline { margin-top: 0; margin-bottom: var(--s2); }
+@media (min-width: 1024px) {
+  .story--byline-first {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+    align-content: start;
+  }
+  .story--byline-first > * { grid-column: 5 / span 8; }
+  .story--byline-first > .story__byline {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 6;
+    margin-bottom: 0;
+    padding-top: 1px;
   }
 }
 
-/* ---- Page: topics ---- */
-
-/* The six topics: topic name in the left column, then the question,
-   one plain sentence on what it covers, and where to read more. */
-.topics-list .topics-q {
-  font-family: var(--display);
-  font-weight: 600;
-  color: var(--ink);
-  font-size: clamp(1.25rem, 1.1rem + 0.35vw, 1.4rem);
-  line-height: 1.3;
-  letter-spacing: -0.005em;
-  font-variant-numeric: lining-nums;
-  max-width: 28em;
-  margin: 0 0 0.45rem;
-  text-wrap: balance;
+/* The Review's lead piece: the newest, first, alone on the Tint band. With
+   no companion to match, its title takes the feature size (30 -> 44) and
+   its summary the reading size. */
+.story--lead .story__title {
+  font-size: var(--fs-feature);
+  line-height: 1.1;
+  max-width: 22ch;
 }
-.topics-list p:not(.topics-q) { max-width: 34em; }
-.topics-list .topics-more {
-  margin-top: 0.5rem;
-  font-size: var(--t-small);
-  line-height: 1.55;
-  color: var(--muted-text);
+.story--lead .story__stand { margin-top: var(--s4); }
+.story--lead .story__more { margin-top: var(--s3); }
+
+/* ==========================================================================
+   13. Resource: label line (format · time or size · source) -> title ->
+       the artifact, whole, as a document -> its text as HTML -> 2-4 numbered
+       notes in the club's words (aside on desktop) -> "What you'll need"
+       (confirmed values only) -> source and download line.
+       First used on the homepage ("What happens on Thursdays").
+   ========================================================================== */
+
+.resource__label { margin-bottom: var(--s2); }
+.resource__title { font-size: var(--fs-h3); line-height: 1.2; }
+.resource__doc { margin-top: var(--s4); }
+.resource__doc img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background: #fff;
 }
-
-/* Resource library (#resources): category in the left column, then a
-   plain list of links. Rules only between categories, never inside. */
-.topics-res__list { list-style: none; margin: 0; padding: 0; }
-.topics-res__list > li + li { margin-top: 1.4rem; }
-.topics-res__list .label { display: block; }
-.topics-res__list h4 {
-  font-size: 1.15rem;
-  line-height: 1.3;
-  margin: 0.2rem 0 0.2rem;
-}
-.topics-res__list h4 a { display: inline-block; padding-block: 3px; }
-.topics-res__list p:not(.label) {
-  font-size: var(--t-small);
-  line-height: 1.55;
-  max-width: 36em;
-}
-/* Phones: the category heading sits above its links, so give it room. */
-@media (max-width: 699px) {
-  .topics-res > li > h3 { font-size: 1.25rem; margin-bottom: 0.9rem; }
-}
-
-/* ---- Page: events ---- */
-
-/* The standing meeting sits where an inner page's lede would (with
-   .page-title__more), and the time is set at display size: it is the fact
-   this page exists to give. */
-.events-meet { max-width: 32rem; }
-.events-meet .meet__time { font-size: var(--t-display); line-height: 0.95; margin-bottom: 0.5rem; }
-.events-meet .meet__where { font-size: var(--t-lede); }
-.events-act { margin: 1.4rem 0 0; font-size: 1rem; }
-.events-act a { display: inline-block; padding-block: 3px; }
-
-/* Coming up and earlier: a date in the left column, the event beside it. */
-.events-list .label time { white-space: normal; }
-.events-list .events-where { display: block; color: var(--muted-text); }
-.events-list h3, .events-past h3 { margin-bottom: 0; }
-.events-list h3 + p, .events-past h3 + p { margin-top: 0.35rem; }
-.events-past h3 + p a { display: inline-block; padding-block: 3px; }
-.events-questions { list-style: disc; margin: 0.6rem 0 0; padding-left: 1.2em; }
-.events-questions li + li { margin-top: 0.3em; }
-.events-list .fineprint { margin-top: 0.6rem; }
-.events-follow { margin-top: 1rem; }
-.events-list + .events-follow { margin-top: 1.5rem; }
-@media (max-width: 699px) {
-  .events-list > li > .label, .events-past > li > .label { margin-bottom: 0.3rem; }
-}
-
-/* ---- Page: blog ---- */
-
-/* The dated list of posts (also the not-found state on blog-post).
-   <ol class="post-list blog-list"><li class="grid">
-     <p class="label label--forest blog-list__date"><time>…</time></p>
-     <div class="blog-list__body"><h3><a>Title</a></h3><p class="label">Author · Category</p><p>Summary</p></div>
-   </li></ol>
-   Each row is a 12-column grid, so from 900px the date sits in the page's
-   rail and the post starts on the body column, like every section heading. */
-.blog-list > li { padding: 1.35rem 0 1.5rem; row-gap: 0.45rem; }
-.blog-posts > .blog-list > li:first-child { border-top: 0; padding-top: 0.1rem; }
-.blog-posts > .blog-list > li:last-child { border-bottom: 0; padding-bottom: 0; }
-.blog-list__date { margin: 0; }
-.blog-list h3 {
-  font-size: clamp(1.3rem, 1.1rem + 0.6vw, 1.6rem);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.008em;
-  max-width: 24em;
-  text-wrap: balance;
-  margin: 0 0 0.4rem;
-}
-/* Inline, not the shell's inline-block: the date lines up with the first
-   line of a two-line title. */
-.blog-list h3 a { display: inline; }
-.blog-list .blog-list__body > p:not(.label) { font-size: 1rem; line-height: 1.6; max-width: 36em; margin: 0.5rem 0 0; }
-
-@media (min-width: 900px) {
-  .blog-list > li { row-gap: 0; align-items: baseline; }
-  .blog-list__date { grid-column: 1 / span 3; }
-  .blog-list__body { grid-column: 4 / -1; }
-}
-@media (min-width: 1200px) {
-  .blog-list__date { grid-column: 1 / span 4; }
-  .blog-list__body { grid-column: 5 / span 7; }
-}
-
-/* ---- Page: blog-post ---- */
-
-/* Opening, after the brand kit's article template: a Space Mono kicker (the
-   category), the Josefin headline, then the author's summary as the deck. */
-.post-kicker { margin: 0 0 1rem; }
-.post-head h1 { max-width: 20em; }
-.post-deck { font-style: italic; }
-.post-head .lede a { white-space: normal; }
-
-/* Byline: author, publication, date and reading time, one short Space Mono
-   line each. In the rail beside the text from 900px; above it on phones. */
-.post-main {
-  margin-top: clamp(2.25rem, 1.25rem + 2.5vw, 3.5rem);
-  padding-top: 1.4rem;
+.resource__notes {
+  margin-top: var(--s4);
+  list-style: none;
+  counter-reset: note;
   border-top: 1px solid var(--rule);
-  row-gap: 1.6rem;
 }
-.post-byline { margin: 0; }
-.post-byline > span { display: block; }
-.post-byline__author { color: var(--ink); }
-
-/* Article prose: Newsreader at the kit's 1.05rem/1.75 (its pages sit on an
-   18px root, so that is about 18.8px here from 900px). The measure is set in
-   em: Newsreader's "0" is wide, so 68ch ran to about 89 characters a line;
-   30em gives about 70. */
-.post-body { max-width: 30em; font-size: 1.0625rem; line-height: 1.75; }
-.post-body p { margin-bottom: 1.05em; }
-.post-body > :last-child { margin-bottom: 0; }
-
-/* Pull quote: the article's one gold rule. Source under it in Space Mono. */
-.post-pull { margin: 2rem 0; }
-.post-pull blockquote { margin: 0; }
-.post-pull blockquote p {
-  font-size: var(--t-lede);
-  line-height: 1.45;
+.resource__notes > li {
+  counter-increment: note;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: var(--s3);
+  padding-block: var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+.resource__notes > li::before {
+  content: counter(note, decimal-leading-zero);
+  font: 700 var(--fs-label)/1.6 var(--sans);
   color: var(--forest);
-  margin: 0;
+  font-variant-numeric: lining-nums tabular-nums;
 }
-.post-pull figcaption { margin-top: 0.6rem; padding-left: calc(1rem + 2px); }
+.resource__notes p { font-size: var(--fs-body); line-height: 1.5; }
+.resource__notes strong { font: 600 var(--fs-ui)/1.4 var(--sans); display: block; margin-bottom: var(--s1); }
+.resource__notes .meta { display: block; margin-top: var(--s1); }
+.resource__notes-label { margin-top: var(--s5); }
+.resource__need { margin-top: var(--s4); }
+.resource__source { margin-top: var(--s4); }
 
-@media (min-width: 900px) {
-  /* Beside the rail the section hairline is already the list's top rule. */
-  .post-more .post-list > li:first-child { border-top: 0; padding-top: 0.1rem; }
-  .post-byline { grid-column: 1 / span 3; padding-right: var(--gap); }
-  .post-body { grid-column: 4 / -1; font-size: 1.175rem; }
+/* The artifact's own words, as HTML: legible on a phone, where the slide
+   image is too small to read, and selectable everywhere. */
+.resource__text { margin-top: var(--s5); }
+.resource__text blockquote {
+  margin-top: var(--s2);
+  padding-left: var(--s4);
+  border-left: 1px solid var(--rule);
+  max-width: 66ch;
+  font-size: var(--fs-ui);
+  line-height: 1.55;
 }
-@media (min-width: 1200px) {
-  .post-byline { grid-column: 1 / span 4; }
-  .post-body { grid-column: 5 / span 7; }
+.resource__text blockquote p + p,
+.resource__text blockquote ul { margin-top: var(--s3); }
+.resource__text blockquote strong { font-weight: 600; }
+.resource__text ul { list-style: none; }
+.resource__text li { padding-left: 1.1em; text-indent: -1.1em; }
+.resource__text li::before { content: "–"; display: inline-block; width: 1.1em; text-indent: 0; color: var(--muted); }
+
+@media (min-width: 1024px) {
+  .resource { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .resource > * { grid-column: 1 / span 8; }
+  .resource > .resource__aside { grid-column: 9 / span 4; grid-row: 3 / span 2; padding-top: var(--s4); }
+  .resource__aside .resource__notes-label { margin-top: 0; }
+}
+/* From 1280 the slide itself sets its body near 13-14px, so the transcript
+   leaves the screen but stays in the page for screen readers, search and
+   zoom (at 400% zoom the phone layout returns and shows it). */
+@media (min-width: 1280px) {
+  .resource__text {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: normal;
+    border: 0;
+  }
 }
 
-/* While the post loads, keep the footer from jumping up. With JavaScript the
-   no-JS fallback stays hidden; the script shows it if the renderer can't run. */
-.js .post-root[aria-busy="true"] { min-height: 70vh; }
+/* A linked Resource title is set as the Story title (section 12). */
+.resource__desc { margin-top: var(--s2); max-width: 60ch; }
+
+/* Compact Resource: something outside the club that we point to (Learn's
+   library). Label line (format · source) -> linked title -> a line or two
+   on what it is. No artifact and no notes: it isn't the club's own work,
+   so there is nothing of ours to annotate. Lives in a .reslist. */
+.resource--compact .resource__title { font-size: var(--fs-body); line-height: 1.35; }
+.resource--compact .resource__label { margin-bottom: var(--s1); }
+
+/* Resource list: compact Resources between hairlines; two across from 768,
+   three from 1024 (the homepage's six-question grid, same rules). */
+.reslist { list-style: none; border-top: 1px solid var(--rule); }
+.reslist > li { padding-block: var(--s4); border-bottom: 1px solid var(--rule); }
+@media (min-width: 768px) {
+  .reslist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); }
+}
+@media (min-width: 1024px) {
+  .reslist { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .resource.resource--compact { display: block; }
+}
+/* A resource reached from a Learn topic sits on Tint, edge to edge in its
+   gutter (a convenience: the words don't change, so it is never the only cue). */
+.reslist > li:target {
+  margin-inline: calc(-1 * var(--s2));
+  padding-inline: var(--s2);
+  background: var(--tint);
+}
+
+/* ==========================================================================
+   14. Long-form reading: a post body, a page's own essay. Newsreader at
+       the reading size, 66ch, with headings, lists, quotes and figures
+       taken from the same roles as the rest of the page.
+       Markup: <div class="longform"> around plain HTML.
+   ========================================================================== */
+
+.longform {
+  max-width: 66ch;
+  font-size: var(--fs-read);
+  line-height: 1.6;
+}
+.longform > * + * { margin-top: var(--s5); }
+/* A note on the paragraph above (the Mayo Clinic sentence after an AACA
+   citation, /mercurius) sits with it: 12px, as .citation__note. */
+.longform > p + p.meta { margin-top: var(--s3); max-width: 66ch; }
+.longform > h2 {
+  margin-top: var(--s7);
+  font-size: var(--fs-h2);
+  line-height: 1.15;
+}
+.longform > h3 {
+  margin-top: var(--s6);
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+}
+.longform > h2 + *,
+.longform > h3 + * { margin-top: var(--s3); }
+.longform ul,
+.longform ol { padding-left: 1.3em; }
+.longform li + li { margin-top: var(--s2); }
+.longform li::marker { color: var(--muted); }
+.longform ol > li::marker { font-family: var(--sans); font-weight: 600; font-variant-numeric: lining-nums tabular-nums; }
+.longform em { font-style: italic; }
+.longform hr { border: 0; border-top: 1px solid var(--rule); }
+
+/* A quotation in the run of the text: a 2px Forest edge, the same face. */
+.longform blockquote {
+  padding-left: var(--s5);
+  border-left: 2px solid var(--forest);
+}
+.longform blockquote > * + * { margin-top: var(--s3); }
+
+/* Pull quote: the piece's own words lifted out, set a step up in italic,
+   with its source (if any) under it. Never an anonymous testimonial. */
+.pullquote > blockquote > p {
+  font-family: var(--serif);
+  font-size: var(--fs-h3);
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.pullquote > figcaption { margin-top: var(--s2); padding-left: calc(var(--s5) + 2px); }
+.longform > .pullquote,
+.longform > figure { margin-block: var(--s6); }
+.longform > figure + *,
+.longform > .pullquote + * { margin-top: 0; }
+
+/* A post page (/blog-post): kicker -> H1 -> byline row (By name · date ·
+   N min read) -> standfirst -> the body (48px below) -> notes -> previous /
+   next. While the post loads, the root holds the footer down; the no-JS
+   fallback stays hidden unless the renderer can't run. */
+.pagehead__byline {
+  margin-top: var(--s3);
+  font: 400 var(--fs-cap)/1.45 var(--sans);
+  color: var(--muted);
+}
+.pagehead__byline .who { color: var(--ink); font-weight: 600; }
+.pagehead .pagehead__byline + .standfirst { margin-top: var(--s5); }
+.post-body { margin-top: var(--s7); }
+.js .post-root[aria-busy="true"] { min-height: 100vh; min-height: 100svh; }
 .js .post-fallback { display: none; }
 .js .post-fallback.is-shown { display: block; }
 
-/* ---- Page: blog-anthropic-pentagon (the long read with its own design) ----
-   The article keeps its own inline CSS, untouched. That CSS sets
-   html { font-size: 18px } and styles every bare h2, while styles.css sets a
-   few base rules the article never had. The rules below (all scoped to
-   body.pentagon) keep the article looking exactly as it did, and keep the
-   shared header and footer at the sizes they have on every other page. */
+/* Notes: the piece as a record (writer, date, its topic on Learn), under
+   the body, at about its measure. */
+.post-notes { margin-top: var(--s7); max-width: 66ch; font-size: var(--fs-read); }
+.post-notes .rows dd a { padding-block: 2px; }
 
-/* Undo site-wide base rules the article didn't have. */
-.pentagon {
-  font-size: 1rem;
-  font-variant-numeric: normal;
-  -webkit-font-smoothing: auto;
+/* Previous / next: the pieces either side of this one in The Review's order
+   (newest first), each with its writer, between hairlines; two across from
+   768, with "next" always in the right column. */
+.pager { list-style: none; border-top: 1px solid var(--rule); }
+.pager > li { padding-block: var(--s4); border-bottom: 1px solid var(--rule); }
+.pager__dir { margin-bottom: var(--s1); }
+.pager__title {
+  font: 600 var(--fs-body)/1.35 var(--serif);
+  color: var(--ink);
+  max-width: 36ch;
 }
-.pentagon main p, .pentagon main li { text-wrap: wrap; }
-.pentagon main strong, .pentagon main b { font-weight: bolder; }   /* the browser default; styles.css sets 600 */
-.pentagon .big-stat .label { line-height: inherit; }
+.pager__title a { padding-block: 0.4em; }
+.pager .meta { margin-top: var(--s1); }
+.pager .who { color: var(--ink); font-weight: 600; }
+@media (min-width: 768px) {
+  .pager { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .pager > .pager__next { grid-column: 2; }
+}
+
+/* ==========================================================================
+   15. Forms, choices and status messages (/join)
+       Labels above fields, hints under labels, errors in words under the
+       hint, and one status area beside the submit. Fields are 48px tall
+       with 18px text (no iOS zoom). Radius 2px; no shadows.
+   ========================================================================== */
+
+.form { max-width: 36rem; }
+/* Zero-specificity resets, so .choices and .fieldgroup set their own margins. */
+:where(.form) fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+:where(.form) legend { padding: 0; }
+
+/* One group per route. Without JS every group shows under its own
+   heading; with JS only the chosen one shows, and the others are hidden
+   AND disabled, so they are neither sent nor checked. */
+.fieldgroup { margin-top: var(--s7); }
+.fieldgroup[hidden] { display: none; }
+.fieldgroup__head {
+  font: 600 var(--fs-h3)/1.2 var(--serif);
+  color: var(--ink);
+  text-wrap: balance;
+}
+.fieldgroup__intro { margin-top: var(--s2); }
+
+.field { margin-top: var(--s5); }
+.field__label {
+  display: block;
+  font: 600 var(--fs-ui)/1.35 var(--sans);
+  color: var(--ink);
+}
+.field__opt { font-weight: 400; color: var(--muted); }
+.field__hint {
+  display: block;
+  margin-top: var(--s1);
+  max-width: 52ch;
+  font: 400 var(--fs-cap)/1.45 var(--sans);
+  color: var(--muted);
+}
+.field__error {
+  display: block;
+  margin-top: var(--s1);
+  font: 600 var(--fs-ui)/1.4 var(--sans);
+  color: var(--error);
+}
+.field__error[hidden] { display: none; }
+
+.input,
+.form input:is([type="text"], [type="email"], [type="tel"], [type="url"], [type="search"], [type="number"]),
+.form select,
+.form textarea {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  margin-top: var(--s2);
+  padding: 10px 12px;
+  border: 1px solid var(--field-line);
+  border-radius: 2px;
+  background-color: var(--field);
+  color: var(--ink);
+  font: 400 var(--fs-input)/1.4 var(--sans);
+}
+.form textarea { min-height: 8.5rem; resize: vertical; }
+.form select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%231a1714' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 14px 9px;
+}
+/* A field whose answer is short (grade): don't stretch it across. */
+.field--short :is(input, select) { max-width: 16rem; }
+
+.form :is(input, select, textarea):focus {
+  outline: 2px solid var(--forest);
+  outline-offset: 2px;
+}
+/* Invalid: a 2px Error edge (padding shrinks by 1px so nothing moves), and
+   always a .field__error in words, tied by aria-describedby. */
+.form :is(input, select, textarea)[aria-invalid="true"] {
+  border-width: 2px;
+  border-color: var(--error);
+  padding: 9px 11px;
+}
+.form select[aria-invalid="true"] { padding-right: 43px; }
+
+/* Choices: radio cards. The card is the label (56px or taller), the radio
+   stays visible because it IS the state, and the chosen card gets a 2px
+   Forest edge on Tint. Stacked by default; .choices--across puts three
+   side by side from 768 (short titles only). Markup:
+   fieldset.choices > legend.field__label + .choices__list > label.choice >
+   input[type=radio] + span.choice__title + span.choice__hint */
+.choices { margin-top: var(--s5); }
+.choices__list { display: grid; gap: var(--s2); margin-top: var(--s3); }
+@media (min-width: 768px) {
+  .choices--across .choices__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.choice {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--s1) var(--s3);
+  min-height: 56px;
+  padding: var(--s3) var(--s4);
+  border: 1px solid var(--field-line);
+  border-radius: 2px;
+  background: var(--field);
+  cursor: pointer;
+}
+.choice input[type="radio"] {
+  grid-row: 1 / span 2;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--forest);
+  /* /join#form-mayo, #form-other-school and #form-supporter land on a radio:
+     keep the section heading and "I am" in view above it (no-JS; the page
+     script refines it per radio). Outranks the site-wide 24px deep-link rule. */
+  scroll-margin-top: 13rem;
+}
+.choice__title { font: 600 var(--fs-ui)/1.35 var(--sans); color: var(--ink); }
+.choice__hint {
+  grid-column: 2;
+  font: 400 var(--fs-cap)/1.45 var(--sans);
+  color: var(--muted);
+}
+.choice:hover { border-color: var(--forest); }
+.choice:has(input:checked) {
+  padding: 11px 15px;
+  border: 2px solid var(--forest);
+  background: var(--tint);
+}
+.choice:has(input:focus-visible) { outline: 2px solid var(--forest); outline-offset: 2px; }
+@supports selector(:has(*)) {
+  .choice input:focus-visible { outline: none; }
+}
+/* A choice that must be made and wasn't: Error edges plus the words. */
+.choices.is-invalid .choice:not(:has(input:checked)) { border-color: var(--error); }
+
+/* The submit row: the button, then a short, true line on what happens next. */
+.form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3) var(--s5);
+  margin-top: var(--s6);
+}
+.form__after { margin-top: var(--s3); max-width: 46ch; }
+.btn[disabled],
+.btn[aria-disabled="true"] {
+  background: var(--muted);
+  border-color: var(--muted);
+  color: var(--parchment);
+  cursor: not-allowed;
+}
+.btn[aria-busy="true"] { cursor: progress; }
+
+/* Honeypot: never shown, never focused. */
+.hidden-field { display: none; }
+
+/* Form layout (/join): the form in columns 1-7, side notes in 9-12 (a
+   dl.rows.rows--stack: "Starting a chapter?", "Rather not use a form?");
+   after the form, 48px down, below 1024. */
+.form-layout__aside { margin-top: var(--s7); }
+@media (min-width: 1024px) {
+  .form-layout__aside { margin-top: 0; padding-top: var(--s1); }
+}
+.form-layout__aside .rows dd > p + p { margin-top: var(--s1); }
+
+/* The enhanced form (form.is-enhanced, set by the page script). Only the
+   chosen route's fields show, so the per-route group headings that guide a
+   no-JS reader would be noise: they stay in the accessibility tree as the
+   groups' names, but not on screen, and the groups close up to the 24px
+   field rhythm. A block whose route isn't chosen is hidden and disabled. */
+.form.is-enhanced .fieldgroup { margin-top: 0; }
+.form.is-enhanced .fieldgroup__head {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.form [data-routes][hidden],
+.field__opt[hidden] { display: none; }
+
+/* Status: a message the page announces (role="alert" for problems,
+   role="status" for confirmations). The words carry the meaning; the 4px
+   edge repeats it. Error summary: a .status--error holding a list of links
+   to the fields. Confirmation: a .status--ok with a .status__title, which
+   replaces the form and takes focus (tabindex="-1"). */
+.status {
+  max-width: 36rem;
+  padding: var(--s4) var(--s5);
+  border-left: var(--rule-w) solid var(--forest);
+  background: var(--tint);
+  color: var(--ink);
+  font: 400 var(--fs-ui)/1.5 var(--sans);
+}
+.status[hidden] { display: none; }
+.status > * + * { margin-top: var(--s2); }
+.status strong { font-weight: 700; }
+.status ul { list-style: none; }
+.status li + li { margin-top: var(--s1); }
+.status a { font-weight: 600; }
+.status__title {
+  font: 600 var(--fs-h3)/1.2 var(--serif);
+  color: var(--ink);
+}
+.status--error {
+  border-left-color: var(--error);
+  background: var(--field);
+}
+.status--error > :first-child strong { color: var(--error); }
+* + .status { margin-top: var(--s5); }
+
+/* Announced regions: the error summary and the failure message each sit in
+   an always-rendered div.form__alert[role="alert"], empty-looking until the
+   script shows its .status. --end gives the failure box its 24px above. */
+.form__alert--end > .status { margin-top: var(--s5); }
+.form__alert > .status + * { margin-top: 0; }
+.form__alert .status .btn { margin-top: var(--s1); }
+
+/* ==========================================================================
+   16. Tables: only where the content is a real comparison (About's three
+       groups). Labels in the sans, hairlines between rows, tabular figures.
+       Below 768 each row becomes a block and each cell shows its column
+       name from data-label. Markup: table.table, th scope="col"/"row",
+       td data-label="Column name".
+   ========================================================================== */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.table th,
+.table td {
+  padding: var(--s3) var(--s5) var(--s3) 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+.table thead th {
+  padding-top: 0;
+  padding-bottom: var(--s2);
+  border-bottom: 1px solid var(--forest);
+  font: 600 var(--fs-label)/1.3 var(--sans);
+  color: var(--ink);
+}
+.table tbody th {
+  min-width: 9rem;
+  font: 600 var(--fs-body)/1.4 var(--serif);
+  color: var(--ink);
+}
+.table tbody th .label { display: block; margin-bottom: var(--s1); }
+.table td { font-size: var(--fs-body); line-height: 1.5; }
+
+@media (max-width: 767.98px) {
+  .table,
+  .table tbody,
+  .table tr,
+  .table th,
+  .table td { display: block; }
+  .table thead {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .table tbody { border-top: 1px solid var(--rule); }
+  .table tr { padding-block: var(--s4); border-bottom: 1px solid var(--rule); }
+  .table tbody th,
+  .table td { padding: 0; border: 0; }
+  .table td {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: var(--s4);
+    margin-top: var(--s2);
+  }
+  .table td::before {
+    content: attr(data-label);
+    padding-top: 0.25em;
+    font: 600 var(--fs-label)/1.3 var(--sans);
+    color: var(--muted);
+  }
+}
+
+/* ==========================================================================
+   17. People: the board. A real headshot (72px, 2px radius), the name as
+       an H3, the verified role as a label, one line on what they do.
+       Stacked between hairlines; two across from 768.
+   ========================================================================== */
+
+.people { list-style: none; border-top: 1px solid var(--rule); }
+.person {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-content: start;
+  column-gap: var(--s4);
+  padding-block: var(--s4);
+  border-bottom: 1px solid var(--rule);
+}
+.person > * { grid-column: 2; }
+.person__photo {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  width: 72px;
+  height: 72px;
+  border-radius: 2px;
+  object-fit: cover;
+  background: var(--tint);
+}
+.person__name { font-size: var(--fs-h3); line-height: 1.2; }
+.person__role { margin-top: var(--s1); }
+.person__note { margin-top: var(--s2); max-width: 52ch; }
+@media (min-width: 768px) {
+  .people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); }
+}
+/* Stack: one person per row inside a narrow aside from 1024 (/chapters'
+   "Who supports new chapters"); below 1024 the aside is full width and the
+   usual two across returns from 768. */
+@media (min-width: 1024px) {
+  .people.people--stack { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ==========================================================================
+   18. Topics and supporting sections: Learn's six topics, the homepage's
+       six questions, the AACA citation (full and compact), the record and
+       the app. Kept from the October 2 site and set in this system.
+   ========================================================================== */
+
+/* Topic (Learn): name (H3) -> the club's question, in the serif italic of
+   the student's own thinking -> what it covers -> "Start with": two to four
+   plain links, each with its kind (the club's own writing and activity
+   first, then the library). Stacked between hairlines; from 768 the name
+   takes a third and the rest two thirds, as in .defs. Never cards. A topic
+   with nothing to start with has no list. */
+.topic-list { list-style: none; border-top: 1px solid var(--rule); }
+.topic {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--s5);
+  padding-block: var(--s5);
+  border-bottom: 1px solid var(--rule);
+}
+.topic__name { font-size: var(--fs-h3); line-height: 1.2; }
+.topic__q {
+  margin-top: var(--s2);
+  font-size: var(--fs-read);
+  font-style: italic;
+  line-height: 1.45;
+  max-width: 48ch;
+  text-wrap: balance;
+}
+.topic__about { margin-top: var(--s2); max-width: 60ch; line-height: 1.55; }
+/* Where to start: the kind is a field name, set like a .rows label: above
+   the title on phones, beside it from 768. */
+.topic__start {
+  list-style: none;
+  margin-top: var(--s4);
+  border-top: 1px solid var(--rule);
+}
+.topic__start > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px var(--s4);
+  padding-block: var(--s3);
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.45;
+}
+.topic__start > li:last-child { border-bottom: 0; }
+.topic__kind {
+  font: 600 var(--fs-label)/1.3 var(--sans);
+  color: var(--muted);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.topic__start a { padding-block: 2px; }
+.topic__start .meta { display: block; }
+@media (min-width: 768px) {
+  .topic { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+  .topic__name { grid-column: 1; grid-row: 1 / span 4; }
+  .topic > :not(.topic__name) { grid-column: 2; }
+  .topic__q { margin-top: 0; }
+  .topic__start > li { grid-template-columns: 7.5rem minmax(0, 1fr); padding-block: var(--s2); }
+  .topic__kind { padding-top: 0.25em; }
+}
+
+/* The resource leads the Thursdays section; the six topics follow it. */
+.resource + .topics__head { margin-top: var(--s7); }
+.topics__head { margin-bottom: var(--s4); }
+
+/* Six questions, as labelled rows: thirds of two on desktop. */
+.questions { list-style: none; border-top: 1px solid var(--rule); }
+.questions > li {
+  padding-block: var(--s4);
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--fs-body);
+  line-height: 1.45;
+}
+.questions .label { display: block; margin-bottom: var(--s1); }
+
+@media (min-width: 768px) {
+  .questions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); }
+}
+@media (min-width: 1024px) {
+  .questions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* The AACA citation: a record, with the Mayo Clinic sentence beside it. */
+.citation__deck { margin-top: var(--s4); font-style: italic; }
+.citation .rows { margin-top: var(--s5); }
+.citation__note { margin-top: var(--s3); max-width: 66ch; }
+
+@media (min-width: 1024px) {
+  .citation { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .citation > * { grid-column: 1 / span 8; }
+}
+/* Compact: the poster as supporting material, not a feature (/chapters).
+   Label (kind · date) -> the poster's title at H3 -> one paragraph -> the
+   Mayo Clinic sentence. No rows, and no grid of its own: it sits in a span. */
+@media (min-width: 1024px) {
+  .citation.citation--compact { display: block; }
+}
+.citation--compact > * + * { margin-top: var(--s2); }
+.citation--compact .citation__title { font-size: var(--fs-h3); line-height: 1.2; max-width: 30ch; }
+.citation--compact .citation__title + p { margin-top: var(--s3); max-width: 60ch; }
+.citation--compact .citation__note { margin-top: var(--s3); }
+
+/* The record: photo in 1-7, rows and links in 9-12. Source order is rows,
+   photo, links, so on phones the photo follows the row it shows. */
+.record { row-gap: var(--s5); }
+.record > .links { margin-top: 0; }
+/* Rows that carry paragraphs (/about, "The story so far"): on phones the
+   label sits above its value, as in the homepage's record (rows--stack), so
+   the story keeps the full measure; from 768 the label sits beside it. */
+@media (max-width: 767.98px) {
+  .record__rows > div { grid-template-columns: minmax(0, 1fr); row-gap: var(--s1); }
+}
+@media (min-width: 1024px) {
+  .record { grid-template-rows: auto 1fr; }
+  .record > .record__rows { grid-row: 1; }
+  .record > .record__photo { grid-row: 1 / span 2; }
+  .record > .record__links { grid-row: 2; align-self: start; }
+}
+
+/* Mercurius: its own section, main column only. */
+.app { display: flex; gap: var(--s4); align-items: flex-start; max-width: 50rem; }
+.app__icon { width: 56px; height: 56px; border-radius: 12px; flex: none; }
+.app p + p { margin-top: var(--s3); }
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3) var(--s5);
+  margin-top: var(--s4);
+}
+.badge { display: inline-block; }
+.badge img { height: 44px; width: auto; }
+
+/* ==========================================================================
+   19. Footer: Deep Forest, Gold rule, the 96px seal, the full disclaimer
+   ========================================================================== */
+
+.ft {
+  margin-top: var(--section-gap);
+  background: var(--deep);
+  border-top: var(--rule-w) solid var(--gold);
+  color: var(--parchment);
+  padding-block: var(--s7) var(--s6);
+  font-size: var(--fs-body);
+}
+.ft a { color: var(--parchment); }
+.ft :focus-visible { outline-color: var(--gold-light); }
+.ft__label {
+  margin-bottom: var(--s2);
+  font: 600 var(--fs-label)/1.3 var(--sans);
+  color: var(--gold-light);
+}
+.ft__grid { row-gap: var(--s6); }
+.ft__seal { width: 96px; height: 96px; margin-bottom: var(--s4); }
+.ft__name { font: 600 var(--fs-h3)/1.2 var(--serif); }
+.ft__about p + p { margin-top: var(--s2); }
+.ft ul { list-style: none; }
+.ft li a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; }
+.ft__nav ul { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); column-gap: var(--s6); }
+.ft__nav a { font: 600 var(--fs-ui)/1.25 var(--sans); }
+.ft__else li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s2); }
+.ft__else .ft__k { font: 400 var(--fs-cap)/1.45 var(--sans); color: var(--on-dark-soft); }
+.ft__legal {
+  margin-top: var(--s7);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule-dark);
+  font: 400 var(--fs-cap)/1.5 var(--sans);
+  color: var(--on-dark-soft);
+}
+.ft__legal p { max-width: 80ch; }
+.ft__legal p + p { margin-top: var(--s3); }
+
+@media (min-width: 768px) {
+  .ft__grid > .ft__about { grid-column: 1 / -1; }
+  .ft__grid > .ft__meets { grid-column: 1 / span 3; }
+  .ft__grid > .ft__nav { grid-column: 4 / span 3; }
+  .ft__grid > .ft__else { grid-column: 7 / span 2; }
+}
+@media (min-width: 1024px) {
+  .ft__grid > .ft__about { grid-column: 1 / span 4; }
+  .ft__grid > .ft__meets { grid-column: 5 / span 3; }
+  .ft__grid > .ft__nav { grid-column: 8 / span 2; }
+  .ft__grid > .ft__else { grid-column: 10 / span 3; }
+  .ft__nav ul { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   20. The Pentagon long read (blog-anthropic-pentagon.html, body.pentagon)
+       Its <article>, masthead and images keep their own inline CSS, which
+       is never edited: it loads after this file, sets html { font-size:
+       18px } and styles every bare h1 and h2. These rules (all scoped to
+       body.pentagon) keep the article as it was and keep the shared
+       header and footer at the sizes they have on every other page.
+   ========================================================================== */
+
+/* The shell's type tokens in px, because this page's rem is 18px. */
+.pentagon {
+  --fs-h3: clamp(21px, 19.136px + 0.476vw, 26px);
+  --fs-body: 18px;
+  --fs-ui: 16px;
+  --fs-cap: clamp(14px, 13.264px + 0.19vw, 16px);
+  --fs-label: 14px;
+  --fs-brand: clamp(17px, 14.4px + 0.6vw, 19px);
+  --fs-menu: 21px;
+}
+
+/* Undo base rules the article never had. */
+.pentagon { font-size: 1rem; -webkit-font-smoothing: auto; }
+.pentagon main h1,
+.pentagon main h2 { text-wrap: wrap; max-width: none; }
+.pentagon main p,
+.pentagon main li { text-wrap: wrap; }
+.pentagon main strong,
+.pentagon main b { font-weight: bolder; }
+.pentagon .big-stat .label { font-weight: 400; line-height: inherit; }
 
 /* The masthead and reading bar sat under the old fixed 68px nav. */
 .pentagon .masthead { margin-top: 0; }
 .pentagon .progress-bar { top: 0; }
 
-/* The article's old sign-off band (a second dark footer with its own copy
-   of the seal) is replaced by the colophon. Hidden, not deleted: it holds
-   an embedded image, and the article file is not ours to cut. */
+/* The article's old sign-off band (a second dark footer with a second
+   seal) is covered by the site footer. Hidden, not deleted: the file's
+   article and images are not ours to cut. */
 .pentagon .site-footer { display: none; }
 
-/* Two old overflow bugs in the article's own CSS made the whole page, the
-   shared header included, scroll sideways. The article file is unchanged;
-   these two rules only stop the overflow.
-   - The callout breaks 48px out to the right. Under 760px there is only
-     the 28px page gutter to break into, so it runs to the screen edge.
-   - Margin notes hang 220px outside the text column and only fit from
-     about 1104px. The article already hid them at 1000px and below. */
+/* Two overflow bugs in the article's own CSS made the whole page scroll
+   sideways. The callout breaks 48px out to the right, and under 760px
+   there is only the 28px page gutter to break into; margin notes hang
+   220px outside the column and only fit from about 1104px. */
 @media (max-width: 759px) {
   .pentagon .callout { margin-right: -28px; }
 }
@@ -1103,119 +1864,32 @@ p time, dd time, li time { white-space: nowrap; }
   .pentagon .margin-note { display: none; }
 }
 
-/* Shared header and footer at the 16px-root sizes from styles.css. */
+/* The shared shell, against the article's bare h2 rule (Josefin caps, a
+   ghost number in ::before/::after, 3.5rem margins) and its 1.78 body
+   leading. */
 .pentagon .site-header,
-.pentagon .colophon { -webkit-font-smoothing: antialiased; --t-label: 12px; }
-.pentagon .skip-link { font-size: 17px; }
-.pentagon .brand__name { font-size: 16.96px; }
-.pentagon .site-nav a { font-size: 15.68px; }
-.pentagon .nav-toggle { font-size: 16px; }
-@media (max-width: 999px) {
-  .js .pentagon .site-nav a { font-size: 17.6px; }
+.pentagon .ft { -webkit-font-smoothing: antialiased; line-height: 1.55; font-weight: 400; }
+.pentagon .ft__label {
+  position: static;
+  margin: 0 0 var(--s2);
+  padding: 0;
+  border: 0;
+  letter-spacing: normal;
+  text-transform: none;
+  overflow: visible;
 }
-.pentagon .colophon {
-  margin-top: clamp(64px, 32px + 5vw, 112px);
-  font-size: 15.68px;
-  font-weight: 400;
-}
-.pentagon .colophon h2 { position: static; padding-top: 0; margin: 0 0 12px; }
-.pentagon .colophon h2::before,
-.pentagon .colophon h2::after { content: none; }
-.pentagon .colophon__grid { row-gap: 36px; }
-.pentagon .colophon__name { font-size: 17.6px; margin-bottom: 6.4px !important; }
-.pentagon .colophon__else li + li { margin-top: 12.8px; }
-.pentagon .colophon__legal { margin-top: 48px; padding-top: 20px; }
-.pentagon .colophon__legal p { font-size: 14px; }
-.pentagon .colophon__legal .label { margin-top: 16px; }
-
-/* ---- Page: mercurius ---- */
-
-/* The App Store row under the lede (a .page-title__more). The icon stays
-   beside the badge on phones too (.app stacks under 700px). */
-.merc-get .badge-row { margin-top: 0.6rem; }
-.merc-get.app { grid-template-columns: 56px minmax(0, 1fr); column-gap: 16px; }
-@media (min-width: 900px) { .merc-get.app { grid-template-columns: 64px minmax(0, 1fr); column-gap: 24px; } }
-
-/* ---- Page: chapters ---- */
-
-/* The Google Form button under the lede is the page's one button
-   (.act.page-title__more). */
-
-/* The seal as a stamp beside the H1 (wide screens only; the footer has it on phones). */
-.chapters-seal { display: none; }
-@media (min-width: 900px) {
-  .chapters-seal {
-    display: block;
-    grid-column: 10 / -1;
-    grid-row: 1;
-    justify-self: end;
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    margin-top: 0.25rem;
-  }
-}
-@media (min-width: 1200px) { .chapters-seal { width: 160px; height: 160px; } }
-
-.chapters-more { margin-top: 2rem; }
-
-/* Sign-off at the end of the page. */
-.chapters-sign { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--forest); }
-.chapters-sign > .label { margin: 0; }
-.chapters-sign ul { list-style: none; margin: 0.75rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 1rem 3rem; }
-.chapters-sign ul > li, .chapters-sign ul > li + li { margin: 0; }   /* beats .prose li + li */
-.chapters-sign__name {
-  display: block;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.25rem;
-  line-height: 1.2;
-  color: var(--ink);
-  margin-bottom: 0.2rem;
-}
-.chapters-sign .label { display: block; }
-
-/* ---- Page: join ---- */
-
-/* Opening: H1 and lede on the left, the meeting block on the right. Here
-   the block is time and place only, so on phones the form's first field
-   reaches the first screen. */
-.join-title .meet { margin-top: 2.25rem; }
-.join-meet .meet__where { margin-bottom: 0; }
-@media (min-width: 900px) {
-  /* The meeting block spans both rows; the 1fr row takes its extra height,
-     so the lede stays close under the H1. */
-  .join-title { grid-template-rows: auto 1fr; }
-  .join-title h1 { grid-column: 1 / span 8; grid-row: 1; }
-  .join-title .lede { grid-column: 1 / span 7; grid-row: 2; }
-  .join-title .meet { grid-column: 9 / -1; grid-row: 1 / span 2; margin-top: 0.35rem; align-self: start; }
-}
-
-.form__actions .form-status { margin-top: 0.9rem; }
-.join-form textarea { display: block; }   /* no inline gap above the hint */
-.join-success { font-size: var(--t-lede); line-height: 1.5; margin-top: 0; }
-.join-success:focus { outline: none; }
-.join-success:focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; }
-
-/* ---- Page: 404 ---- */
-
-.nf-main { min-height: min(45vh, 30rem); }
+.pentagon .ft__label::before,
+.pentagon .ft__label::after { content: none; }
 
 /* ==========================================================================
-   15. Motion and print
+   21. Print
    ========================================================================== */
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    transition: none !important;
-    animation: none !important;
-    scroll-behavior: auto !important;
-  }
-}
-
 @media print {
-  .site-nav, .nav-toggle, .skip-link { display: none !important; }
-  body { background: #fff; }
-  .colophon { background: #fff; color: var(--ink); border-top: 1px solid var(--ink); }
-  .colophon a, .colophon .label, .colophon__legal p, .colophon__about p:not(.colophon__name), .colophon__name { color: var(--ink); }
+  .site-header .nav-toggle, .hd__join, .skip-link { display: none !important; }
+  .band { background: none; }
+  .ft { background: none; color: var(--ink); border-top-color: var(--ink); }
+  .ft a, .ft__label, .ft__legal { color: var(--ink); }
+  .status { background: none; }
+  .form select { background-image: none; }
 }

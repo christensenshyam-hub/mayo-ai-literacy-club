@@ -1,6 +1,6 @@
 # Design direction: first and second pass (October 6, 2026)
 
-Internal. Not published (Netlify publishes `mayo-site/` only). This is the art direction for the participation redesign. Section 7 records what the second pass changed after the critique and review; where it conflicts with sections 4–6, section 7 wins. `participation-redesign.md` wins on any conflict, and the one deliberate departure is marked **Departure**. Screenshots are in `.shots/refs/`, `.shots/artifacts/`, `.shots/current/` and `.shots/specimen/` (all gitignored). Missing facts go in `content-needs.md`, never on the page.
+Internal. Not published (Netlify publishes `mayo-site/` only). This is the art direction for the participation redesign. Section 7 records what the second pass changed after the critique and review; where it conflicts with sections 4–6, section 7 wins. `participation-redesign.md` wins on any conflict, and the one deliberate departure is marked **Departure**. Screenshots are in `.shots/refs/`, `.shots/artifacts/`, `.shots/current/` and `.shots/specimen/` (all gitignored). Missing facts go in `content-needs.md`, never on the page. *Rollout note (October 6):* `next.css` and `next.js`, named below, are now the site-wide `styles.css` and `script.js`; the current component reference is `design-system.md`, and the page shell is `shell.md`.
 
 ## 1. What we observed, and what we inferred
 
