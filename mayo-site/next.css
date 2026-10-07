@@ -1,0 +1,998 @@
+/* Mayo AI Literacy Club: the participation-redesign system, second pass.
+   Loaded as /next.css?v=2 by index.html ONLY. Every other page still uses
+   /styles.css until it is moved over. Art direction: docs/design-direction.md.
+   Tokens, ratios and component rules: docs/design-system.md.
+
+   The frame is fixed and the content is the variable:
+   - a 4px Forest rule opens every section; 1px hairlines divide rows;
+   - three components carry the content: Story, Chapter, Resource;
+   - one lead per page, in two voices: Source Sans 3 700 (using the tool),
+     then Newsreader italic 500 (the student's own thinking);
+   - headings and labels are Ink; Forest means "you can act on this" (links,
+     buttons) or structure (rules, numbers, the lead's serif clause);
+   - four brand colours, no shadows, no gradients, no motion.
+
+   Contents
+     1. Tokens
+     2. Base
+     3. Type roles
+     4. Frame, grid, sections, bands
+     5. Actions: buttons and text links
+     6. Header and phone menu
+     7. Hero
+     8. Figure and caption
+     9. Record rows
+    10. Chapter (a chapter, or a way to take part)
+    11. Story (a student story or byline piece)
+    12. Resource (a learning resource or work sample, with notes)
+    13. Supporting homepage sections
+    14. Footer
+    15. Print
+*/
+
+/* ==========================================================================
+   1. Tokens
+   ========================================================================== */
+
+/* Metric-matched fallbacks, so text wraps the same before and after the
+   Google Fonts files arrive (no layout shift on swap). size-adjust is the
+   measured width ratio of each web font to the local face, per weight. */
+@font-face { font-family: "Source Sans 3 fallback"; src: local("Arial"), local("ArialMT"); font-weight: 400; size-adjust: 93.2%; }
+@font-face { font-family: "Source Sans 3 fallback"; src: local("Arial Bold"), local("Arial-BoldMT"); font-weight: 600; size-adjust: 89.4%; }
+@font-face { font-family: "Source Sans 3 fallback"; src: local("Arial Bold"), local("Arial-BoldMT"); font-weight: 700; size-adjust: 91.8%; }
+@font-face { font-family: "Newsreader fallback"; src: local("Georgia"); font-weight: 400; font-style: normal; size-adjust: 96%; }
+@font-face { font-family: "Newsreader fallback"; src: local("Georgia Bold"), local("Georgia-Bold"); font-weight: 600; font-style: normal; size-adjust: 87.6%; }
+@font-face { font-family: "Newsreader fallback"; src: local("Georgia Italic"), local("Georgia-Italic"); font-weight: 400 500; font-style: italic; size-adjust: 91.9%; }
+
+:root {
+  /* Colour roles. Contrast ratios are listed in docs/design-system.md. */
+  --parchment: #faf8f4;     /* page ground; text on dark grounds */
+  --ink: #1a1714;           /* body text; 16.8:1 on Parchment */
+  --forest: #1B4D32;        /* links, primary button, rules, numbers, focus, the lead's serif clause; 9.2:1 */
+  --deep: #122e1e;          /* footer and phone menu only */
+  --gold: #C9922A;          /* the seal; rules on Deep Forest. Never text on light grounds */
+  --gold-light: #E8B84B;    /* dark grounds only: labels, focus, menu Join; 7.9:1 */
+  --muted: #5e6b60;         /* captions, meta, hints; 5.3:1 on Parchment, 5.0:1 on Tint */
+  --rule: #d4e0d8;          /* 1px hairlines, decorative only */
+  --rule-dark: rgba(232, 184, 75, 0.32);  /* hairline on Deep Forest, decorative */
+  --tint: #edf4ef;          /* the one band colour, behind the featured Story */
+  --rule-on-tint: #c9d8ce;  /* the Rule hairline, one step darker so it shows on Tint; decorative */
+  --on-dark-soft: #dfe7e1;  /* fine print on Deep Forest; 11.7:1 */
+
+  /* Faces */
+  --serif: "Newsreader", "Newsreader fallback", Georgia, serif;
+  --sans: "Source Sans 3", "Source Sans 3 fallback", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Scale: fluid between 390px and 1440px viewports */
+  --fs-lead: clamp(2.5rem, 1.943rem + 2.286vw, 4rem);          /* 40 -> 64 */
+  --fs-h1: clamp(2.25rem, 1.786rem + 1.905vw, 3.5rem);         /* 36 -> 56 */
+  --fs-feature: clamp(1.875rem, 1.55rem + 1.333vw, 2.75rem);   /* 30 -> 44 */
+  --fs-h2: clamp(1.625rem, 1.439rem + 0.762vw, 2.125rem);      /* 26 -> 34 */
+  --fs-h3: clamp(1.3125rem, 1.196rem + 0.476vw, 1.625rem);     /* 21 -> 26 */
+  --fs-read: clamp(1.125rem, 1.055rem + 0.286vw, 1.3125rem);   /* 18 -> 21 */
+  --fs-body: 1.125rem;                                          /* 18 */
+  --fs-ui: 1rem;                                                /* 16 */
+  --fs-cap: clamp(0.875rem, 0.829rem + 0.19vw, 1rem);          /* 14 -> 16 */
+  --fs-label: 0.875rem;                                         /* 14 */
+
+  /* Spacing scale: 4 8 12 16 24 32 48 64 96 */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+  --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+
+  /* Frame */
+  --measure: 1280px;
+  --margin: clamp(16px, 5.5vw, 80px);
+  --gutter: 16px;
+  --section-gap: var(--s8);
+  --rule-w: 4px;
+}
+
+@media (min-width: 768px) {
+  :root { --gutter: 24px; }
+}
+@media (min-width: 1024px) {
+  :root {
+    --section-gap: var(--s9);
+    /* one of 12 columns, for hairlines centred in an empty column */
+    --col: calc((min(100vw, var(--measure) + 2 * var(--margin)) - 2 * var(--margin) - 11 * var(--gutter)) / 12);
+  }
+}
+
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+
+img, picture { display: block; max-width: 100%; height: auto; }
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
+p, li, dd, blockquote { text-wrap: pretty; }
+ul, ol { padding: 0; }
+
+a {
+  color: var(--forest);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 3px;
+}
+
+time, .tnum { font-variant-numeric: lining-nums tabular-nums; }
+abbr[title] { text-decoration: none; }
+strong { font-weight: 600; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--s4);
+  top: var(--s2);
+  z-index: 100;
+  padding: var(--s3) var(--s4);
+  background: var(--forest);
+  color: var(--parchment);
+  font: 600 var(--fs-ui)/1.25 var(--sans);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   3. Type roles
+   ========================================================================== */
+
+/* Lead: one per page (home, /join, /chapters). Two voices in one heading. */
+.lead {
+  font-family: var(--sans);
+  font-size: var(--fs-lead);
+  line-height: 1.02;
+  font-weight: 700;
+  color: var(--ink);
+  max-width: 22ch;
+}
+.lead__sans { letter-spacing: -0.02em; }
+.lead__serif {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--forest);
+  letter-spacing: -0.01em;
+}
+
+.h1 { font-size: var(--fs-h1); line-height: 1.05; max-width: 20ch; }
+h2, .h2 { font-size: var(--fs-h2); line-height: 1.15; max-width: 24ch; }
+h3, .h3 { font-size: var(--fs-h3); line-height: 1.2; }
+
+.standfirst {
+  font-family: var(--serif);
+  font-size: var(--fs-h3);
+  font-weight: 400;
+  line-height: 1.35;
+  max-width: 40ch;
+}
+
+.reading { font-size: var(--fs-read); line-height: 1.6; max-width: 66ch; }
+.prose { max-width: 66ch; }
+
+/* Label / eyebrow: sentence case, never all caps. Ink, not Forest: a label
+   is never clickable, so it doesn't wear the link colour. */
+.label {
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.label--ink { color: var(--ink); }
+
+.meta {
+  font-family: var(--sans);
+  font-size: var(--fs-cap);
+  line-height: 1.45;
+  color: var(--muted);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.hint {
+  font-family: var(--sans);
+  font-size: var(--fs-cap);
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* A middot list: "Advanced Seminar · Mayo High School".
+   Markup: <span class="dots"><span>A</span> <span>· B</span></span>. Each dot is
+   real text INSIDE the part it introduces, and each part is kept whole, so a
+   line can only break before a dot: a dot never ends a line or sits alone. */
+.dots { white-space: normal; }
+.dots > span { white-space: nowrap; }
+
+/* ==========================================================================
+   4. Frame, grid, sections, bands
+   ========================================================================== */
+
+.frame {
+  width: 100%;
+  max-width: calc(var(--measure) + 2 * var(--margin));
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+/* 4 columns below 768, 8 to 1023, 12 from 1024. Below 1024 every named
+   span is one column in reading order. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+.grid > * { grid-column: 1 / -1; min-width: 0; }
+
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .grid > .span-lead  { grid-column: 1 / span 7; }
+  .grid > .span-wide  { grid-column: 1 / span 8; }
+  .grid > .span-aside { grid-column: 9 / span 4; }
+  .grid > .span-full  { grid-column: 1 / -1; }
+}
+
+/* A section opens: 4px Forest rule, 16px, the H2, 24px, the content. */
+.section {
+  margin-top: var(--section-gap);
+  border-top: var(--rule-w) solid var(--forest);
+  padding-top: var(--s4);
+}
+.section__head { margin-bottom: var(--s5); }
+.section__head .label { margin-bottom: var(--s2); }
+.section__head .standfirst,
+.section__head .reading { margin-top: var(--s3); }
+
+/* The one band colour, behind the featured Story. Square edges. */
+.band {
+  margin-top: var(--section-gap);
+  background: var(--tint);
+  padding-block: var(--s7) var(--s8);
+}
+.band > .frame > .section:first-child { margin-top: 0; }
+
+/* Hairline-divided list (no bullets). */
+.hairlist { list-style: none; }
+.hairlist > li { border-top: 1px solid var(--rule); padding-block: var(--s4); }
+.hairlist > li:last-child { border-bottom: 1px solid var(--rule); }
+
+/* A row of plain text links under a section. */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--s5);
+  margin-top: var(--s5);
+}
+
+/* ==========================================================================
+   5. Actions: buttons and text links
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: var(--s2) 20px;
+  border: 2px solid var(--forest);
+  border-radius: 0;
+  background: var(--forest);
+  color: var(--parchment);
+  font: 600 var(--fs-ui)/1.25 var(--sans);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { background: var(--deep); border-color: var(--deep); }
+.btn--secondary { background: transparent; color: var(--forest); }
+.btn--secondary:hover { background: var(--tint); border-color: var(--forest); }
+
+/* Text link in the sans, for actions: "How chapters work ->".
+   Padded to a 44px target without changing how it reads. */
+.tlink {
+  display: inline-block;
+  padding-block: 10px;
+  font: 600 var(--fs-ui)/1.5 var(--sans);
+  color: var(--forest);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+.tlink:hover { text-decoration-thickness: 2px; }
+.tlink .arrow { text-decoration: none; display: inline-block; margin-left: 0.15em; }
+.tlink .ext { font-weight: 400; }
+
+/* ==========================================================================
+   6. Header and phone menu
+   ========================================================================== */
+
+.site-header {
+  position: relative;
+  z-index: 20;
+  background: var(--parchment);
+}
+
+.hd {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 72px;
+  padding-block: var(--s3);
+}
+
+/* The name in the club's serif voice, as in the footer. */
+.hd__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  min-height: 44px;
+  margin-right: auto;
+  color: var(--forest);
+  font: 600 clamp(1.0625rem, 0.9rem + 0.6vw, 1.1875rem)/1.1 var(--serif);
+  text-decoration: none;
+}
+.hd__brand:hover .hd__name { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
+/* The seal: seal-circle-192.png is already round (transparent corners), so it
+   is shown as drawn, never masked. */
+.hd__seal { width: 40px; height: 40px; flex: none; }
+.hd__name > span { white-space: nowrap; }
+
+.hd__join { flex: none; min-height: 44px; padding-inline: var(--s4); }
+
+/* Menu is a plain text control (44px target), so the solid Join beside it
+   stays the one boxed action in the phone header. */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 var(--s1);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--forest);
+  font: 600 var(--fs-ui)/1.25 var(--sans);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  cursor: pointer;
+}
+.nav-toggle:hover { text-decoration-thickness: 2px; }
+
+.site-nav ul { list-style: none; margin: 0; padding: 0; }
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  color: var(--ink);
+  font: 600 var(--fs-ui)/1.25 var(--sans);
+  text-decoration: none;
+}
+.site-nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.3em; }
+.site-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--forest);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
+/* Phones and tablets: brand, Join, Menu. The list opens on Deep Forest. */
+@media (max-width: 999.98px) {
+  .hd__brand { gap: var(--s2); }
+  html:not(.js) .nav-toggle { display: none; }
+  html:not(.js) .hd { flex-wrap: wrap; }
+  html:not(.js) .site-nav { flex-basis: 100%; }
+  html:not(.js) .site-nav ul { display: flex; flex-wrap: wrap; gap: 0 var(--s5); }
+  html:not(.js) .site-nav__join { display: none; }
+
+  .js .site-nav { display: none; }
+  .js .site-nav.is-open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    min-height: calc(100vh - 72px);
+    min-height: calc(100dvh - 72px);
+    padding: var(--s6) var(--margin) var(--s8);
+    background: var(--deep);
+    border-top: var(--rule-w) solid var(--gold);
+    color: var(--parchment);
+  }
+  .site-nav.is-open li { border-bottom: 1px solid var(--rule-dark); }
+  .site-nav.is-open a {
+    display: flex;
+    justify-content: flex-start;
+    min-height: 56px;
+    color: var(--parchment);
+    font-size: 1.3125rem;
+  }
+  .site-nav.is-open a[aria-current="page"] { text-decoration-color: var(--gold-light); }
+  .site-nav.is-open :focus-visible { outline-color: var(--gold-light); }
+  .site-nav.is-open .site-nav__join { border-bottom: 0; padding-top: var(--s5); }
+  .site-nav.is-open .site-nav__join a {
+    display: inline-flex;
+    min-height: 48px;
+    padding: 0 var(--s5);
+    background: var(--gold-light);
+    color: var(--deep);
+    font-size: var(--fs-ui);
+  }
+  .hd:has(.site-nav.is-open) .hd__join { visibility: hidden; }
+}
+
+/* Wide screens: the full list, Join outlined in Forest. It stays the
+   distinct item in the nav, but the hero's solid button is the one call on
+   the first screen. */
+@media (min-width: 1000px) {
+  .hd { min-height: 88px; padding-block: var(--s4); }
+  .hd__join, .nav-toggle { display: none; }
+  .site-nav ul { display: flex; align-items: center; gap: 0 var(--s5); }
+  .site-nav__join a {
+    min-height: 44px;
+    padding: 0 var(--s4);
+    border: 2px solid var(--forest);
+    color: var(--forest);
+  }
+  .site-nav__join a:hover { background: var(--tint); text-decoration: none; }
+}
+
+/* ==========================================================================
+   7. Hero (home): lead in columns 1-7, intro and button in 9-12, then the
+      meeting as a record across the thirds (When / Where / Who), then the
+      photograph as a 3:1 band (5:3 on phones).
+   ========================================================================== */
+
+.hero { padding-top: var(--s5); }
+.hero__aside { margin-top: var(--s5); }
+.hero__intro { font-size: var(--fs-read); line-height: 1.55; max-width: 40ch; }
+.hero__acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2) var(--s5);
+  margin-top: var(--s5);
+}
+/* Filled by script.js only when events-data.json has a future "upcoming" entry. */
+.hero__next {
+  margin-bottom: var(--s3);
+  font: 400 var(--fs-ui)/1.45 var(--sans);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.hero__next .label { margin-right: var(--s2); }
+.hero__next strong { font-weight: 600; }
+.hero__meets { margin-top: var(--s6); }
+/* Phones: one-word labels (When / Where / Who) need only a narrow column. */
+.rows.hero__meets > div { grid-template-columns: 4rem minmax(0, 1fr); }
+.hero__photo { margin-top: var(--s5); }
+/* Phones: the 2:1 file at 5:3, edge to edge; the caption stays in the margin.
+   Tablets: the 2:1 file whole. (.photo.hero__photo outranks the generic
+   .photo img rule in section 8.) */
+.photo.hero__photo img { aspect-ratio: 5 / 3; object-position: 38% 50%; }
+@media (max-width: 767.98px) {
+  .hero__photo picture { max-width: none; margin-inline: calc(-1 * var(--margin)); }
+  .photo.hero__photo img { border-radius: 0; }
+}
+@media (min-width: 768px) {
+  .photo.hero__photo img { aspect-ratio: 2 / 1; object-position: 50% 50%; }
+}
+/* From 1024: an 18:5 band. The WebP is already cut to 18:5 (rows 145-645 of
+   the 1800px file); for the 2:1 JPG fallback, 50% 36% shows the same rows. */
+@media (min-width: 1024px) {
+  .photo.hero__photo img { aspect-ratio: 18 / 5; object-position: 50% 36%; }
+}
+/* Tablet: intro beside the actions, so the first screen uses its width. */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .hero__aside { display: flex; align-items: flex-start; gap: var(--s6); }
+  .hero__intro { flex: 1 1 auto; }
+  .hero__acts { flex: none; flex-direction: column; align-items: flex-start; gap: var(--s2); margin-top: var(--s1); }
+}
+
+@media (min-width: 1024px) {
+  .hero { padding-top: var(--s8); }
+  .hero__aside { margin-top: 0; padding-top: var(--s2); }
+  .hero__acts { flex-direction: column; align-items: flex-start; gap: var(--s2); }
+  .hero__meets { margin-top: var(--s7); }
+  .hero__photo { margin-top: var(--s5); }
+}
+
+/* ==========================================================================
+   8. Figure and caption
+   ========================================================================== */
+
+.photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: 50% 40%;
+  border-radius: 2px;
+  background: var(--tint);
+}
+/* A 3:2 landscape crop; keeps the floor and tables, trims the ceiling. */
+.photo.photo--landscape img { aspect-ratio: 3 / 2; object-position: 50% 80%; }
+
+/* Caption: the date in words (Ink 600), then what it shows. Never clock times. */
+.caption {
+  margin-top: var(--s2);
+  max-width: 66ch;
+  font-family: var(--sans);
+  font-size: var(--fs-cap);
+  line-height: 1.45;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+.caption strong { color: var(--ink); font-weight: 600; }
+
+/* ==========================================================================
+   9. Record rows: label / value between hairlines, tabular figures
+   ========================================================================== */
+
+.rows { border-top: 1px solid var(--rule); }
+.rows > div {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: var(--s1) var(--s4);
+  padding-block: var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+.rows dt {
+  font: 600 var(--fs-label)/1.3 var(--sans);
+  color: var(--muted);
+  font-variant-numeric: lining-nums tabular-nums;
+  padding-top: 0.2em;
+}
+.rows dd {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+@media (min-width: 768px) {
+  .rows > div { grid-template-columns: minmax(7rem, 1fr) 3fr; column-gap: var(--s5); }
+  .chapter .rows > div { grid-template-columns: 5.5rem minmax(0, 1fr); column-gap: var(--s4); }
+}
+
+/* Stacked rows: the label sits above its value at every width. For labels
+   longer than a word ("Fall interest meeting") and for narrow columns. */
+.rows--stack > div,
+.rows.rows--stack > div { grid-template-columns: minmax(0, 1fr); row-gap: var(--s1); }
+
+/* Across: one row of cells on the thirds (tablet and up), label above value.
+   Below 768 it is an ordinary label / value list. */
+@media (min-width: 768px) {
+  .rows--across {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--gutter);
+    border-bottom: 1px solid var(--rule);
+  }
+  .rows.rows--across > div {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    row-gap: var(--s1);
+    border-bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   10. Chapter: a chapter, or a way to take part
+       number (or place line) -> H3 -> who it's for -> facts -> rows ->
+       status -> at most two actions. Thirds with vertical hairlines on
+       desktop; stacked between hairlines on phones. Never cards.
+   ========================================================================== */
+
+.chapters { list-style: none; max-width: 44rem; }
+
+.chapter + .chapter {
+  margin-top: var(--s5);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule);
+}
+
+.chapter__num {
+  font: 700 1.125rem/1 var(--sans);
+  color: var(--forest);
+  font-variant-numeric: lining-nums tabular-nums;
+  margin-bottom: var(--s3);
+}
+.chapter__place { margin-bottom: var(--s3); }
+.chapter__title { font-size: var(--fs-h3); line-height: 1.2; }
+.chapter__for {
+  margin-top: var(--s2);
+  font: 600 var(--fs-ui)/1.35 var(--sans);
+  color: var(--ink);
+}
+.chapter__facts { margin-top: var(--s3); max-width: 46ch; }
+.chapter .rows { margin-top: var(--s4); }
+
+/* Status: said honestly, next to the action, readable without a click. */
+.chapter__status {
+  margin-top: var(--s3);
+  max-width: 46ch;
+  font: 400 var(--fs-ui)/1.45 var(--sans);
+  color: var(--ink);
+}
+.chapter__status strong { font-weight: 700; }
+
+.chapter__acts { margin-top: var(--s2); list-style: none; }
+.chapter__acts > li { list-style: none; }
+
+@media (min-width: 1024px) {
+  .chapters {
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+  .chapter + .chapter {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+    position: relative;
+  }
+  /* 1px hairline centred in the gutter */
+  .chapter + .chapter::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--gutter) / -2);
+    width: 1px;
+    background: var(--rule);
+  }
+  .chapter { display: flex; flex-direction: column; padding-right: var(--s3); }
+  .chapter + .chapter { padding-left: var(--s3); }
+}
+
+/* ==========================================================================
+   11. Story: eyebrow (kind · source) -> linked title -> byline row ->
+       standfirst (published summary, or verbatim excerpt in quotes) ->
+       optional real figure -> one text link. Complete without an image.
+   ========================================================================== */
+
+/* The band's heading is the question both pieces answer, so it is the
+   loudest thing in the band: feature size, two lines across columns 1-9. */
+.question {
+  font-size: var(--fs-feature);
+  line-height: 1.1;
+  max-width: 28ch;
+}
+.band .section__head { margin-bottom: var(--s6); }
+
+.stories { row-gap: var(--s5); }
+
+.story__eyebrow { margin-bottom: var(--s2); }
+.story__title { font-size: var(--fs-h3); line-height: 1.2; max-width: 24ch; }
+/* Ink title, quiet Forest underline: it reads as a heading and as a link.
+   The padding lifts the target past 44px without moving the text. */
+.story__title a {
+  color: inherit;
+  padding-block: 0.6em;
+  text-decoration-line: underline;
+  text-decoration-color: var(--forest);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.story__title a:hover { text-decoration-thickness: 2px; }
+.story__byline {
+  margin-top: var(--s2);
+  font-family: var(--sans);
+  font-size: var(--fs-cap);
+  line-height: 1.45;
+  color: var(--muted);
+}
+.story__byline .who { color: var(--ink); font-weight: 600; }
+.story__stand { margin-top: var(--s4); max-width: 60ch; }
+.story__more { margin-top: var(--s2); }
+
+/* Featured: the same title size as its companion (both answer the band's
+   question); it is wider and its excerpt is set a step larger. */
+.story--featured .story__stand {
+  font-size: var(--fs-read);
+  line-height: 1.5;
+  max-width: 48ch;
+}
+/* Hang the opening quotation mark so the text edge stays straight. */
+.story__stand.is-quote > p { text-indent: -0.42em; }
+
+/* Companion stories are separated by a hairline: above on phones, beside on desktop. */
+.story--companion {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s5);
+}
+.band .story--companion { border-color: var(--rule-on-tint); }
+
+@media (min-width: 1024px) {
+  .story--companion {
+    position: relative;
+    border-top: 0;
+    padding-top: 0;
+  }
+  /* featured in 1-7, companion in 9-12: the hairline sits in the middle of column 8 */
+  .story--companion::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(-1 * (var(--gutter) + var(--col) / 2));
+    width: 1px;
+    background: var(--rule);
+  }
+  .band .story--companion::before { background: var(--rule-on-tint); }
+  .story--companion .story__stand { font-size: var(--fs-body); }
+}
+
+.stories__close {
+  margin-top: var(--s6);
+  padding-top: var(--s2);
+  border-top: 1px solid var(--rule-on-tint);
+}
+
+/* ==========================================================================
+   12. Resource: label line (format · time or size · source) -> title ->
+       the artifact, whole, as a document -> its text as HTML -> 2-4 numbered
+       notes in the club's words (aside on desktop) -> "What you'll need"
+       (confirmed values only) -> source and download line.
+       First used on the homepage ("What happens on Thursdays").
+   ========================================================================== */
+
+.resource__label { margin-bottom: var(--s2); }
+.resource__title { font-size: var(--fs-h3); line-height: 1.2; }
+.resource__doc { margin-top: var(--s4); }
+.resource__doc img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background: #fff;
+}
+.resource__notes {
+  margin-top: var(--s4);
+  list-style: none;
+  counter-reset: note;
+  border-top: 1px solid var(--rule);
+}
+.resource__notes > li {
+  counter-increment: note;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: var(--s3);
+  padding-block: var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+.resource__notes > li::before {
+  content: counter(note, decimal-leading-zero);
+  font: 700 var(--fs-label)/1.6 var(--sans);
+  color: var(--forest);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.resource__notes p { font-size: var(--fs-body); line-height: 1.5; }
+.resource__notes strong { font: 600 var(--fs-ui)/1.4 var(--sans); display: block; margin-bottom: var(--s1); }
+.resource__notes .meta { display: block; margin-top: var(--s1); }
+.resource__notes-label { margin-top: var(--s5); }
+.resource__need { margin-top: var(--s4); }
+.resource__source { margin-top: var(--s4); }
+
+/* The artifact's own words, as HTML: legible on a phone, where the slide
+   image is too small to read, and selectable everywhere. */
+.resource__text { margin-top: var(--s5); }
+.resource__text blockquote {
+  margin-top: var(--s2);
+  padding-left: var(--s4);
+  border-left: 1px solid var(--rule);
+  max-width: 66ch;
+  font-size: var(--fs-ui);
+  line-height: 1.55;
+}
+.resource__text blockquote p + p,
+.resource__text blockquote ul { margin-top: var(--s3); }
+.resource__text blockquote strong { font-weight: 600; }
+.resource__text ul { list-style: none; }
+.resource__text li { padding-left: 1.1em; text-indent: -1.1em; }
+.resource__text li::before { content: "–"; display: inline-block; width: 1.1em; text-indent: 0; color: var(--muted); }
+
+@media (min-width: 1024px) {
+  .resource { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .resource > * { grid-column: 1 / span 8; }
+  .resource > .resource__aside { grid-column: 9 / span 4; grid-row: 3 / span 2; padding-top: var(--s4); }
+  .resource__aside .resource__notes-label { margin-top: 0; }
+}
+/* From 1280 the slide itself sets its body near 13-14px, so the transcript
+   leaves the screen but stays in the page for screen readers, search and
+   zoom (at 400% zoom the phone layout returns and shows it). */
+@media (min-width: 1280px) {
+  .resource__text {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: normal;
+    border: 0;
+  }
+}
+
+/* ==========================================================================
+   13. Supporting homepage sections, kept from the October 2 site and set
+       in this system: topics, the AACA citation, the record and Mercurius.
+   ========================================================================== */
+
+/* The resource leads the Thursdays section; the six topics follow it. */
+.resource + .topics__head { margin-top: var(--s7); }
+.topics__head { margin-bottom: var(--s4); }
+
+/* Six questions, as labelled rows: thirds of two on desktop. */
+.questions { list-style: none; border-top: 1px solid var(--rule); }
+.questions > li {
+  padding-block: var(--s4);
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--fs-body);
+  line-height: 1.45;
+}
+.questions .label { display: block; margin-bottom: var(--s1); }
+
+@media (min-width: 768px) {
+  .questions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); }
+}
+@media (min-width: 1024px) {
+  .questions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* The AACA citation: a record, with the Mayo Clinic sentence beside it. */
+.citation__deck { margin-top: var(--s4); font-style: italic; }
+.citation .rows { margin-top: var(--s5); }
+.citation__note { margin-top: var(--s3); max-width: 66ch; }
+
+@media (min-width: 1024px) {
+  .citation { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .citation > * { grid-column: 1 / span 8; }
+}
+
+/* The record: photo in 1-7, rows and links in 9-12. Source order is rows,
+   photo, links, so on phones the photo follows the row it shows. */
+.record { row-gap: var(--s5); }
+.links--stack { flex-direction: column; align-items: flex-start; gap: 0; }
+.record > .links { margin-top: 0; }
+@media (min-width: 1024px) {
+  .record { grid-template-rows: auto 1fr; }
+  .record > .record__rows { grid-row: 1; }
+  .record > .record__photo { grid-row: 1 / span 2; }
+  .record > .record__links { grid-row: 2; align-self: start; }
+}
+
+/* Mercurius: its own section, main column only. */
+.app { display: flex; gap: var(--s4); align-items: flex-start; max-width: 50rem; }
+.app__icon { width: 56px; height: 56px; border-radius: 12px; flex: none; }
+.app p + p { margin-top: var(--s3); }
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3) var(--s5);
+  margin-top: var(--s4);
+}
+.badge { display: inline-block; }
+.badge img { height: 44px; width: auto; }
+
+/* ==========================================================================
+   14. Footer: Deep Forest, Gold rule, the 96px seal, the full disclaimer
+   ========================================================================== */
+
+.ft {
+  margin-top: var(--section-gap);
+  background: var(--deep);
+  border-top: var(--rule-w) solid var(--gold);
+  color: var(--parchment);
+  padding-block: var(--s7) var(--s6);
+  font-size: var(--fs-body);
+}
+.ft a { color: var(--parchment); }
+.ft :focus-visible { outline-color: var(--gold-light); }
+.ft__label {
+  margin-bottom: var(--s2);
+  font: 600 var(--fs-label)/1.3 var(--sans);
+  color: var(--gold-light);
+}
+.ft__grid { row-gap: var(--s6); }
+.ft__seal { width: 96px; height: 96px; margin-bottom: var(--s4); }
+.ft__name { font: 600 var(--fs-h3)/1.2 var(--serif); }
+.ft__about p + p { margin-top: var(--s2); }
+.ft ul { list-style: none; }
+.ft li a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; }
+.ft__nav ul { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); column-gap: var(--s6); }
+.ft__nav a { font: 600 var(--fs-ui)/1.25 var(--sans); }
+.ft__else li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s2); }
+.ft__else .ft__k { font: 400 var(--fs-cap)/1.45 var(--sans); color: var(--on-dark-soft); }
+.ft__legal {
+  margin-top: var(--s7);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule-dark);
+  font: 400 var(--fs-cap)/1.5 var(--sans);
+  color: var(--on-dark-soft);
+}
+.ft__legal p { max-width: 80ch; }
+.ft__legal p + p { margin-top: var(--s3); }
+
+@media (min-width: 768px) {
+  .ft__grid > .ft__about { grid-column: 1 / -1; }
+  .ft__grid > .ft__meets { grid-column: 1 / span 3; }
+  .ft__grid > .ft__nav { grid-column: 4 / span 3; }
+  .ft__grid > .ft__else { grid-column: 7 / span 2; }
+}
+@media (min-width: 1024px) {
+  .ft__grid > .ft__about { grid-column: 1 / span 4; }
+  .ft__grid > .ft__meets { grid-column: 5 / span 3; }
+  .ft__grid > .ft__nav { grid-column: 8 / span 2; }
+  .ft__grid > .ft__else { grid-column: 10 / span 3; }
+  .ft__nav ul { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   15. Print
+   ========================================================================== */
+
+@media print {
+  .site-header .nav-toggle, .hd__join, .skip-link { display: none !important; }
+  .band { background: none; }
+  .ft { background: none; color: var(--ink); border-top-color: var(--ink); }
+  .ft a, .ft__label, .ft__legal { color: var(--ink); }
+}
